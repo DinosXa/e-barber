@@ -1,17 +1,31 @@
+
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="css_docs/firstPage.css">
-		<title>FirstPage</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>FirstPage</title>
+		<link rel="stylesheet" type="text/css" href="css_docs/firstPage.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
-	</head>
+		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>		
 	
-	<body>
+	<style>
+		body {
+		
+			background-image: url("imgs/barberBG1.jpg"); 
+			background-size: cover;	
+			
+		}
+
+	</style>
+
+	</head>
+	<body class="text-center">
+	
 
 		<!-- Navbar -->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,40 +42,44 @@
 			
 			
 				<!-- Account Option on Navbar + Avatars -->
-				<div id=AccountsBnC>
+				<div id=AccountsRnL>
 					<form class="form-inline my-2 my-lg-0">
 						<div class="nav-item dropdown">
-							<div class="border">
-								<a class="nav-link dropdown-toggle text-white bg-dark"  id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								  Register / Log In
-								</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item">
-										<span class="border-0">
-										
-											<button type="button" class="btn" data-toggle="modal" data-target="#RegisterBarberModal">
+							<a class="nav-link dropdown-toggle text-white bg-dark"  id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							  Register / Log In
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item">
+									<span class="border-0">		
+										<button type="button" class="btn" data-toggle="modal" data-target="#RegisterBarberModal">
 											<img src="imgs/registerIMG.jpg" alt="Avatar" class="avatar rounded-circle" style="width:35px; height:30px; border-radius:0px;">
-												Register
-											</button>
-										</span>
-									</a>									
-									<a class="dropdown-item">
-										<span class="border-0">
-
-											<button type="button" class="btn" data-toggle="modal" data-target="#LogInModal">
-												<img src="imgs/loginIMG.png" alt="Avatar" class="avatar rounded-circle" style="width:35px; height:30px; border-radius:0px;">
-												Log in
-											</button>										
-										</span>
-									</a>
-								</div>
+											Register
+										</button>
+									</span>
+								</a>									
+								<a class="dropdown-item">
+									<span class="border-0">
+										<button type="button" class="btn" data-toggle="modal" data-target="#LogInModal">
+											<img src="imgs/loginIMG.png" alt="Avatar" class="avatar rounded-circle" style="width:35px; height:30px; border-radius:0px;">
+											Log in
+										</button>										
+									</span>
+								</a>
 							</div>
 						</div>
 					</form>
 				</div>					
 			</div>
 		</nav>
+		
 
+		<div class="search-box">
+			<input class="search-txt" type="text" name="" placeholder="Search area...">
+			<a class="search-btn href="#">
+				<i class="fas fa-search-location"></i>
+			</a>
+		</div>
+		
 
 				<!--Register Pop-up-->
 				<!-- The Barbershop Modal -->
@@ -131,7 +149,7 @@
 						<div class="form-group">
 							<label for="postalcode" class="col-sm-2 control-label">Postal Code</label>
 							<div class="col-sm-10">
-								<input name="postalcode" type="text" class="form-control" id="poscod" placeholder="Enter your postal code" >
+								<input name="postalcode" type="number" class="form-control" id="poscod" placeholder="Enter your postal code" >
 							</div>
 						</div>
 						<div class="form-group">
@@ -264,43 +282,41 @@
 	
 		<!--Log in Customer/Barbershop-->
 		<!-- The Modal -->
-	<div class="modal" id="LogInModal">
-	  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-		<div class="modal-content">
+	<div class="modal fade" id="LogInModal">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
 
-		  <!-- Modal Header -->
-		  <div class="modal-header">
-			<h4 class="modal-title">Log in</h4>
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-		  </div>
-
-		  <!-- Modal body -->
-		<div class="modal-body">
-			<div class="form-group">			
-				<label for="name" class="col-sm-2 control-label text-center">Username </label>
-				<div class="col-sm-10">
-					<input name="username" type="username" class="form-control" id="username" placeholder="Enter your username">
+			  <!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Log in</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="password" class="col-sm-2 control-label">Password</label>
-				<div class="col-sm-10">
-					<input name="password1" type="password" class="form-control" id="password1" placeholder="Enter your password">
+
+			  <!-- Modal body -->
+				<div class="modal-body">
+					<div class="form-group">			
+						<label for="name" class="col-sm-2 control-label text-center">Username </label>
+						<div class="col-sm-10">
+							<input name="username" type="username" class="form-control" id="username" placeholder="Enter your username">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-10">
+							<input name="password1" type="password" class="form-control" id="password1" placeholder="Enter your password">
+						</div>
+					</div>
+				</div>
+
+				  <!-- Modal footer -->
+				<div class="modal-footer justify-content-start">
+					<input type="submit" name="submit" id="button" value="Log in" class="btn btn-success" />
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		  <!-- Modal footer -->
-		<div class="modal-footer justify-content-start">
-			<input type="submit" name="submit" id="button" value="Log in" class="btn btn-success" />
-			<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-		</div>
-
-    </div>
-  </div>
-</div>
-	
-	
 	
 	</body>
 </html>
