@@ -17,17 +17,41 @@
 		body {
 		
 			background-image: url("imgs/barberBG1.jpg"); 
-			background-size: cover;	
+			background-size: cover;		
 			
 		}
 
 	</style>
-
 	</head>
-	<body class="text-center">
+	<body>
+	<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;"><em>e-barber</em></h1>
+	
+	<div class="container" id=dropdown>	
+		<div class="dropdown dropup float-right">
+			<button type="button" class="btn bg-dark dropdown-toggle" style="color:white;" data-toggle="dropdown">
+			Register/Log In
+			</button>			
+			<div class="dropdown-menu">
+				<a class="dropdown-item">
+					<span class="border-0">		
+						<button type="button" class="btn" data-toggle="modal" data-target="#RegisterModal">
+						Register
+						</button>
+					</span>
+				</a>
+				<a class="dropdown-item">
+					<span class="border-0">
+						<button type="button" class="btn" data-toggle="modal" data-target="#LogInModal">
+						Log In
+						</button>										
+					</span>
+				</a>
+			</div>
+		</div>
+	</div>
 	
 
-		<!-- Navbar -->
+<!-- 		Navbar
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#"><em>e-barber</em></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +65,7 @@
 				</ul>
 			
 			
-				<!-- Account Option on Navbar + Avatars -->
+				Account Option on Navbar + Avatars
 				<div id=AccountsRnL>
 					<form class="form-inline my-2 my-lg-0">
 						<div class="nav-item dropdown">
@@ -70,26 +94,26 @@
 					</form>
 				</div>					
 			</div>
-		</nav>
+		</nav> -->
 		
 
-		<div class="search-box">
-			<input class="search-txt" type="text" name="" placeholder="Search area...">
-			<a class="search-btn href="#">
-				<i class="fas fa-search-location"></i>
-			</a>
-		</div>
-		
+	<div class="search-box">
+		<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
+		<a class="search-btn href="#">
+			<i class="fas fa-search-location"></i>
+		</a>
+	</div>
+	
 
 				<!--Register Pop-up-->
 				<!-- The Barbershop Modal -->
-	<div class="modal fade" id="RegisterBarberModal">
+	<div class="modal fade" id="RegisterModal">
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
 			<div class="modal-content">
 		  
 				<!-- Modal Header -->
 				<div class="modal-header text-center">
-					<h4 class="modal-title">Register as a Barber</h4><br>
+					<h4 class="modal-title">Register</h4><br>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 			
@@ -149,7 +173,7 @@
 						<div class="form-group">
 							<label for="postalcode" class="col-sm-2 control-label">Postal Code</label>
 							<div class="col-sm-10">
-								<input name="postalcode" type="number" class="form-control" id="poscod" placeholder="Enter your postal code" >
+								<input name="postalcode" type="text" class="form-control" id="poscod" placeholder="Enter your postal code" >
 							</div>
 						</div>
 						<div class="form-group">
