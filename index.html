@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>FirstPage</title>
+		<title>e-barber</title>
 		<link rel="stylesheet" type="text/css" href="css_docs/firstPage.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -25,7 +25,7 @@
 		<div class="container" id=dropdown>	
 			<div class="dropdown dropup float-right">
 				<button type="button" class="btn bg-dark dropdown-toggle" style="color:white;" data-toggle="dropdown">
-				Register/Log In
+				Register/Login
 				</button>			
 				<div class="dropdown-menu">
 					<a class="dropdown-item">
@@ -81,71 +81,47 @@
 								<div class="modal-body">
 									<form class="form-horizontal">					
 										<div class="form-group">			
-											<label for="inputBName" class="col-sm-2 control-label">Name </label>
+											<label for="Bname" class="col-sm-2 control-label">Username </label>
 										<div class="col-sm-10">
-											<input name="Bname" type="name" class="form-control" id="bname" placeholder="Enter your name">
+											<input name="Bname" type="text" class="form-control" id="Bname" placeholder="Enter your barbershop's name">
 										</div>
-										</div>
-										<div class="form-group">
-											<label for="inputBSurname" class="col-sm-2 control-label">Surname</label>
-											<div class="col-sm-10">
-												<input name="Bsurname" type="name" class="form-control" id="bsurname" placeholder="Enter your surname">
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="inputBpemail" class="col-sm-2 control-label">Personal email</label>
-											<div class="col-sm-10">
-												<input name="Bpemail" type="email" class="form-control" id="bpemail" placeholder="Enter your personal email">
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="inputBemail" class="col-sm-2">Barbershop email</label>					
-											<div class="col-sm-10">
-												<input name="bemail" type="email" class="form-control" id="bemail" placeholder="Enter your barbershop's email">
-											</div>							
 										</div>
 										<div class="form-group">
 											<label for="inputBPassword1" class="col-sm-2 control-label">Password</label>
 											<div class="col-sm-10">
-												<input name="Bpassword1" type="password" class="form-control" id="bpassword1" placeholder="Type your password">
+												<input name="Bpassword1" type="password" class="form-control" id="bpassword1" placeholder="Enter your password">
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="inputConfirmPassword1" class="col-sm-2 control-label">Confirm Password</label>
+											<label for="Bemail" class="col-sm-2 control-label">E-mail</label>
 											<div class="col-sm-10">
-												<input name="Bcpassword1" type="password" class="form-control" id="bcpassword2" placeholder="Confirm your password" >
+												<input name="Bemail" type="email" class="form-control" id="Bemail" placeholder="Enter your email">
 											</div>
 										</div>
-										<div class="form-group">						
-											<label for="inputBarbershop" class="col-sm-2 control-label">Barbershop</label>
-											<div class="col-sm-10">				
-												<input name="barbershop" type="text" class="form-control" id="barbershop" placeholder="Enter your barbershop's name">
-											</div>
-										</div>
+										
+										
+	
 										<div class="form-group">
-											<label for="inputLC" class="col-sm-2 control-label">Barbershop's Lisence code</label>
+											<label for="Bphone" class="col-sm-2 control-label">Phone</label>
 											<div class="col-sm-10">
-												<input name="lisenceCode" type="integer" class="form-control" id="liscod" placeholder="Enter your barbershop's lisence" >
+												<input name="Bphone" type="integer" class="form-control" id="Bphone" placeholder="Enter your phone">
 											</div>
 										</div>
+										
+										
 										<div class="form-group">
-											<label for="inputBTelephone" class="col-sm-2 control-label">Telephone</label>
+											<label for="Baddress" class="col-sm-2 control-label">Address</label>
 											<div class="col-sm-10">
-												<input name="Btelephone" type="integer" class="form-control" id="btelephone" placeholder="Enter your telephone">
+												<input name="Baddress" type="text" class="form-control" id="Baddress" placeholder="Enter your address">
 											</div>
 										</div>
+										
 										<div class="form-group">
-											<label for="inputBPC" class="col-sm-2 control-label">Postal Code</label>
-											<div class="col-sm-10">
-												<input name="Bpostalcode" type="integer" class="form-control" id="bposcod" placeholder="Enter your postal code" >
-											</div>
-										</div>
-										<div class="form-group">
-										  <label for="inputArea" class="col-sm-2 control-label" >Area</label>
+										  <label for="Area" class="col-sm-2 control-label" >Area</label>
 											<div class="col-sm-10">
 												<select class="form-control">
 													<optgroup label="Αθήνα">
-														<option value="" disabled selected hidden>-- Select your barbershop's location --</option>
+														<option value="" disabled selected hidden>-- Select your location --</option>
 														<option value="ilisia">Ιλίσια</option>
 														<option value="kentro">Κέντρο</option>
 														<option value="kolonaki">Κολωνάκι-Λυκαβηττός</option>
@@ -170,74 +146,47 @@
 							<div id="creg" class="container tab-pane"><br>	
 								<div class="modal-body">				
 									<form class="form-horizontal">
-										
 										<div class="form-group">
-											<label for="inputName" class="col-sm-2 control-label">Name</label>
+											<label for="Cusername" class="col-sm-2 control-label">Username</label>
 											<div class="col-sm-10">
-												<input name="Cname" type="name" class="form-control" id="name" placeholder="Enter your name" >
+												<input name="Cusername" type="name" class="form-control" id="Cusername" placeholder="Enter your username" >
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="inputSurname" class="col-sm-2 control-label">Surname</label>
+											<label for="Cpassword1" class="col-sm-2 control-label">Password</label>
 											<div class="col-sm-10">
-												<input name="Csurname" type="name" class="form-control" id="surname" placeholder="Enter your surname" >
+												<input name="Cpassword" type="password" class="form-control" id="Cpassword" placeholder="Enter your password" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="Cname" class="col-sm-2 control-label">Name</label>
+											<div class="col-sm-10">
+												<input name="Cname" type="name" class="form-control" id="Cname" placeholder="Enter your name" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="Csurname" class="col-sm-2 control-label">Surname</label>
+											<div class="col-sm-10">
+												<input name="Csurname" type="name" class="form-control" id="Csurname" placeholder="Enter your surname" >
 											</div>
 										</div>		
 										<div class="form-group">
-											<label for="inputEail" class="col-sm-2 control-label">Email</label>
+											<label for="Cemail" class="col-sm-2 control-label">E-mail</label>
 											<div class="col-sm-10">
-												<input name="Cemail" type="email" class="form-control" id="email" placeholder="Enter your personal email" >
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="inputPassword" class="col-sm-2 control-label">Password</label>
-											<div class="col-sm-10">
-												<input name="Cpassword1" type="password" class="form-control" id="password2" placeholder="Type your password" >
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="inputConfirmPassword1" class="col-sm-2 control-label">Confirm Password</label>
-											<div class="col-sm-10">
-												<input name="Ccpassword1" type="password" class="form-control" id="password2" placeholder="Confirm your password" >
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="inputTelephone" class="col-sm-2 control-label">Telephone</label>
-											<div class="col-sm-10">
-												<input name="Ctelephone" type="integer" class="form-control" id="telephone1" placeholder="Enter your telephone">
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="inputPostalCode" class="col-sm-2 control-label">Postal Code</label>
-											<div class="col-sm-10">
-												<input name="Cpostalcode" type="integer" class="form-control" id="poscod" placeholder="Enter your postal code" >
+												<input name="Cemail" type="email" class="form-control" id="Cemail" placeholder="Enter your email" >
 											</div>
 										</div>
 										
+										
 										<div class="form-group">
-										  <label for="inputArea" class="col-sm-2 control-label" >Area</label>
-										  <div class="col-sm-10">
-											<select class="form-control">
-												<optgroup label="Αθήνα">
-													<option value="" disabled selected hidden>-- Select your location --</option>
-													<option value="ilisia">Ιλίσια</option>
-													<option value="kentro">Κέντρο</option>
-													<option value="kolonaki">Κολωνάκι-Λυκαβηττός</option>
-													<option value="kolonos">Κολωνός</option>
-													<option value="koukaki">Κουκάκι</option>
-													<option value="kypseli">Κυψέλη</option>
-													<option value="mets">Καλλιμάρμαρο-Μετς</option>
-													<option value="neoskosmos">Νέος Κόσμος</option>
-													<option value="pagkrati">Παγκράτι</option>
-													<option value="anopatisia">Άνω Πατήσια</option>
-													<option value="katopatisia">Κάτω Πατήσια</option>
-													<option value="petralona">Πετράλωνα</option>
-													<option value="polygono">Πολύγωνο</option>
-													<option value="sepolia">Σεπόλια</option>
-												</optgroup>
-											</select>
-										  </div>
+											<label for="Cphone" class="col-sm-2 control-label">Phone</label>
+											<div class="col-sm-10">
+												<input name="Cphone" type="integer" class="form-control" id="Cphone" placeholder="Enter your phone">
+											</div>
 										</div>
+									
+										
+										
 									</form>					
 								</div>	
 							</div>
@@ -266,39 +215,16 @@
 
 				  <!-- Modal body -->
 					<div class="container">
-						<ul class="nav nav-tabs nav-justified" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#blog">Log in as a barber</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#clog">Log in as a customer</a>
-							</li>
-						</ul>
+						
 
-						<div class="tab-content">
-							<div id="blog" class="container tab-pane"><br>						
-								<div class="modal-body">
-									<div class="form-group">			
-										<label for="name" class="col-sm-2 control-label text-center">Barbershop's email</label>
-										<div class="col-sm-10">
-											<input name="bemail" type="email" class="form-control" id="email" placeholder="Enter your barbershop's email">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="password" class="col-sm-2 control-label">Password</label>
-										<div class="col-sm-10">
-											<input name="password1" type="password" class="form-control" id="password1" placeholder="Enter your password">
-										</div>
-									</div>
-								</div>					
-							</div>
+							
 							
 							<div id="clog" class="container tab-pane"><br>
 								<div class="modal-body">
 									<div class="form-group">			
-										<label for="name" class="col-sm-2 control-label text-center">Email </label>
+										<label for="username" class="col-sm-2 control-label text-center">Username </label>
 										<div class="col-sm-10">
-											<input name="cemail" type="email" class="form-control" id="cemail" placeholder="Enter your email">
+											<input name="username" type="text" class="form-control" id="username" placeholder="Enter your username">
 										</div>
 									</div>
 									<div class="form-group">
@@ -309,12 +235,13 @@
 									</div>
 								</div>
 							</div>
-						</div>
+					
 					</div>
 
 					  <!-- Modal footer -->
 					<div class="modal-footer justify-content-start">
-						<input type="submit" name="submit" id="button" value="Log in" class="btn btn-success" />
+						<!--<input type="submit" name="submit" id="button" value="Log in" class="btn btn-success" href="CustomerHTML/searchforbarbers.html">-->
+						<a class="btn btn-success" href="CustomerHTML/searchforbarbers.html">Log in</a>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 					</div>
 				</div>
