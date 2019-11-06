@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	
+	
+		<title>Results</title>
 		<link rel="stylesheet" type="text/css" href="../css_docs/menu2.css">
-		<title>My reviews</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -14,6 +16,22 @@
 			body {
 				background-image: url("../imgs/barberBG1.jpg"); 
 				background-size: cover;		
+			}
+			
+			#AccountsBnC{
+				margin-right:5%;
+				color:black;
+			}
+		
+			.button {
+				background-color: #4CAF50; /* Green */
+				border: none;
+				color: white;
+				padding: 10px 10px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
 			}
 		</style>
 
@@ -30,13 +48,13 @@
 
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-item ">
+					<li class="nav-item active">
 						<a class="nav-link" href="searchforbarbers.html">Search</a>
 					</li>
-					<li class="nav-item ">
+					<li class="nav-item">
 						<a class="nav-link" href="myprofile.html">My profile</a>
 					</li>
-					<li class="nav-item active">
+					<li class="nav-item">
 						<a class="nav-link" href="myreviews.html">My reviews</a>
 					</li>			
 					<li class="nav-item">
@@ -70,78 +88,47 @@
 					</form>
 				</div>
 			</div>
-				
 			<span class="border-0">
 				<img src="../imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
 			</span>	
 		</nav>
-
-<!--
-		<div class="media border p-3">
-		  <img src="imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-		  <div class="media-body">
-			<h4>Clip Smith <small><i>Posted on February 30, 2019/<i></small></h4>
-			<p>Welcome to my shop...</p>
-			<button type="button" class="btn btn-info btn-rounded">Info</button>
-		 </div>
-		</div>
-
-		<div class="media border p-3">
-		  <img src="imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-		  <div class="media-body">
-			<h4>Trim Tim <small><i>Posted on May 30, 2019</i></small></h4>
-			<p>Some info...</p>
-			<button type="button" class="btn btn-info btn-rounded">Info</button>
-		 </div>
-		</div>
-
-		<div class="media border p-3">
-		  <img src="imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-		  <div class="media-body">
-			<h4>Mad Chad <small><i>Posted on July 1, 2019</i></small></h4>
-			<p>Some text...</p>
-			<button type="button" class="btn btn-info btn-rounded">Info</button>
-		 </div>
-		</div>
-
-
-		<div class="media border p-3">
-		  <img src="imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-		  <div class="media-body">
-			<h4>Hairy Mary <small><i>Posted on February 4, 2019</i></small></h4>
-			<p>Something...</p>
-			<button type="button" class="btn btn-info btn-rounded">Info</button>
-		 </div>
-		</div>
--->
-
-
-
-		<div class="container theme-showcase" role="main">
-			<!-- Main jumbotron for a primary marketing message or call to action -->
+		<div class="container">
 			<div class="jumbotron">
-				<h1>My reviews</h1>
-			</div>
-			<div class="container">
-				<div class="media border p-3">
-					<img src="../imgs/bpoleAv.jpg" alt="barber-photo" class="mr-3 mt-3 rounded-circle" style="width:120px;">
-					<div class="media-body">
-					<h4>Barber01 <small><i>Answered on February 15, 2019<i></small></h4>
-					<p>Ευχαριστούμε για την κριτική! </p>
-						<!--<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span></p>-->
-									
-						<button type="button" class="btn btn-info btn-rounded">Answer</button>
-					</div>
-				</div>
-			</div> 
+				<h1>Results</h1>    
+			</div>    
 		</div>
 
+
+		<div class="container">
+			<div class="media border p-3">
+				<img src="../imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
+				<div class="media-body">
+					<h4>Barbershop 1</h4>
+					<p>Shaving is our speciality.</p>
+					<a class="btn btn-success" href="cBarbershopPage.html#book">Book</a>				
+					<a class="btn btn-info" href="cBarbershopPage.html#info">More Info</a>
+					<a class="btn btn-warning" href="cBarbershopPage.html#reviews">Post a Review</a>
+				</div>
+			</div>
+			<div class="media border p-3">
+				<img src="../imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
+				<div class="media-body">
+					<h4>Barbershop 2</h4>
+					<p>We do expecrt trimming.</p>
+					<a class="btn btn-success" href="cBarbershopPage.html#book">Book</a>				
+					<a class="btn btn-info" href="cBarbershopPage.html#info">More Info</a>
+					<a class="btn btn-warning" href="cBarbershopPage.html#reviews">Post a Review</a>
+				</div>
+			</div>
+		</div>
+		<!-- /container -->
+	
+		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
+		<!-- jQuery library -->
+		<script src="../js/jquery.min.js"></script>
+		<!-- Bootstrap core JavaScript -->
+		<script	src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/custom.js"></script>
 	</body>
 </html>
 
