@@ -1,42 +1,40 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	
-	
-		<title>Results</title>
-		<link rel="stylesheet" type="text/css" href="../css_docs/menu2.css">
-		<meta charset="UTF-8">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		
-		<style>
-			body {
-				background-image: url("../imgs/barberBG1.jpg"); 
-				background-size: cover;		
-			}
-			
-			#AccountsBnC{
-				margin-right:5%;
-				color:black;
-			}
-		
-			.button {
-				background-color: #4CAF50; /* Green */
-				border: none;
-				color: white;
-				padding: 10px 10px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-			}
-		</style>
+		<title>Results</title>
 
+		<!-- Bootstrap core CSS & JQuery-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<!-- Custom styles for this template -->
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/menu2.css">
 	</head>
+	<style>
+		body {
+			background-image: url("../imgs/barberBG1.jpg"); 
+			background-size: cover;		
+		}
+		
+		#AccountsBnC{
+			margin-right:5%;
+			color:black;
+		}
 	
+		.button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: white;
+			padding: 10px 10px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+		}
+	</style>	
 	<body>
 
 		<!-- Navbar -->
@@ -118,10 +116,10 @@
 	
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
 		<!-- jQuery library -->
-		<script src="../js/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<!-- Bootstrap core JavaScript -->
-		<script	src="../js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../js/custom.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath() %>/ismgroup26/js/custom.js"></script>
 	</body>
 </html>
 
