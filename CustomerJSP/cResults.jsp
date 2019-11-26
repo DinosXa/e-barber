@@ -18,22 +18,8 @@
 			background-image: url("../imgs/barberBG1.jpg"); 
 			background-size: cover;		
 		}
-		
-		#AccountsBnC{
-			margin-right:5%;
-			color:black;
-		}
 	
-		.button {
-			background-color: #4CAF50; /* Green */
-			border: none;
-			color: white;
-			padding: 10px 10px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-		}
+
 	</style>	
 	<body>
 
@@ -49,7 +35,6 @@
 					<li class="nav-item active">
 						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/searchforbarbers.jsp">Search</a>
 					</li>
-					
 					<li class="nav-item">
 						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myreviews.jsp">My reviews</a>
 					</li>			
@@ -67,7 +52,6 @@
 								  Accounts
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
 									<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/logout.jsp">
 										<span class="border-0">
 											<img src="../imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
@@ -83,32 +67,29 @@
 				<img src="../imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
 			</span>	
 		</nav>
+		
 		<div class="container">
 			<div class="jumbotron">
 				<h1>Results</h1>    
-			</div>    
-		</div>
-
-
-		<div class="container">
+			</div>
 			<div class="media border p-3">
 				<img src="../imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
 				<div class="media-body">
 					<h4>Barbershop 1</h4>
 					<p>Shaving is our speciality.</p>
-					<a class="btn btn-success" <!--href="cBarbershopPage.html#book"-->Book</a>				
-					<a class="btn btn-info" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/cBarbershopPage.jsp#info">More Info</a>
-					<a class="btn btn-warning" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/writereview.jsp">Post a Review</a>
+					<a class="btn btn-success" style="color:white;"<!--href="cBarbershopPage.html#book"-->Book</a>				
+					<a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/cBarbershopPage.jsp#info">More Info</a>
+					<a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/writereview.jsp">Post a Review</a>
 				</div>
 			</div>
 			<div class="media border p-3">
 				<img src="../imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
 				<div class="media-body">
 					<h4>Barbershop 2</h4>
-					<p>We do expecrt trimming.</p>
-					<a class="btn btn-success" <!--href="cBarbershopPage.html#book"-->Book</a>				
-					<a class="btn btn-info" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/cBarbershopPage.jsp#info">More Info</a>
-					<a class="btn btn-warning" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/writereview.jsp">Post a Review</a>
+					<p>We do expert trimming.</p>
+					<a class="btn btn-success" style="color:white;" <!--href="cBarbershopPage.html#book"-->Book</a>				
+					<a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/cBarbershopPage.jsp#info">More Info</a>
+					<a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/writereview.jsp">Post a Review</a>
 				</div>
 			</div>
 		</div>
