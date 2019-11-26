@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="../css_docs/BarbershopPage.css">
-		<title>BarbershopPage</title>
-		<meta charset="UTF-8">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>BarbershopPage</title>
+		<!-- Bootstrap core CSS & JQuery-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>
+		<!-- Custom styles for this template -->
+		<link rel="stylesheet" type="text/css" href="../css_docs/BarbershopPage.css">
 	</head>
 	<style>
 			body {
@@ -29,14 +33,14 @@
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item active">
-						<a class="nav-link" href="<%request.getContextPath() %>/searchforbarbers.jsp">Search</a>
+						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/searchforbarbers.jsp">Search</a>
 					</li>
 					
 					<li class="nav-item">
-						<a class="nav-link" href="<%request.getContextPath() %>/myreviews.jsp">My reviews</a>
+						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myreviews.jsp">My reviews</a>
 					</li>			
 					<li class="nav-item">
-						<a class="nav-link" href="<%request.getContextPath() %>/myappointments.jsp">My appointments</a>
+						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myappointments.jsp">My appointments</a>
 					</li>		
 				</ul>
 				
@@ -51,7 +55,7 @@
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 																			
-									<a class="dropdown-item" href="<%request.getContextPath() %>/../logout.jsp">
+									<a class="dropdown-item" href="<%=request.getContextPath() %>/logout.jsp">
 										<span class="border-0">
 											<img src="../imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
 										</span>
@@ -110,29 +114,26 @@
 							</tbody>
 						</table>
 						
-	<div class="page-header">
+						<div class="page-header">
 							<h3>Availability</h3>
 						</div>
-		<p></p>                 		
-		<table class="table table-dark table-hover">
-			<thead>
-				<tr>
-					
-					<th>date</th>
-					<th>time</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-				
-				<td>21/11/2019</td>
-				<td>18:00</td>
-					</tr>
-				</tbody>
-		</table>
-		
-
-
+						<p></p>                 		
+						<table class="table table-dark table-hover">
+							<thead>
+								<tr>
+									
+									<th>date</th>
+									<th>time</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+								
+								<td>21/11/2019</td>
+								<td>18:00</td>
+									</tr>
+								</tbody>
+						</table>
 						<div class="page-header">
 							<h3>Phone / Business email / Address</h3>
 						</div>
@@ -275,10 +276,10 @@
 
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
 		<!-- jQuery library -->
-		<script src="../js/jquery.min.js"></script>
+		<script src="<%=request.getContextPath() %>/ismgroup26/js/jquery.min.js"></script>
 		<!-- Bootstrap core JavaScript -->
-		<script	src="../js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../js/custom.js"></script>
+		<script	src="<%=request.getContextPath() %>/ismgroup26/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath() %>ismgroup26/js/custom.js"></script>
 	</body>
 </html>
 

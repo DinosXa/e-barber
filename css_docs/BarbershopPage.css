@@ -2,13 +2,6 @@
 	margin-right:5%;
 	color:black;
 }
-/*
-.wrapper{
-	width:100%;
-	margin:0 auto;
-	max-width: 960px;
-	
-}*/
 
 .fa-star{
 	color:#FFD700;
@@ -43,7 +36,7 @@
 	border: 2px solid #6B8E23;
 	background-color: #eee;
 	border-radius: 5px;
-	padding: 30px;
+	padding: 60px;
 	margin: 20px 0;
 	
 }
