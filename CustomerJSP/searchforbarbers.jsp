@@ -37,14 +37,14 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					 <li class="nav-item active">
-				<a class="nav-link" href="searchforbarbers.html">Search</a>
+				<a class="nav-link" href="<%request.getContextPath() %>/searchforbarbers.jsp">Search</a>
 			  </li>
 			 
 			  <li class="nav-item">
-				<a class="nav-link" href="myreviews.html">My reviews</a>
+				<a class="nav-link" href="<%request.getContextPath() %>/myreviews.jsp">My reviews</a>
 			  </li>			
 			  <li class="nav-item">
-				<a class="nav-link" href="myappointments.html">My appointments</a>
+				<a class="nav-link" href="<%request.getContextPath() %>/myappointments.jsp">My appointments</a>
 			  </li>		
 			 
 
@@ -60,7 +60,7 @@
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 																	
-								<a class="dropdown-item" href="../logout.html">
+								<a class="dropdown-item" href="<%request.getContextPath() %>/../logout.jsp">
 									<span class="border-0">
 										<img src="../imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
 									</span>
@@ -83,7 +83,7 @@
 		<div class="container theme-showcase" role="main">
 			<div class="search-box">
 				<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
-				<a class="search-btn" href="cResults.html">
+				<a class="search-btn" href="<%request.getContextPath() %>/cResults.jsp">
 					<i class="fas fa-search-location" style="color:#6B8E23"></i>
 				</a>
 			</div>
