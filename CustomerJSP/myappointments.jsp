@@ -32,9 +32,8 @@
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item ">
-						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/searchforbarbers.jsp">Search</a>
-					</li>
-					
+						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/index.jsp">Search</a>
+					</li>				
 					<li class="nav-item ">
 						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myreviews.jsp">My reviews</a>
 					</li>			

@@ -35,7 +35,7 @@
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item active">
-						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/searchforbarbers.jsp">Search</a>
+						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/index.jsp">Search</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myreviews.jsp">My reviews</a>
@@ -54,7 +54,7 @@
 									Accounts
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/logout.jsp">
+									<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/Logout.jsp">
 										<span class="border-0">
 											<img src="../imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
 										</span>
@@ -67,7 +67,7 @@
 			</div>
 			
 			<span class="border-0">
-				<img src="../imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
+				<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
 			</span>	
 		</nav>
 

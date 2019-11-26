@@ -33,7 +33,7 @@
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item active">
-						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/searchforbarbers.jsp">Search</a>
+						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/index.jsp">Search</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myreviews.jsp">My reviews</a>
@@ -70,26 +70,26 @@
 		
 		<div class="container">
 			<div class="jumbotron">
-				<h1>Results</h1>    
-			</div>
-			<div class="media border p-3">
-				<img src="../imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-				<div class="media-body">
-					<h4>Barbershop 1</h4>
-					<p>Shaving is our speciality.</p>
-					<a class="btn btn-success" style="color:white;"<!--href="cBarbershopPage.html#book"-->Book</a>				
-					<a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/cBarbershopPage.jsp#info">More Info</a>
-					<a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/writereview.jsp">Post a Review</a>
+					<h1>Results</h1>   
+				<div class="media border p-3">
+					<img src="../imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
+					<div class="media-body">
+						<h4>Barbershop 1</h4>
+						<p>Shaving is our speciality.</p>
+						<a class="btn btn-success" style="color:white;"<!--href="cBarbershopPage.html#book"-->Book</a>				
+						<a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/cBarbershopPage.jsp#info">More Info</a>
+						<a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/writereview.jsp">Post a Review</a>
+					</div>
 				</div>
-			</div>
-			<div class="media border p-3">
-				<img src="../imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-				<div class="media-body">
-					<h4>Barbershop 2</h4>
-					<p>We do expert trimming.</p>
-					<a class="btn btn-success" style="color:white;" <!--href="cBarbershopPage.html#book"-->Book</a>				
-					<a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/cBarbershopPage.jsp#info">More Info</a>
-					<a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/writereview.jsp">Post a Review</a>
+				<div class="media border p-3">
+					<img src="../imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
+					<div class="media-body">
+						<h4>Barbershop 2</h4>
+						<p>We do expert trimming.</p>
+						<a class="btn btn-success" style="color:white;" <!--href="cBarbershopPage.html#book"-->Book</a>				
+						<a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/cBarbershopPage.jsp#info">More Info</a>
+						<a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/writereview.jsp">Post a Review</a>
+					</div>
 				</div>
 			</div>
 		</div>

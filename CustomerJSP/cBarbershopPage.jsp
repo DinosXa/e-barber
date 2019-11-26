@@ -71,13 +71,13 @@
 		</nav>
 		<br>
 			
-		<ul class="nav nav-pills mb-3" id="myTab" role="tablist">
+		<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
 			<li class="nav-item">
 				<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>
 			</li>
-			<!--<li class="nav-item">
+			<li class="nav-item">
 				<a class="nav-link" id="booktab" data-toggle="tab" href="#book" role="tab" aria-controls="book" aria-selected="false">Book</a>
-			</li>-->
+			</li>
 			<li class="nav-item">
 				<a class="nav-link" id="reviewstab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
 			</li>

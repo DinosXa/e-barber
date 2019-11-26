@@ -1,61 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
+<%@ page import= "login_classes.BarbershopUserDAO"%>
+<%@ page import= "login_classes.BarbershopUser"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		
 		<title>e-barber</title>
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css_docs/firstPage.css">
-		<link rel="stylesheet" href=<%=request.getContextPath() %>/"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
-		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>		
-	
-		<style>
-			body {
-				background-image: url("imgs/barberBG1.jpg"); 
-				background-size: cover;		
-			}
-		</style>
-	</head>
+
+		<!-- Bootstrap core CSS & JQuery-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<!-- Custom styles for this template -->	
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/firstPage.css">
+		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>	
+	</head>	
+	<style>
+		body {
+			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
+			background-size: cover;		
+
+		#AccountsBnC{
+			margin-right:5%;
+			color:black;
+		}
+		}
+	</style>
 	<body>
-	
-		<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;"><em>e-barber</em></h1><h3 class="text-center font-weight-lighter" style="color:#6B8E23;">for <b>men</b></h3>
-	
-		<div class="container" id=dropdown>	
-			<div class="dropdown dropup float-right">
-				<button type="button" class="btn bg-dark dropdown-toggle" style="color:white;" data-toggle="dropdown">
-				Register/Login
-				</button>			
-				<div class="dropdown-menu">
-					<a class="dropdown-item">
-						<span class="border-0">		
-							<button type="button" class="btn" data-toggle="modal" data-target="#RegisterModal">
-							Register
-							</button>
-						</span>
-					</a>
-					<a class="dropdown-item">
-						<span class="border-0">
-							<button type="button" class="btn" data-toggle="modal" data-target="#LogInModal">
-							Log In
-							</button>										
-						</span>
-					</a>
+		<% 	BarbershopUser user = (BarbershopUser)session.getAttribute("user1");
+			if((user == null)) {
+		%>
+			<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;"><em>e-barber</em></h1>
+			<h3 class="text-center font-weight-lighter" style="color:#6B8E23;">for <b>men</b></h3>
+		
+			<div class="container" id=dropdown>	
+				<div class="dropdown dropup float-right">
+					<button type="button" class="btn bg-dark dropdown-toggle" style="color:white;" data-toggle="dropdown">
+					Register/Login
+					</button>			
+					<div class="dropdown-menu">
+						<a class="dropdown-item">
+							<span class="border-0">		
+								<button type="button" class="btn" data-toggle="modal" data-target="#RegisterModal">
+									Register
+								</button>
+							</span>
+						</a>
+						<a class="dropdown-item">
+							<span class="border-0">
+								<button type="button" class="btn" data-toggle="modal" data-target="#LogInModal">
+									Log In
+								</button>										
+							</span>
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="search-box">
-			<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
-			<a class="search-btn" href="GuestHTML/gresults.html">
-				<i class="fas fa-search-location" style="color:#6B8E23"></i>
-			</a>
-		</div>
-	
-
+			<div class="search-box">
+				<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
+				<a class="search-btn" href="GuestHTML/gresults.html">
+					<i class="fas fa-search-location" style="color:#6B8E23"></i>
+				</a>
+			</div>
+		
 		<!-- Register Pop-up -->
 		<div class="modal fade " id="RegisterModal">
 			<div class="modal-dialog modal-dialog-centered modal-xl">
@@ -71,10 +83,10 @@
 					<div class="container">
 						<ul class="nav nav-tabs nav-justified" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#breg">Register as a barber</a>
+								<a class="nav-link" data-toggle="tab" href="#breg" aria-selected="false">Register as a barber</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#creg">Register as a customer</a>
+								<a class="nav-link" data-toggle="tab" href="#creg" aria-selected="false">Register as a customer</a>
 							</li>
 						</ul>
 
@@ -141,7 +153,11 @@
 													</optgroup>
 												</select>
 											</div>
-										</div>	
+										</div>
+										<div class="col-sm-10">
+											<input type="submit" class="btn btn-success" value="Log in" />
+											<input type="reset" class="btn btn-danger"  value="Clear" />
+										</div>
 									</form>	
 								</div>
 							</div>
@@ -178,26 +194,20 @@
 												<input name="Cemail" type="email" class="form-control" id="Cemail" placeholder="Enter your email" >
 											</div>
 										</div>
-										
-										
 										<div class="form-group">
 											<label for="Cphone" class="col-sm-2 control-label">Phone</label>
 											<div class="col-sm-10">
 												<input name="Cphone" type="integer" class="form-control" id="Cphone" placeholder="Enter your phone">
 											</div>
 										</div>
-									
-										
-										
+										<div class="col-sm-10">
+											<input type="submit" class="btn btn-success" value="Log in" />
+											<input type="reset" class="btn btn-danger"  value="Clear" />
+										</div>
 									</form>					
 								</div>	
 							</div>
 						</div>	
-					</div>
-					<!-- Modal footer -->
-					<div class="modal-footer justify-content-start">
-						<input type="submit" name="submit" id="button" value="Submit" class="btn btn-success"/>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 			</div>
@@ -209,63 +219,112 @@
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 
-				  <!-- Modal Header -->
+					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">Log in</h4>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 
-				  <!-- Modal body -->
+					<!-- Modal body -->
 					<div class="container">
-						
-<!-- <div class="container" role="main">
-
-		<% if(request.getAttribute("message") != null) { %>		
-			<div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("message") %></div>
-		<% } %>
-
-		<form class="form-signin" method="post" action="<%=request.getContextPath() %>/loginController_ex1_b_8170107.jsp">
-			<h2 class="form-signin-heading text-center">Please sign in</h2>
-			<label for="inputusername" class="sr-only">Username</label> 
-			<input type="text" name="username" id="inputusername" class="form-control" placeholder="username" required>
-			<label for="inputpassword" class="sr-only">Password</label>
-			<input name="password" type="password" id="inputpassword" class="form-control" placeholder="password" required>
-
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-		</form>
--->
-						
-		<form class="form-signin" method="post" action="<%=request.getContextPath() %>/loginController.jsp">	
-							
+						<form class="form-signin" method="post" action="<%=request.getContextPath() %>/ismgroup26/loginController.jsp">		
 							<div id="clog" class="container tab-pane"><br>
 								<div class="modal-body">
-									<div class="form-group">			
-										<label for="username" class="col-sm-2 control-label text-center">Username </label>
-										<div class="col-sm-10">
-											<input name="username" type="text" class="form-control" id="username" placeholder="Enter your username">
+								<%
+								if(request.getAttribute("message") != null) { %>
+									<div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("message") %> 	</div>									
+								<% 	
+									} 
+									request.setAttribute("message", "");
+								%>
+										<div class="form-group">			
+											<label for="username" class="col-sm-2 control-label text-center">Username </label>
+											<div class="col-sm-10">
+												<input name="username" type="text" class="form-control" id="username" placeholder="Enter your username" required>
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<label for="password" class="col-sm-2 control-label">Password</label>
+										<div class="form-group">
+											<label for="password" class="col-sm-2 control-label">Password</label>
+											<div class="col-sm-10">
+												<input name="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
+											</div>
+										</div><br>
 										<div class="col-sm-10">
-											<input name="password1" type="password" class="form-control" id="password1" placeholder="Enter your password">
+											<button type="submit" class="btn btn-success">Log in</button>
+											<input type="reset" class="btn btn-danger"  value="Clear" />
 										</div>
-									</div>
+									</div>	
 								</div>
 							</div>
-					
+						</form>
 					</div>
-
-					  <!-- Modal footer -->
-					<div class="modal-footer justify-content-start">
-						<!--<input type="submit" name="submit" id="button" value="Log in" class="btn btn-success" href="CustomerHTML/searchforbarbers.html">-->
-						<a class="btn btn-success" href="<%=request.getContextPath() %>/CustomerHTML/searchforbarbers.jsp">Log in</a>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					</div>
-		 </form>
 				</div>
 			</div>
 		</div>
+		<% }else{ %>
+		
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a class="navbar-brand" href="#"><em>e-barber</em></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+						<li class="nav-item active">
+							<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/index.jsp">Search</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myreviews.jsp">My reviews</a>
+						</li>			
+						<li class="nav-item">
+							<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myappointments.jsp">My appointments</a>
+						</li>
+					</ul>
+
+					<!-- Account Option on Navbar + Avatars -->
+					<div id=AccountsBnC>
+						<form class="form-inline my-2 my-lg-0">
+							<div class="nav-item dropdown">
+								<div class="border" style="border-radius:0px;">
+									<a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Accounts
+									</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/Logout.jsp">
+											<span class="border-0">
+												<img src="<%=request.getContextPath() %>/ismgroup26/imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
+											</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				
+				<span class="border-0">
+					<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
+				</span>	
+			</nav>
+			
+			<div class="search-box">
+				<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
+				<a class="search-btn" href="<%= request.getContextPath() %>/ismgroup26/CustomerJSP/cResults.jsp">
+					<i class="fas fa-search-location" style="color:#6B8E23"></i>
+				</a>
+			</div>			
+			
+		<% } %>
+
+		
+		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>	
+		<!-- Bootstrap core JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath() %>/ismgroup26/js/custom.js"></script>		
 	</body>
 </html>
 

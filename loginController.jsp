@@ -1,70 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error.jsp"%>
-<%@ page import= "exercise.UserDAO"%>
-<%@ page import= "exercise.User"%>
+<%@ page import= "login_classes.BarbershopUserDAO"%>
+<%@ page import= "login_classes.BarbershopUser"%>
 <!DOCTYPE html>
 <html>
-	<!--<head>
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css_docs/firstPage.css">
-	
-		<title>Search</title>
-		<meta charset="UTF-8">
+	<<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->	
+	
+		<title>Log in handler</title>
+
+		<!-- Bootstrap core CSS & JQuery-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
-		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>	
-		
-		<style>
-			body {
-				background-image: url("../imgs/barberBG1.jpg"); 
-				background-size: cover;		
-			}
-			#AccountsBnC{
-				margin-right:5%;
-				color:black;
-			}
-		</style>
-
+		<!-- Custom styles for this template -->
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/firstPage.css">
 	</head>
-		<% request.setCharacterEncoding("ISO-8859-7"); %>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#"><em>e-barber</em></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+	<style>
+		body {
+			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
+			background-size: cover;
 
-			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-item ">
-						<a class="nav-link" href=""<%=request.getContextPath() %>/searchforbarbers.html">Search</a>
-					</li>
-					
-					<li class="nav-item ">
-						<a class="nav-link" href=""<%=request.getContextPath() %>/myreviews.html">My reviews</a>
-					</li>			
-					<li class="nav-item ">
-						<a class="nav-link" href=""<%=request.getContextPath() %>/myappointments.html">My appointments</a>
-					</li>		
-				</ul>
-				-->
-	<div class="container theme-showcase" role="main">
-
-			
-
+		#AccountsBnC{
+			margin-right:5%;
+			color:black;
+		}
+		}
+	</style>	
+	<body>
 		
-		<% String username= request.getParameter("username");
-		   String password=request.getParameter("password1");
+		<%
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			BarbershopUserDAO dao = new BarbershopUserDAO();
+		   
+			try{
+				BarbershopUser user = dao.authenticate(username, password); 
+				session.setAttribute("user1", user);
 		%>
-		<% UserDAO dao= new UserDAO();
-		   try{
-		   User user = dao.authenticate(username, password); 
-		   session.setAttribute("ex1buser2019", user);
-		   response.sendRedirect("searchforbarbers.jsp"); 
-		   }catch(Exception e){
-			   request.setAttribute("message", "Wrong username or password");%>
-			   <jsp:forward page="index.jsp"/>
-		   <% } %>
+				<jsp:forward page="index.jsp"/>
+		<%
+			}catch(Exception e){
+			   request.setAttribute("message", "Wrong username or password");
+		%>
+				<jsp:forward page="index.jsp"/>
+		<% } %>
+
+		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<!-- Bootstrap core JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>		
+	</body>
+</html>
 		   
 		
