@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page errorPage="error_page.jsp"%>
+<%@ page import= "login_classes.BarbershopUserDAO"%>
+<%@ page import= "login_classes.BarbershopUser"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,10 +20,10 @@
 		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>
 	</head>
 	<style>
-			body {
-				background-image: url("../imgs/barberBG1.jpg"); 
-				background-size: cover;		
-			}
+		body {
+			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
+			background-size: cover;		
+		}
 	</style>
 	<body>
 
@@ -54,9 +59,9 @@
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 																			
-									<a class="dropdown-item" href="<%=request.getContextPath() %>/logout.jsp">
+									<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/Logout.jsp">
 										<span class="border-0">
-											<img src="../imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
+											<img src="<%=request.getContextPath() %>/ismgroup26/imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
 										</span>
 									</a>
 								</div>
@@ -66,7 +71,7 @@
 				</div>
 			</div>
 			<span class="border-0">
-				<img src="../imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
+				<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
 			</span>	
 		</nav>
 		<br>
@@ -141,7 +146,7 @@
 						
 						<div class="page-header">
 							<h3>Photos</h3>
-							<img src="../imgs/barberProf.jpg" alt="barber" style="width:200px;">
+							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barberProf.jpg" alt="barber" style="width:200px;">
 						</div>
 					</div>
 					<!-- end of info_container -->
@@ -152,7 +157,7 @@
 			<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
 				<ul class="flex-container wrap">	
 					<li class="re-container fitem">
-						<img src="../imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
 						<span><b>Chris Fox.</b><br></span>
 						<p><small><i>Posted on February 15, 2019</i></small></p><br>
 						<em>John Doe saved us from a web disaster.</em><br>
@@ -163,7 +168,7 @@
 						<i class="far fa-star"></i>
 					</li>
 					<li class="re-container fitem">
-						<img src="../imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
 						<span><b>Chris Fox.</b><br></span>
 						<p><small><i>Posted on February 15, 2019</i></small></p><br>
 						<em>John Doe saved us from a web disaster.</em><br>
@@ -174,7 +179,7 @@
 						<i class="far fa-star"></i>
 					</li>
 					<li class="re-container fitem">
-						<img src="../imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
 						<span><b>Chris Fox.</b><br></span>
 						<p><small><i>Posted on February 15, 2019</i></small></p><br>
 						<em>John Doe saved us from a web disaster.</em><br>
@@ -185,7 +190,7 @@
 						<i class="far fa-star"></i>
 					</li>
 					<li class="re-container fitem">
-						<img src="../imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
 						<span><b>Chris Fox.</b><br></span>
 						<p><small><i>Posted on February 15, 2019</i></small></p><br>
 						<em>John Doe saved us from a web disaster.</em><br>
@@ -196,7 +201,7 @@
 						<i class="far fa-star"></i>
 					</li>
 					<li class="re-container fitem">
-						<img src="../imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
 						<span><b>Chris Fox.</b><br></span>
 						<p><small><i>Posted on February 15, 2019</i></small></p><br>
 						<em>John Doe saved us from a web disaster.</em><br>
@@ -207,7 +212,7 @@
 						<i class="far fa-star"></i>
 					</li>
 					<li class="re-container fitem">
-						<img src="../imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
 						<span><b>Chris Fox.</b><br></span>
 						<p><small><i>Posted on February 15, 2019</i></small></p><br>
 						<em>John Doe saved us from a web disaster.</em><br>
@@ -218,7 +223,7 @@
 						<i class="far fa-star"></i>
 					</li>
 					<li class="re-container fitem">
-						<img src="../imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
 						<span><b>Chris Fox.</b><br></span>
 						<p><small><i>Posted on February 15, 2019</i></small></p><br>
 						<em>John Doe saved us from a web disaster.</em><br>
@@ -229,7 +234,7 @@
 						<i class="far fa-star"></i>
 					</li>
 					<li class="re-container fitem">
-						<img src="../imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
 						<span><b>Chris Fox.</b><br></span>
 						<p><small><i>Posted on February 15, 2019</i></small></p><br>
 						<em>John Doe saved us from a web disaster.</em><br>
@@ -240,7 +245,7 @@
 						<i class="far fa-star"></i>
 					</li>
 					<li class="re-container fitem">
-						<img src="../imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
 						<span><b>Chris Fox.</b><br></span>
 						<p><small><i>Posted on February 15, 2019</i></small></p><br>
 						<em>John Doe saved us from a web disaster.</em><br>
@@ -251,7 +256,7 @@
 						<i class="far fa-star"></i>
 					</li>
 					<li class="re-container fitem">
-						<img src="../imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
 						<span><b>Chris Fox.</b><br></span>
 						<p><small><i>Posted on February 15, 2019</i></small></p><br>
 						<em>John Doe saved us from a web disaster.</em><br>

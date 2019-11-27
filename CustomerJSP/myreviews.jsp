@@ -12,11 +12,12 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<!-- Custom styles for this template -->
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/menu2.css">		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	</head>
 	<style>
 		body {
-			background-image: url("../imgs/barberBG1.jpg"); 
+			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
 			background-size: cover;		
 		}
 	</style>	
@@ -53,9 +54,9 @@
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 																			
-									<a class="dropdown-item" href="<%=request.getContextPath() %>/../logout.jsp">
+									<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/Logout.jsp">
 										<span class="border-0">
-											<img src="../imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
+											<img src="<%=request.getContextPath() %>/ismgroup26/imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
 										</span>
 									</a>
 								</div>
@@ -66,51 +67,10 @@
 			</div>
 				
 			<span class="border-0">
-				<img src="../imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
+				<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
 			</span>	
 		</nav>
-
-<!--
-		<div class="media border p-3">
-		  <img src="imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-		  <div class="media-body">
-			<h4>Clip Smith <small><i>Posted on February 30, 2019/<i></small></h4>
-			<p>Welcome to my shop...</p>
-			<button type="button" class="btn btn-info btn-rounded">Info</button>
-		 </div>
-		</div>
-
-		<div class="media border p-3">
-		  <img src="imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-		  <div class="media-body">
-			<h4>Trim Tim <small><i>Posted on May 30, 2019</i></small></h4>
-			<p>Some info...</p>
-			<button type="button" class="btn btn-info btn-rounded">Info</button>
-		 </div>
-		</div>
-
-		<div class="media border p-3">
-		  <img src="imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-		  <div class="media-body">
-			<h4>Mad Chad <small><i>Posted on July 1, 2019</i></small></h4>
-			<p>Some text...</p>
-			<button type="button" class="btn btn-info btn-rounded">Info</button>
-		 </div>
-		</div>
-
-
-		<div class="media border p-3">
-		  <img src="imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-		  <div class="media-body">
-			<h4>Hairy Mary <small><i>Posted on February 4, 2019</i></small></h4>
-			<p>Something...</p>
-			<button type="button" class="btn btn-info btn-rounded">Info</button>
-		 </div>
-		</div>
--->
-
-
-
+		
 		<div class="container theme-showcase" role="main">
 			<!-- Main jumbotron for a primary marketing message or call to action -->
 			<div class="jumbotron">
@@ -118,17 +78,16 @@
 			</div>
 			<div class="container">
 				<div class="media border p-3">
-					<img src="../imgs/bpoleAv.jpg" alt="barber-photo" class="mr-3 mt-3 rounded-circle" style="width:120px;">
+					<img src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="barber-photo" class="mr-3 mt-3 rounded-circle" style="width:120px;">
 					<div class="media-body">
 					<h4>Barber01 <small><i>Answered on February 15, 2019<i></small></h4>
 					<p>Ευχαριστούμε για την κριτική! </p>
-						<!--<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+						<p>
 						<span class="fa fa-star checked"></span>
 						<span class="fa fa-star checked"></span>
 						<span class="fa fa-star checked"></span>
 						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span></p>-->
+						<span class="fa fa-star"></span></p>
 									
 						<button type="button" class="btn btn-info btn-rounded">Answer</button>
 					</div>

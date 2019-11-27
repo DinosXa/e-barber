@@ -38,15 +38,10 @@
 			try{
 				BarbershopUser user = dao.authenticate(username, password); 
 				session.setAttribute("user1", user);
-		%>
-				<jsp:forward page="index.jsp"/>
-		<%
 			}catch(Exception e){
 			   request.setAttribute("message", "Wrong username or password");
-		%>
-				<jsp:forward page="index.jsp"/>
-		<% } %>
-
+			} %>
+			<jsp:forward page="index.jsp"/>
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -23,8 +23,8 @@ public class BarbershopUserDAO {
 		List<BarbershopUser> users = new ArrayList<BarbershopUser>();
 
 		// adding some users for the sake of the example
-		users.add(new BarbershopUser("John", "Macken", "barber1@somewhere.com", "jmacken", "1111"));
-		users.add(new BarbershopUser("Jim", "Coll", "customer1@somewhere.com", "jcoll",  "1111"));
+		users.add(new BarbershopUser("Henry", "Macken", "barber1@somewhere.com", "hmacken", "1111", true));
+		users.add(new BarbershopUser("Jim", "Coll", "customer1@somewhere.com", "jcoll",  "1111", false));
 
 		return users;
 

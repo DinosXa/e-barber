@@ -53,9 +53,9 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 																			
-									<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/logout.jsp">
+									<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/Logout.jsp">
 										<span class="border-0">
-											<img src="../imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
+											<img src="<%=request.getContextPath() %>/ismgroup26/imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
 										</span>
 									</a>
 								</div>
@@ -65,7 +65,7 @@
 				</div>
 			</div>		
 			<span class="border-0">
-				<img src="../imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
+				<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
 			</span>	
 		</nav>
 
@@ -82,7 +82,7 @@
 
 			<div class="container">
 				<div class="card" style="width:250px;">
-					<img class="card-img-top" src="../imgs/bpoleAv.jpg" alt="Card image" style="width:250px; height:200px;">
+					<img class="card-img-top" src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="Card image" style="width:250px; height:200px;">
 					<div class="card-body">
 						<h4 class="card-title">Barber01</h4>
 						<p class="card-text">phone: 2109999999</p>

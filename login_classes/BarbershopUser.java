@@ -7,6 +7,7 @@ public class BarbershopUser {
 	private String email;
 	private String username;
 	private String password;
+	private boolean barber; //false=customer | true=barber
 
 	/**
 	 * Constructor
@@ -16,14 +17,16 @@ public class BarbershopUser {
 	 * @param email
 	 * @param username
 	 * @param password
+	 * @param barber
 	 */
-	public BarbershopUser(String name, String surname, String email, String username, String password) {
+	public BarbershopUser(String name, String surname, String email, String username, String password, boolean barber) {
 
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.barber = true;
 	}
 
 	/* Getters & Setters */
@@ -96,10 +99,23 @@ public class BarbershopUser {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	/**
+	 * @return the entity
+	 */
+	public boolean getBarber() {
+		return barber;
+	}
+
+	/**
+	 * @param entity the entity to set
+	 */
+	public void setBarber(boolean barber) {
+		this.barber = barber;
+	}
 
 	@Override
 	public String toString() {
-		return "Users [username=" + username + ", name=" + name + ", surname=" + surname + ", email=" + email + "]";
+		return "Users [username=" + username + ", name=" + name + ", surname=" + surname + ", email=" + email + "barber=" + barber + "]";
 	}
 
 } //End of class

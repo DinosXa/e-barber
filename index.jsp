@@ -23,12 +23,11 @@
 		body {
 			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
 			background-size: cover;		
-
+			}
 		#AccountsBnC{
 			margin-right:5%;
 			color:black;
-		}
-		}
+			}
 	</style>
 	<body>
 		<% 	BarbershopUser user = (BarbershopUser)session.getAttribute("user1");
@@ -67,7 +66,6 @@
 					<i class="fas fa-search-location" style="color:#6B8E23"></i>
 				</a>
 			</div>
-		
 		<!-- Register Pop-up -->
 		<div class="modal fade " id="RegisterModal">
 			<div class="modal-dialog modal-dialog-centered modal-xl">
@@ -215,7 +213,7 @@
 	
 	
 		<!--Log In Pop-up-->
-		<div class="modal fade" id="LogInModal">
+		<div class="modal fade" id="LogInModal" role="dialog">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 
@@ -232,36 +230,36 @@
 								<div class="modal-body">
 								<%
 								if(request.getAttribute("message") != null) { %>
-									<div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("message") %> 	</div>									
+									<div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("message") %></div>
 								<% 	
-									} 
-									request.setAttribute("message", "");
+									}request.setAttribute("message", "");
 								%>
-										<div class="form-group">			
-											<label for="username" class="col-sm-2 control-label text-center">Username </label>
-											<div class="col-sm-10">
-												<input name="username" type="text" class="form-control" id="username" placeholder="Enter your username" required>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="password" class="col-sm-2 control-label">Password</label>
-											<div class="col-sm-10">
-												<input name="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
-											</div>
-										</div><br>
+									<div class="form-group">			
+										<label for="username" class="col-sm-2 control-label text-center">Username </label>
 										<div class="col-sm-10">
-											<button type="submit" class="btn btn-success">Log in</button>
-											<input type="reset" class="btn btn-danger"  value="Clear" />
+											<input name="username" type="text" class="form-control" id="username" placeholder="Enter your username" required>
 										</div>
-									</div>	
-								</div>
+									</div>
+									<div class="form-group">
+										<label for="password" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input name="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
+										</div>
+									</div><br>
+									<div class="col-sm-10">
+										<button type="submit" class="btn btn-success">Log in</button>
+										<input type="reset" class="btn btn-danger"  value="Clear" />
+									</div>
+								</div>	
 							</div>
 						</form>
-					</div>
+					</div>>
 				</div>
 			</div>
 		</div>
-		<% }else{ %>
+		<% }else{
+			if(user.getBarber() == false) {
+		%>
 		
 			<!-- Navbar -->
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -307,7 +305,7 @@
 					<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
 				</span>	
 			</nav>
-			
+			<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=user.getName() %></em></h1>	
 			<div class="search-box">
 				<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
 				<a class="search-btn" href="<%= request.getContextPath() %>/ismgroup26/CustomerJSP/cResults.jsp">
@@ -315,7 +313,10 @@
 				</a>
 			</div>			
 			
-		<% } %>
+		<% }else{ %>
+			<jsp:forward page = "CustomerJSP/cBarbershopPage.jsp"/>
+		<% }
+		} %>
 
 		
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->

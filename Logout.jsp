@@ -20,16 +20,14 @@
 	</head>
 	<style>
 		body {
-			background-image: url("imgs/barberBG1.jpg"); 
+			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
 			background-size: cover;		
 		}
 	</style>
 	<body>
 		<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;"><em>e-barber</em></h1>
 		<div class="jumbotron">
-			<div class="container">
-				<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;"><em></em></h1><h3 class="text-center font-weight-lighter" style="color:#6B8E23;">See you!</h3>	
-			</div>
+			<h3 class="text-center font-weight-lighter" style="color:#6B8E23;">See you!</h3>	
 		</div>
 
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->

@@ -15,7 +15,7 @@
 	</head>
 	<style>
 		body {
-			background-image: url("../imgs/barberBG1.jpg"); 
+			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
 			background-size: cover;		
 		}
 	</style>
