@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page errorPage="error.jsp"%>
+<%@ page import= "login_classes.BarbershopUserDAO"%>
+<%@ page import= "login_classes.BarbershopUser"%>
 <!DOCTYPE html>
 <html>
 	<head>

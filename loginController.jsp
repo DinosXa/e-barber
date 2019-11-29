@@ -16,18 +16,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<!-- Custom styles for this template -->
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/firstPage.css">
-	</head>
-	<style>
-		body {
-			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
-			background-size: cover;
-
-		#AccountsBnC{
-			margin-right:5%;
-			color:black;
-		}
-		}
-	</style>	
+	</head>	
 	<body>
 		
 		<%

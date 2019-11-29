@@ -247,7 +247,7 @@
 										</div>
 									</div><br>
 									<div class="col-sm-10">
-										<button type="submit" class="btn btn-success">Log in</button>
+										<button type="submit" class="btn btn-success" href="<%=request.getContextPath() %>/ismgroup26/index.jsp">Log in</button>
 										<input type="reset" class="btn btn-danger"  value="Clear" />
 									</div>
 								</div>	
@@ -305,13 +305,15 @@
 					<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
 				</span>	
 			</nav>
+			<!-- Search bar -->
 			<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=user.getName() %></em></h1>	
 			<div class="search-box">
 				<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
-				<a class="search-btn" href="<%= request.getContextPath() %>/ismgroup26/CustomerJSP/Results.jsp">
+				<a class="search-btn" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/results.jsp">
 					<i class="fas fa-search-location" style="color:#6B8E23"></i>
 				</a>
-			</div>			
+			</div>	
+			<!-- End of search bar -->
 			
 		<% }else{ %>
 			<jsp:forward page = "BarbershopPage.jsp"/>
