@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page errorPage="error.jsp"%>
+<%@ page import= "login_classes.BarbershopUserDAO"%>
+<%@ page import= "login_classes.BarbershopUser"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,7 +26,12 @@
 		}
 	</style>	
 	<body>
-
+		<% 	BarbershopUser user = (BarbershopUser)session.getAttribute("user1");
+			if((user == null)) {
+				request.setAttribute("message", "Your access to this resource is forbidden. Please login.");
+		%>
+				<jsp:forward page = "../index.jsp"/>
+			<% } else { %>
 		<!-- Navbar -->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#"><em>e-barber</em></a>
@@ -67,7 +76,7 @@
 			</div>
 				
 			<span class="border-0">
-				<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
+				<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;" data-toggle="tooltip" title="Signed in as a customer">
 			</span>	
 		</nav>
 		
@@ -101,6 +110,9 @@
 		<!-- Bootstrap core JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="<%=request.getContextPath() %>/ismgroup26/js/custom.js"></script>
+		
+			<% } %>
+			
 	</body>
 </html>
 

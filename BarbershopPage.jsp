@@ -29,7 +29,7 @@
 		
 		<% 	BarbershopUser user = (BarbershopUser)session.getAttribute("user1");
 			if((user == null)) {
-				request.setAttribute("message", "Your access to this resource is forbiden. Please login.");
+				request.setAttribute("message", "Your access to this resource is forbidden. Please login.");
 		%>
 				<jsp:forward page = "index.jsp"/>
 			<% } else { 
@@ -78,7 +78,7 @@
 						</div>
 					</div>
 					<span class="border-0">
-						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;" data-toggle="tooltip" title="Signed in as a customer">
 					</span>	
 				</nav>
 				<br>
@@ -331,7 +331,7 @@
 						</div>
 					</div>
 					<span class="border-0">
-						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;" data-toggle="tooltip" title="Signed in as a barber">
 					</span>	
 				</nav>
 				<br>

@@ -64,3 +64,9 @@ img {
 .search-box:hover > .search-btn{
 	background: white;
 }
+
+.forbidden {
+	height: 50px;
+	width: 800px;
+	margin-right: 50px;
+}
