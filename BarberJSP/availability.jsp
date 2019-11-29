@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page errorPage="error_page.jsp"%>
+<%@ page import= "login_classes.BarbershopUserDAO"%>
+<%@ page import= "login_classes.BarbershopUser"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,23 +11,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		
-		<title>My reviews</title>
-		
+		<title>e-barber</title>
+
 		<!-- Bootstrap core CSS & JQuery-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<!-- Custom styles for this template -->
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/menu2.css">		
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	</head>
+		<!-- Custom styles for this template -->	
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/availability.css">
+		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>	
+	</head>	
 	<style>
 		body {
 			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
 			background-size: cover;		
-		}
-	</style>	
+			}
+		#AccountsBnC{
+			margin-right:5%;
+			color:black;
+			}
+	</style>
 	<body>
-
+	
 		<!-- Navbar -->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#"><em>e-barber</em></a>
@@ -31,18 +39,23 @@
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-item ">
-						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/index.jsp">Search</a>
-					</li>
-					
-					<li class="nav-item active">
-						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myreviews.jsp">My reviews</a>
-					</li>			
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">	
 					<li class="nav-item">
-						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myappointments.jsp">My appointments</a>
+						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp">My Barbershop<a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/BarberJSP/bookings.jsp">Bookings</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="<%=request.getContextPath() %>/ismgroup26/BarberJSP/availability.jsp">Availability</a>
+					</li>							
+					<li class="nav-item">
+						<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/BarberJSP/contactwithus.jsp">Help</a>
 					</li>		
 				</ul>
+				<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+					
+				</nav>
 				
 				<!-- Account Option on Navbar + Avatars -->
 				<div id=AccountsBnC>
@@ -52,8 +65,7 @@
 								<a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								  Accounts
 								</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-																			
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">								
 									<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/Logout.jsp">
 										<span class="border-0">
 											<img src="<%=request.getContextPath() %>/ismgroup26/imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
@@ -65,42 +77,46 @@
 					</form>
 				</div>
 			</div>
-				
 			<span class="border-0">
-				<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
+				<img src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
 			</span>	
 		</nav>
-		
-		<div class="container theme-showcase" role="main">
-			<!-- Main jumbotron for a primary marketing message or call to action -->
+		<br>
+
+		<div class="container">
 			<div class="jumbotron">
-				<h1>My reviews</h1>
-			</div>
-			<div class="container">
-				<div class="media border p-3">
-					<img src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="barber-photo" class="mr-3 mt-3 rounded-circle" style="width:120px;">
-					<div class="media-body">
-						<h4>Barber01 <small><i>Answered on February 15, 2019<i></small></h4>
-						<p>Ευχαριστούμε για την κριτική! </p>
-						<p>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-						</p>	
-						<button type="button" class="btn btn-info btn-rounded">Answer</button>
-					</div>
-				</div>
-			</div> 
-		</div>
-		
+				<h1>Availability</h1>    
+			</div>               		
+			<table class="table table-dark table-hover">
+				<thead>
+					<tr>
+						<th>Firstname</th>
+						<th>Lastname</th>
+						<th>Email</th>
+						<th>phone</th>
+						<th>date</th>
+						<th>time</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>John</td>
+						<td>Doe</td>
+						<td>johndoe@gmail.com</td>
+						<td>6999999999</td>
+						<td>21/11/2019</td>
+						<td>18:00</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>		
+
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>	
 		<!-- Bootstrap core JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath() %>/ismgroup26/js/custom.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath() %>/ismgroup26/js/custom.js"></script>		
 	</body>
 </html>
-

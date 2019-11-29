@@ -12,7 +12,7 @@
 		<title>Log out</title>
 	
 		<!-- automatically will redirect to index_ex1_b_8170101.jsp after 2 seconds -->
-		<meta http-equiv="refresh" content="2.3;url=<%=request.getContextPath() %>/ismgroup26/index.jsp" />
+		<meta http-equiv="refresh" content="1.5;url=<%=request.getContextPath() %>/ismgroup26/index.jsp" />
 		<!-- Bootstrap core CSS & JQuery-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<!-- Custom styles for this template -->

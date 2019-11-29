@@ -232,7 +232,7 @@
 								if(request.getAttribute("message") != null) { %>
 									<div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("message") %></div>
 								<% 	
-									}request.setAttribute("message", "");
+									}
 								%>
 									<div class="form-group">			
 										<label for="username" class="col-sm-2 control-label text-center">Username </label>
@@ -308,13 +308,13 @@
 			<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=user.getName() %></em></h1>	
 			<div class="search-box">
 				<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
-				<a class="search-btn" href="<%= request.getContextPath() %>/ismgroup26/CustomerJSP/cResults.jsp">
+				<a class="search-btn" href="<%= request.getContextPath() %>/ismgroup26/CustomerJSP/Results.jsp">
 					<i class="fas fa-search-location" style="color:#6B8E23"></i>
 				</a>
 			</div>			
 			
 		<% }else{ %>
-			<jsp:forward page = "CustomerJSP/cBarbershopPage.jsp"/>
+			<jsp:forward page = "BarbershopPage.jsp"/>
 		<% }
 		} %>
 

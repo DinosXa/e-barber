@@ -26,7 +26,7 @@ public class BarbershopUser {
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.barber = true;
+		this.barber = barber;
 	}
 
 	/* Getters & Setters */

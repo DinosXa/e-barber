@@ -60,9 +60,9 @@
 									</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 																			
-										<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/logout.jsp">
+										<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/Logout.jsp">
 											<span class="border-0">
-												<img src="imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
+												<img src="<%=request.getContextPath() %>/ismgroup26/imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
 											</span>
 										</a>
 									</div>
@@ -72,7 +72,7 @@
 					</div>
 				</div>	
 				<span class="border-0">
-					<img src="imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
+					<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;">
 				</span>	
 			</nav>
 			
@@ -81,10 +81,7 @@
 				<div class="jumbotron">
 					<h1>Write a review!</h1>
 				</div>
-				
-				<div class="container">
 					<form action="action_page.php">
-
 						<label for="fname">First Name</label>
 						<input type="text" id="fname" name="firstname" placeholder="Your name..">
 
@@ -92,16 +89,16 @@
 						<input type="text" id="lname" name="lastname" placeholder="Your last name..">
 
 						<label for="subject">Review</label>
-						<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+						<textarea id="subject" name="subject" placeholder="Write a review..." style="height:200px"></textarea>
 						<p>Rate!</p>
-						<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span></p>
-
+						<p>
+							<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+							<span class="fa fa-star checked"></span>
+							<span class="fa fa-star checked"></span>
+							<span class="fa fa-star checked"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</p>
 						<input type="submit" value="Submit">
 					</form>
 				</div> 
