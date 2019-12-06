@@ -36,8 +36,8 @@
 			<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;"><em>e-barber</em></h1>
 			<h3 class="text-center font-weight-lighter" style="color:#6B8E23;">for <b>men</b></h3>
 		
-			<div class="container" id=dropdown>	
-				<div class="dropdown dropup float-right">
+
+				<div class="position dropdown dropup">
 					<button type="button" class="btn bg-dark dropdown-toggle" style="color:white;" data-toggle="dropdown">
 					Register/Login
 					</button>			
@@ -58,7 +58,6 @@
 						</a>
 					</div>
 				</div>
-			</div>
 
 			<div class="search-box">
 				<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">

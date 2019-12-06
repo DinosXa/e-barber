@@ -81,39 +81,43 @@
 		<div class="container">
 			<div class="jumbotron">
 				<h1>Availability</h1>    
-			</div>    
-		</div>
+			</div>  
 
+<div class="container mt-3">
+  <h2>Modal Methods</h2>
+  <p>The <strong>show</strong> method shows the modal and the <strong>hide</strong> method hides the modal.</p>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-primary" id="myBtn">Hide Modal</button>
 
-	<div class="container">
-		<h2></h2>
-		<p></p>                 		
-		<table class="table table-dark table-hover">
-			<thead>
-				<tr>
-					<th>Firstname</th>
-					<th>Lastname</th>
-					<th>Email</th>
-					<th>phone</th>
-					<th>date</th>
-					<th>time</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-				<td>John</td>
-				<td>Doe</td>
-				<td>johndoe@gmail.com</td>
-				<td>6999999999</td>
-				<td>21/11/2019</td>
-				<td>18:00</td>
-					</tr>
-				</tbody>
-		</table>
-	</div>		
-
-
-
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Methods</h4>
+        </div>
+        <div class="modal-body">
+          <p>The <strong>show</strong> method shows the modal and the <strong>hide</strong> method hides the modal.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+ 
+<script>
+$(document).ready(function(){
+  // Show the Modal on load
+  $("#myModal").modal("show");
+    
+  // Hide the Modal
+  $("#myBtn").click(function(){
+    $("#myModal").modal("hide");
+  });
+});
+</script>
 
 
 	</body>
