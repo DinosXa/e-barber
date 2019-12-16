@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
-<%@ page import= "login_classes.BarbershopUserDAO"%>
-<%@ page import= "login_classes.BarbershopUser"%>
+<%@ page import= "login_classes.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -27,13 +26,13 @@
 	</style>
 	<body>
 		
-		<% 	BarbershopUser user = (BarbershopUser)session.getAttribute("user1");
-			if((user == null)) {
+		<% 	BarbershopUser buser = (BarbershopUser)session.getAttribute("buser");
+			if((buser == null)) {
 				request.setAttribute("message", "Your access to this resource is forbidden. Please login.");
 		%>
 				<jsp:forward page = "index.jsp"/>
 			<% } else { 
-				if(user.getBarber() == false) {
+				if(buser.getifBarber() == false) {
 			%>
 				<!-- Customer Navbar -->
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">

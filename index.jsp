@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
-<%@ page import= "login_classes.BarbershopUserDAO"%>
-<%@ page import= "login_classes.BarbershopUser"%>
+<%@ page import="lesson6.*, java.util.List" %>
+<%@ page import= "login_classes.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -30,8 +30,12 @@
 			}
 	</style>
 	<body>
-		<% 	BarbershopUser user = (BarbershopUser)session.getAttribute("user1");
-			if((user == null)) {
+		<% 	
+		AreaSearch areaSearch = new AreaSearch();
+		List<Areas> areas = areaSearch.getAreas();
+		
+		CustomerUser user = (CustomerUser)session.getAttribute("user");
+		if((user == null)) {
 		%>
 			<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;"><em>e-barber</em></h1>
 			<h3 class="text-center font-weight-lighter" style="color:#6B8E23;">for <b>men</b></h3>
@@ -90,69 +94,52 @@
 						<div class="tab-content">
 							<div id="breg" class="container tab-pane"><br>						
 								<div class="modal-body">
-									<form class="form-horizontal">					
+									<form class="form-horizontal" method="POST" action="<%=request.getContextPath() %>/ismgroup26/registerController.jsp?isbarber=true">					
 										<div class="form-group">			
-											<label for="Bname" class="col-sm-2 control-label">Username </label>
+											<label for="name" class="col-sm-2 control-label">Username </label>
 										<div class="col-sm-10">
-											<input name="Bname" type="text" class="form-control" id="Bname" placeholder="Enter your barbershop's name">
+											<input name="busername" type="text" class="form-control" id="bname" placeholder="Enter your barbershop's name">
 										</div>
 										</div>
 										<div class="form-group">
-											<label for="inputBPassword1" class="col-sm-2 control-label">Password</label>
+											<label for="password" class="col-sm-2 control-label">Password</label>
 											<div class="col-sm-10">
-												<input name="Bpassword1" type="password" class="form-control" id="bpassword1" placeholder="Enter your password">
+												<input name="password" type="password" class="form-control" id="bpassword" placeholder="Enter your password">
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="Bemail" class="col-sm-2 control-label">E-mail</label>
+											<label for="email" class="col-sm-2 control-label">E-mail</label>
 											<div class="col-sm-10">
-												<input name="Bemail" type="email" class="form-control" id="Bemail" placeholder="Enter your email">
+												<input name="bemail" type="email" class="form-control" id="bemail" placeholder="Enter your email">
+											</div>
+										</div>	
+										<div class="form-group">
+											<label for="phone" class="col-sm-2 control-label">Phone</label>
+											<div class="col-sm-10">
+												<input name="bphone" type="text" class="form-control" id="bphone" placeholder="Enter your phone">
 											</div>
 										</div>
-										
-										
-	
 										<div class="form-group">
-											<label for="Bphone" class="col-sm-2 control-label">Phone</label>
+											<label for="address" class="col-sm-2 control-label">Address</label>
 											<div class="col-sm-10">
-												<input name="Bphone" type="integer" class="form-control" id="Bphone" placeholder="Enter your phone">
+												<input name="address" type="text" class="form-control" id="baddress" placeholder="Enter your address">
 											</div>
 										</div>
-										
-										
 										<div class="form-group">
-											<label for="Baddress" class="col-sm-2 control-label">Address</label>
+										  <label for="area" class="col-sm-2 control-label" >Area</label>
 											<div class="col-sm-10">
-												<input name="Baddress" type="text" class="form-control" id="Baddress" placeholder="Enter your address">
-											</div>
-										</div>
-										
-										<div class="form-group">
-										  <label for="Area" class="col-sm-2 control-label" >Area</label>
-											<div class="col-sm-10">
-												<select class="form-control">
+												<select class="form-control" name="area" id="area" required>
 													<optgroup label="Αθήνα">
 														<option value="" disabled selected hidden>-- Select your location --</option>
-														<option value="ilisia">Ιλίσια</option>
-														<option value="kentro">Κέντρο</option>
-														<option value="kolonaki">Κολωνάκι-Λυκαβηττός</option>
-														<option value="kolonos">Κολωνός</option>
-														<option value="koukaki">Κουκάκι</option>
-														<option value="kypseli">Κυψέλη</option>
-														<option value="mets">Καλλιμάρμαρο-Μετς</option>
-														<option value="neoskosmos">Νέος Κόσμος</option>
-														<option value="pagkrati">Παγκράτι</option>
-														<option value="anopatisia">Άνω Πατήσια</option>
-														<option value="katopatisia">Κάτω Πατήσια</option>
-														<option value="petralona">Πετράλωνα</option>
-														<option value="polygono">Πολύγωνο</option>
-														<option value="sepolia">Σεπόλια</option>
+														<% for(Areas ar:areas) { %>
+															<option value="<%=ar.getId() %>"><%=ar.getName() %></option>
+														<% } %>
 													</optgroup>
 												</select>
 											</div>
 										</div>
 										<div class="col-sm-10">
-											<input type="submit" class="btn btn-success" value="Log in" />
+											<input type="submit" class="btn btn-success" value="Register" />
 											<input type="reset" class="btn btn-danger"  value="Clear" />
 										</div>
 									</form>	
@@ -160,45 +147,45 @@
 							</div>
 							<div id="creg" class="container tab-pane"><br>	
 								<div class="modal-body">				
-									<form class="form-horizontal">
+									<form class="form-horizontal" method="POST" action="<%=request.getContextPath() %>/ismgroup26/registerController.jsp?isbarber=false">
 										<div class="form-group">
 											<label for="Cusername" class="col-sm-2 control-label">Username</label>
 											<div class="col-sm-10">
-												<input name="Cusername" type="name" class="form-control" id="Cusername" placeholder="Enter your username" >
+												<input name="username" type="text" class="form-control" id="cusername" placeholder="Enter your username" >
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="Cpassword1" class="col-sm-2 control-label">Password</label>
+											<label for="Cpassword" class="col-sm-2 control-label">Password</label>
 											<div class="col-sm-10">
-												<input name="Cpassword" type="password" class="form-control" id="Cpassword" placeholder="Enter your password" >
+												<input name="password" type="password" class="form-control" id="cpassword" placeholder="Enter your password" >
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="Cname" class="col-sm-2 control-label">Name</label>
 											<div class="col-sm-10">
-												<input name="Cname" type="name" class="form-control" id="Cname" placeholder="Enter your name" >
+												<input name="name" type="text" class="form-control" id="cname" placeholder="Enter your name" >
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="Csurname" class="col-sm-2 control-label">Surname</label>
 											<div class="col-sm-10">
-												<input name="Csurname" type="name" class="form-control" id="Csurname" placeholder="Enter your surname" >
+												<input name="surname" type="text" class="form-control" id="csurname" placeholder="Enter your surname" >
 											</div>
 										</div>		
 										<div class="form-group">
 											<label for="Cemail" class="col-sm-2 control-label">E-mail</label>
 											<div class="col-sm-10">
-												<input name="Cemail" type="email" class="form-control" id="Cemail" placeholder="Enter your email" >
+												<input name="email" type="email" class="form-control" id="cemail" placeholder="Enter your email" >
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="Cphone" class="col-sm-2 control-label">Phone</label>
 											<div class="col-sm-10">
-												<input name="Cphone" type="integer" class="form-control" id="Cphone" placeholder="Enter your phone">
+												<input name="phone" type="text" class="form-control" id="cphone" placeholder="Enter your phone">
 											</div>
 										</div>
 										<div class="col-sm-10">
-											<input type="submit" class="btn btn-success" value="Log in" />
+											<input type="submit" class="btn btn-success" value="Register" />
 											<input type="reset" class="btn btn-danger"  value="Clear" />
 										</div>
 									</form>					
@@ -230,9 +217,7 @@
 								<%
 								if(request.getAttribute("message") != null) { %>
 									<div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("message") %></div>
-								<% 	
-									}
-								%>
+								<% 	}	%>
 									<div class="form-group">			
 										<label for="username" class="col-sm-2 control-label text-center">Username </label>
 										<div class="col-sm-10">
@@ -244,7 +229,12 @@
 										<div class="col-sm-10">
 											<input name="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
 										</div>
-									</div><br>
+									</div>
+									<div class="form-group col-sm-10">
+										<label class="form-check-label col-sm-10">
+											<input name="ifbarber" type="checkbox" class="form-check-input" value="">I am a barber
+										</label>
+									</div>
 									<div class="col-sm-10">
 										<button type="submit" class="btn btn-success" href="<%=request.getContextPath() %>/ismgroup26/index.jsp">Log in</button>
 										<input type="reset" class="btn btn-danger"  value="Clear" />
@@ -252,13 +242,11 @@
 								</div>	
 							</div>
 						</form>
-					</div>>
+					</div>
 				</div>
 			</div>
 		</div>
-		<% }else{
-			if(user.getBarber() == false) {
-		%>
+		<% }else{	%>
 		
 			<!-- Navbar -->
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -313,11 +301,7 @@
 				</a>
 			</div>	
 			<!-- End of search bar -->
-			
-		<% }else{ %>
-			<jsp:forward page = "BarbershopPage.jsp"/>
-		<% }
-		} %>
+		<% }%>
 
 		
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error.jsp"%>
-<%@ page import= "login_classes.BarbershopUserDAO"%>
+<%@ page import= "login_classes.UserDAO"%>
 <%@ page import= "login_classes.BarbershopUser"%>
+<%@ page import= "login_classes.CustomerUser"%>
 <!DOCTYPE html>
 <html>
 	<<head>
@@ -22,13 +23,24 @@
 		<%
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			BarbershopUserDAO dao = new BarbershopUserDAO();
+			boolean barber = false;
+			UserDAO udao = new UserDAO();
 		   
 			try{
-				BarbershopUser user = dao.authenticate(username, password); 
-				session.setAttribute("user1", user);
+				if(barber==true){
+					session.setAttribute("user", udao.authenticateBU(username,password));
+				%> <jsp:forward page="BarbershopPage.jsp"/>
+				<%
+				}else{
+					session.setAttribute("user", udao.authenticateCU(username, password));
+				%><jsp:forward page="index.jsp"/>
+				<%
+				}
+				
 			}catch(Exception e){
-			   request.setAttribute("message", "Wrong username or password");
+				
+			   request.setAttribute("message", "Wrong username or password. You may need to check the box.");
+			
 			} %>
 			<jsp:forward page="index.jsp"/>
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
