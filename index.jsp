@@ -34,8 +34,10 @@
 		AreaSearch areaSearch = new AreaSearch();
 		List<Areas> areas = areaSearch.getAreas();
 		
-		CustomerUser user = (CustomerUser)session.getAttribute("user");
-		if((user == null)) {
+		BarbershopUser buser1 = null;
+		CustomerUser cuser1 = null;
+		CustomerUser cuser = (CustomerUser)session.getAttribute("user");
+		if((cuser == null)) {
 		%>
 			<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;"><em>e-barber</em></h1>
 			<h3 class="text-center font-weight-lighter" style="color:#6B8E23;">for <b>men</b></h3>
@@ -94,7 +96,11 @@
 						<div class="tab-content">
 							<div id="breg" class="container tab-pane"><br>						
 								<div class="modal-body">
-									<form class="form-horizontal" method="POST" action="<%=request.getContextPath() %>/ismgroup26/registerController.jsp?isbarber=true">					
+									<form class="form-horizontal" method="POST" action="<%=request.getContextPath() %>/ismgroup26/registerControllerB.jsp">					
+										<%
+										if(request.getAttribute("bregister-message") != null) { %>
+											<div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("message") %></div>
+										<% 	}	%>						
 										<div class="form-group">			
 											<label for="name" class="col-sm-2 control-label">Username </label>
 										<div class="col-sm-10">
@@ -146,8 +152,12 @@
 								</div>
 							</div>
 							<div id="creg" class="container tab-pane"><br>	
-								<div class="modal-body">				
-									<form class="form-horizontal" method="POST" action="<%=request.getContextPath() %>/ismgroup26/registerController.jsp?isbarber=false">
+								<div class="modal-body">			
+									<form class="form-horizontal" method="POST" action="<%=request.getContextPath() %>/ismgroup26/registerControllerC.jsp?">
+										<%
+										if(request.getAttribute("cregister-message") != null) { %>
+											<div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("message") %></div>
+										<% 	}	%>		
 										<div class="form-group">
 											<label for="Cusername" class="col-sm-2 control-label">Username</label>
 											<div class="col-sm-10">
@@ -221,18 +231,18 @@
 									<div class="form-group">			
 										<label for="username" class="col-sm-2 control-label text-center">Username </label>
 										<div class="col-sm-10">
-											<input name="username" type="text" class="form-control" id="username" placeholder="Enter your username" required>
+											<input name="lusername" type="text" class="form-control" id="username" placeholder="Enter your username" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="password" class="col-sm-2 control-label">Password</label>
 										<div class="col-sm-10">
-											<input name="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
+											<input name="lpassword" type="password" class="form-control" id="password" placeholder="Enter your password" required>
 										</div>
 									</div>
 									<div class="form-group col-sm-10">
 										<label class="form-check-label col-sm-10">
-											<input name="ifbarber" type="checkbox" class="form-check-input" value="">I am a barber
+											<input name="ifbarber" type="checkbox" class="form-check-input" value="true">I am a barber
 										</label>
 									</div>
 									<div class="col-sm-10">
@@ -293,7 +303,7 @@
 				</span>	
 			</nav>
 			<!-- Search bar -->
-			<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=user.getName() %></em></h1>	
+			<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=cuser.getName() %></em></h1>	
 			<div class="search-box">
 				<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
 				<a class="search-btn" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/results.jsp">

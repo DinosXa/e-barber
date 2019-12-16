@@ -2,7 +2,7 @@ package login_classes;
 
 public class BarbershopUser {
 
-	private String bid; //barbershop_id
+	private int bid; //barbershop_id
 	private String username;
 	private String password;
 	private String email;
@@ -14,7 +14,7 @@ public class BarbershopUser {
 	/**
 	 * Constructor
 	 */
-	public BarbershopUser(String bid, String username, String password, String email, String phone, String address, Areas area) {
+	public BarbershopUser(int bid, String username, String password, String email, String phone, String address, Areas area) {
 		this.bid = bid;
 		this.username = username;
 		this.password = password;
@@ -48,6 +48,7 @@ public class BarbershopUser {
 		this.address = address;
 	}
 
+
 	public Areas getArea() {
 		return area;
 	}
@@ -69,10 +70,10 @@ public class BarbershopUser {
 		this.phone = phone;
 	}
 
-	public String getBID() {
+	public int getBID() {
 		return bid;
 	}
-	public void setBID(String bid){
+	public void setBID(int bid){
 		this.bid = bid;
 	}
 

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error.jsp"%>
-<%@ page import= "login_classes.UserDAO"%>
-<%@ page import= "login_classes.BarbershopUser"%>
-<%@ page import= "login_classes.CustomerUser"%>
+<%@ page import= "login_classes.*"%>
 <!DOCTYPE html>
 <html>
 	<<head>
@@ -23,17 +21,19 @@
 		<%
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			boolean barber = false;
+			String ifbarber = request.getParameter("ifbarber");
 			UserDAO udao = new UserDAO();
 		   
 			try{
-				if(barber==true){
+				if((ifbarber == null) || !(ifbarber.equals("true"))) {	
 					session.setAttribute("user", udao.authenticateBU(username,password));
-				%> <jsp:forward page="BarbershopPage.jsp"/>
+				%> 
+					<jsp:forward page="BarbershopPage.jsp"/>
 				<%
 				}else{
 					session.setAttribute("user", udao.authenticateCU(username, password));
-				%><jsp:forward page="index.jsp"/>
+				%>
+					<jsp:forward page="index.jsp"/>
 				<%
 				}
 				

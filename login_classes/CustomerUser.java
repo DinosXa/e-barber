@@ -2,7 +2,7 @@ package login_classes;
 
 public class CustomerUser {
 
-	private String cid;
+	private int cid;
 	private String username;
 	private String password;
 	private String name;
@@ -21,7 +21,7 @@ public class CustomerUser {
 	 * @param password
 	 * @param barber
 	 */
-	public CustomerUser(String cid, String username, String password, String name, String surname, String email, String phone) {
+	public CustomerUser(int cid, String username, String password, String name, String surname, String email, String phone) {
 		this.cid = cid;
 		this.username = username;
 		this.password = password;
@@ -80,10 +80,10 @@ public class CustomerUser {
 		this.phone = phone;
 	}
 
-	public String getCID() {
+	public int getCID() {
 		return cid;
 	}
-	public void setCID(String cid){
+	public void setCID(int cid){
 		this.cid = cid;
 	}
 

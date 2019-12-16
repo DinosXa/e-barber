@@ -5,6 +5,7 @@ import java.util.List;
 import java.sql.*;
 
 public class UserDAO {
+
 	/*
 	 * This method returns a List with all Barbershop Users
 	 */
@@ -26,7 +27,7 @@ public class UserDAO {
 
 			while (rs.next()) {
 				Areas ar = new Areas( rs.getInt("id"), rs.getString("name") );
-				users.add( new BarbershopUser(rs.getString("bid"),
+				users.add( new BarbershopUser(rs.getInt("bid"),
 											  rs.getString("username"),
 											  rs.getString("password"),
 											  rs.getString("email"),
@@ -73,7 +74,7 @@ public class UserDAO {
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				users.add( new CustomerUser(rs.getString("cid"),
+				users.add( new CustomerUser(rs.getInt("cid"),
 											rs.getString("username"),
 											rs.getString("password"),
 											rs.getString("name"),
@@ -129,7 +130,7 @@ public class UserDAO {
 			   	throw new Exception("Wrong username or password.");
 		   	}
 			Areas ar = new Areas( rs.getInt("id"), rs.getString("name") );
-			user = new BarbershopUser(rs.getString("bid"),
+			user = new BarbershopUser(rs.getInt("bid"),
 									  rs.getString("username"),
 									  rs.getString("password"),
 									  rs.getString("email"),
@@ -180,7 +181,7 @@ public class UserDAO {
 
 					throw new Exception("Wrong username or password.");
 				}
-				user = new CustomerUser(rs.getString("cid"),
+				user = new CustomerUser(rs.getInt("cid"),
 										rs.getString("username"),
 										rs.getString("password"),
 										rs.getString("name"),
@@ -212,15 +213,15 @@ public class UserDAO {
 	public void registerBUser(BarbershopUser buser) throws CustomException, Exception {
 		Connection con = null;
 		DB db = new DB();
-		String INSQL = "INSERT INTO barbershop"
-				 	 + " (barbershopID, username, password, email, phone, address, area_id)"
+		String INSQL = "INSERT INTO barbershop "
+				 	 + " (barbershopID, username, password, email, phone, address, area_id) "
 					 + " VALUES (?, ?, ?, ?, ?, ?, ?);";
 		try {
 
 			con = db.getConnection();
 			PreparedStatement stmt = con.prepareStatement(INSQL);
 
-			stmt.setString(1, buser.getBID());
+			stmt.setInt(1, buser.getBID());
 			stmt.setString(2, buser.getUsername());
 			stmt.setString(3, buser.getPassword());
 			stmt.setString(4, buser.getEmail());
@@ -255,15 +256,15 @@ public class UserDAO {
 	public void registerCUser(CustomerUser user) throws CustomException, Exception {
 		Connection con = null;
 		DB db = new DB();
-		String	INSQL = "INSERT INTO customer"
-				  	  + " (customerID, username, password, name, surname, email, phone)"
+		String	INSQL = "INSERT INTO customer "
+				  	  + " (customerID, username, password, name, surname, email, phone) "
 				 	  + " VALUES (?, ?, ?, ?, ?, ?, ?);";
 		try {
 
 			con = db.getConnection();
 			PreparedStatement stmt = con.prepareStatement(INSQL);
 
-			stmt.setString(1, user.getCID());
+			stmt.setInt(1, user.getCID());
 			stmt.setString(2, user.getUsername());
 			stmt.setString(3, user.getPassword());
 			stmt.setString(4, user.getName());
@@ -295,7 +296,85 @@ public class UserDAO {
 		}
 	}//end of register
 
+	public int getcid()throws Exception{
+		Connection con = null;
+		DB db = new DB();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String GSQL;// GBSQL = Get Barbers SQL
+		GSQL = "SELECT customerID "
+			 + "FROM customer;";
 
+		BarbershopUser user = null;
+		List<CustomerUser> users = new ArrayList<CustomerUser>();
+		int lastBID = 0;
+		try {
+			con = db.getConnection();
+			stmt = con.prepareStatement(GSQL);
+			rs = stmt.executeQuery();
+
+			while(rs.next()) {
+				if(rs.last())
+					lastBID = rs.getInt(1);
+			}
+
+			rs.close();
+			stmt.close();
+			db.close();
+
+			return lastBID;
+
+		} catch(Exception e) {
+
+			throw new Exception("An error occured while getting the id from database. " + e.getMessage());
+
+		} finally {
+
+			if(con != null)
+				con.close();
+		}
+	}
+
+	//we take the last barbershop_id of the table
+	public int getbid()throws Exception{
+		Connection con = null;
+		DB db = new DB();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String GSQL;// GBSQL = Get Barbers SQL
+		GSQL = "SELECT barbershopID "
+			 + "FROM barbershop;";
+
+		BarbershopUser user = null;
+		List<BarbershopUser> users = new ArrayList<BarbershopUser>();
+		int lastCID = 0;
+		try {
+			con = db.getConnection();
+			stmt = con.prepareStatement(GSQL);
+			rs = stmt.executeQuery();
+
+
+			while(rs.next()) {
+				if(rs.last())
+					lastCID = rs.getInt(1);
+			}
+
+			rs.close();
+			stmt.close();
+			db.close();
+
+			return lastCID;
+
+		} catch(Exception e) {
+
+			throw new Exception("An error occured while getting the id from database. " + e.getMessage());
+
+		} finally {
+
+			if(con != null)
+				con.close();
+		}
+	}
 
 	public Areas getValidatedArea(String areaId) throws Exception {
 
