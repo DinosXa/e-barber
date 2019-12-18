@@ -27,23 +27,23 @@
 		  
 			   	try{
 					 if(ifbarber == null) {
-						session.setAttribute("user", udao.authenticateCU(username, password));		
-		%>			
-						<jsp:forward page="index.jsp">
-							<jsp:param name="logged" value="true"/>
-						</jsp:forward>
+						session.setAttribute("user", udao.authenticateCU(username, password));
+						request.setAttribute("logged","true");
+						request.setAttribute("ifbarber","");
+		%>				
+						<jsp:forward page="index.jsp"/>
 				<%	}else{	
 						session.setAttribute("user", udao.authenticateBU(username,password));
+						request.setAttribute("logged","true");
+						request.setAttribute("ifbarber","true");
 				%>
-						barber
+						<jsp:forward page="index.jsp"/>
 			<%		}
-				
 				}catch(Exception e){
 					request.setAttribute("message", e.getMessage());
+					request.setAttribute("logged","");
 			%>
-					<jsp:forward page="index.jsp">
-						<jsp:param name="logged" value=""/>
-					</jsp:forward>
+					<jsp:forward page="index.jsp"/>
 					<%=(String)request.getAttribute("message")%>
 			<% } %>
 			

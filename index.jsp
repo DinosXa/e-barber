@@ -32,11 +32,9 @@
 		<% 	
 		AreaSearch areaSearch = new AreaSearch();
 		List<Areas> areas = areaSearch.getAreas();
-		String logged = null;
 		String ifbarber = null;
-		logged = request.getParameter("logged");
 
-		if(logged==null){
+		if(request.getAttribute("logged") == null){
 			
 		%>
 			<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;"><em>e-barber</em></h1>
@@ -68,13 +66,13 @@
 			<div class="search-box">
 				<select class="form-control" name="area" id="area" required>
 					<optgroup label="Αθήνα">
-						<option value="" disabled selected hidden>-- Select your location --</option>
+						<option value="" disabled selected hidden> Select your area </option>
 						<% for(Areas ar:areas) { %>
 							<option value="<%=ar.getId() %>"><%=ar.getName() %></option>
 						<% } %>
 					</optgroup>
 				</select>
-				<a class="search-btn" href="AvailableBarbershops.jsp">
+				<a class="search-btn" href="">
 					<i class="fas fa-search-location" style="color:#6B8E23"></i>
 				</a>
 			</div>
@@ -265,12 +263,15 @@
 			</div>
 		</div>
 		<% }else{
-				ifbarber = request.getParameter("ifbarber");
-				if(ifbarber == null) {
-					CustomerUser user = (CustomerUser)session.getAttribute("user");
+				
+				
+				if(request.getAttribute("ifbarber") != null) {
+					BarbershopUser user = (BarbershopUser)session.getAttribute("user");
+		%>			<jsp:forward page="BarbershopPage.jsp"/>
+					<%
 				}else{
-					BarbershopUser user = (BarbershopUser)session.getAttribute("user");	
-				}			%>
+					CustomerUser user = (CustomerUser)session.getAttribute("user");
+				%>
 				<!-- Navbar -->
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 					<a class="navbar-brand" href="#"><em>e-barber</em></a>
@@ -324,7 +325,8 @@
 					</a>
 				</div>	
 				<!-- End of search bar -->
-			<%}%>
+				<%}
+			}%>
 
 		
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
