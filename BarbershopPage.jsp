@@ -26,14 +26,18 @@
 	</style>
 	<body>
 		
-		<% 	BarbershopUser buser = (BarbershopUser)session.getAttribute("buser");
-			if((buser == null)) {
+		<% 	
+			
+			
+			
+			BarbershopUser user = (BarbershopUser)session.getAttribute("user");
+			if(user == null) {
 				request.setAttribute("message", "Your access to this resource is forbidden. Please login.");
 		%>
 				<jsp:forward page = "index.jsp"/>
-			<% } else { 
-				if(buser.getifBarber() == false) {
-			%>
+		<% 	}
+			if(user != null) {
+		%>
 				<!-- Customer Navbar -->
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 					<a class="navbar-brand" href="#"><em>e-barber</em></a>
@@ -130,7 +134,6 @@
 								<table class="table table-dark table-hover">
 									<thead>
 										<tr>
-											
 											<th>date</th>
 											<th>time</th>
 										</tr>
@@ -281,7 +284,8 @@
 						</div>
 					</div>			
 				</div>
-			<% } else { %>
+			<% }
+			if(user!=null){ %>
 			
 			<!-- Barber Navbar -->
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -515,8 +519,7 @@
 						</ul>
 					</div>			
 				</div>		
-			<% } 
-			} %>
+			<% } %>
 
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
 		<!-- jQuery library -->

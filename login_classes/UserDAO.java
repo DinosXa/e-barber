@@ -18,7 +18,6 @@ public class UserDAO {
 		GSQL = "SELECT * "
 			 + "FROM barbershop;";
 
-		BarbershopUser user = null;
 		List<BarbershopUser> users = new ArrayList<BarbershopUser>();
 		try {
 			con = db.getConnection();
@@ -106,7 +105,7 @@ public class UserDAO {
 		DB db = new DB();
 		Connection con = null;
 		String AUSQL = "SELECT *"
-					  +" FROM barbershop"
+					  +" FROM barbershop,area"
 					  +" WHERE username=? AND password=? ;";
 	  	PreparedStatement stmt = null;
 	   	ResultSet rs =null;
@@ -127,15 +126,15 @@ public class UserDAO {
 			   	stmt.close();
 			   	db.close();
 
-			   	throw new Exception("Wrong username or password.");
+			   	throw new Exception("THE !RS.NEXT=FAULT. Wrong username or password.");
 		   	}
-			Areas ar = new Areas( rs.getInt("id"), rs.getString("name") );
-			user = new BarbershopUser(rs.getInt("bid"),
-									  rs.getString("username"),
-									  rs.getString("password"),
-									  rs.getString("email"),
-									  rs.getString("phone"),
-									  rs.getString("address"),
+			Areas ar = new Areas( rs.getInt("area.id"), rs.getString("area.name") );
+			user = new BarbershopUser(rs.getInt("barbershop.barbershopID"),
+									  rs.getString("barbershop.username"),
+									  rs.getString("barbershop.password"),
+									  rs.getString("barbershop.email"),
+									  rs.getString("barbershop.phone"),
+									  rs.getString("barbershop.address"),
 									  ar);
 
 			rs.close();
@@ -146,7 +145,7 @@ public class UserDAO {
 
 			} catch (Exception e) {
 
-				throw new Exception("User may not exist.");
+				throw new Exception("User may not exist. Error is: " + e.getMessage());
 
 			} finally {
 
@@ -179,9 +178,9 @@ public class UserDAO {
 					stmt.close();
 					db.close();
 
-					throw new Exception("Wrong username or password.");
+					throw new Exception("THE !RS.NEXT=FAULT. Wrong username or password.");
 				}
-				user = new CustomerUser(rs.getInt("cid"),
+				user = new CustomerUser(rs.getInt("customerID"),
 										rs.getString("username"),
 										rs.getString("password"),
 										rs.getString("name"),
@@ -197,7 +196,7 @@ public class UserDAO {
 
 				} catch (Exception e) {
 
-					throw new Exception("User may not exist.");
+					throw new Exception("User may not exist. Error is: " + e.getMessage());
 
 				} finally {
 
@@ -240,11 +239,11 @@ public class UserDAO {
 
 		} catch (SQLException e) {
 
-			throw new Exception(e.getMessage());
+			throw new Exception("1st error: " + e.getMessage());
 
 		} catch (Exception e) {
 
-			throw new Exception(e.getMessage());
+			throw new Exception("2nd error: " + e.getMessage());
 
 		} finally {
 
@@ -283,11 +282,11 @@ public class UserDAO {
 
 		} catch (SQLException e) {
 
-			throw new Exception(e.getMessage());
+			throw new Exception("The 1st error is: " + e.getMessage());
 
 		} catch (Exception e) {
 
-			throw new Exception(e.getMessage());
+			throw new Exception("The 2nd error is: " + e.getMessage());
 
 		} finally {
 
@@ -313,10 +312,9 @@ public class UserDAO {
 			stmt = con.prepareStatement(GSQL);
 			rs = stmt.executeQuery();
 
-			while(rs.next()) {
 				if(rs.last())
 					lastBID = rs.getInt(1);
-			}
+
 
 			rs.close();
 			stmt.close();
@@ -353,11 +351,9 @@ public class UserDAO {
 			stmt = con.prepareStatement(GSQL);
 			rs = stmt.executeQuery();
 
-
-			while(rs.next()) {
 				if(rs.last())
 					lastCID = rs.getInt(1);
-			}
+
 
 			rs.close();
 			stmt.close();

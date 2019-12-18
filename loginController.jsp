@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page errorPage="error.jsp"%>
-<%@ page import= "login_classes.*"%>
+<%@ page import="login_classes.*"%>
+<%@ page errorPage="error_page.jsp"%>
 <!DOCTYPE html>
 <html>
-	<<head>
+	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,30 +19,34 @@
 	<body>
 		
 		<%
+			UserDAO udao = new UserDAO();
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			String ifbarber = request.getParameter("ifbarber");
-			UserDAO udao = new UserDAO();
+			String ifbarber = request.getParameter("ifbarber");		
 		   
-			try{
-				if((ifbarber == null) || !(ifbarber.equals("true"))) {	
-					session.setAttribute("user", udao.authenticateBU(username,password));
-				%> 
-					<jsp:forward page="BarbershopPage.jsp"/>
-				<%
-				}else{
-					session.setAttribute("user", udao.authenticateCU(username, password));
+		  
+			   	try{
+					 if(ifbarber == null) {
+						session.setAttribute("user", udao.authenticateCU(username, password));		
+		%>			
+						<jsp:forward page="index.jsp">
+							<jsp:param name="logged" value="true"/>
+						</jsp:forward>
+				<%	}else{	
+						session.setAttribute("user", udao.authenticateBU(username,password));
 				%>
-					<jsp:forward page="index.jsp"/>
-				<%
-				}
+						barber
+			<%		}
 				
-			}catch(Exception e){
-				
-			   request.setAttribute("message", "Wrong username or password. You may need to check the box.");
+				}catch(Exception e){
+					request.setAttribute("message", e.getMessage());
+			%>
+					<jsp:forward page="index.jsp">
+						<jsp:param name="logged" value=""/>
+					</jsp:forward>
+					<%=(String)request.getAttribute("message")%>
+			<% } %>
 			
-			} %>
-			<jsp:forward page="index.jsp"/>
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
