@@ -19,17 +19,16 @@
 	<body>
 		
 		<%
-			UserDAO udao = new UserDAO();
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			String ifbarber = request.getParameter("ifbarber");		
-		   
+			UserDAO udao = new UserDAO();
 		  
 			   	try{
 					 if(ifbarber == null) {
 						session.setAttribute("user", udao.authenticateCU(username, password));
 						request.setAttribute("logged","true");
-						request.setAttribute("ifbarber","");
+						request.setAttribute("ifbarber","false");
 		%>				
 						<jsp:forward page="index.jsp"/>
 				<%	}else{	
@@ -40,7 +39,7 @@
 						<jsp:forward page="index.jsp"/>
 			<%		}
 				}catch(Exception e){
-					request.setAttribute("message", e.getMessage());
+					request.setAttribute("message", "problem is: " + e.getMessage());
 					request.setAttribute("logged","");
 			%>
 					<jsp:forward page="index.jsp"/>

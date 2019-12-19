@@ -32,7 +32,6 @@
 		<% 	
 		AreaSearch areaSearch = new AreaSearch();
 		List<Areas> areas = areaSearch.getAreas();
-		String ifbarber = null;
 
 		if(request.getAttribute("logged") == null){
 			
@@ -264,69 +263,72 @@
 		</div>
 		<% }else{
 				
-				
-				if(request.getAttribute("ifbarber") != null) {
+				if((request.getAttribute("ifbarber")).equals("true")) {
 					BarbershopUser user = (BarbershopUser)session.getAttribute("user");
 		%>			<jsp:forward page="BarbershopPage.jsp"/>
-					<%
-				}else{
+				<%
+				}
+				if((request.getAttribute("ifbarber")).equals("false")){
 					CustomerUser user = (CustomerUser)session.getAttribute("user");
 				%>
-				<!-- Navbar -->
-				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-					<a class="navbar-brand" href="#"><em>e-barber</em></a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-						<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-							<li class="nav-item active">
-								<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/index.jsp">Search</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myreviews.jsp">My reviews</a>
-							</li>			
-							<li class="nav-item">
-								<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myappointments.jsp">My appointments</a>
-							</li>
-						</ul>
+					<!-- Navbar -->
+					<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+						<a class="navbar-brand" href="#"><em>e-barber</em></a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+							<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+								<li class="nav-item active">
+									<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/index.jsp">Search</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myreviews.jsp">My reviews</a>
+								</li>			
+								<li class="nav-item">
+									<a class="nav-link" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/myappointments.jsp">My appointments</a>
+								</li>
+							</ul>
 
-						<!-- Account Option on Navbar + Avatars -->
-						<div id=AccountsBnC>
-							<form class="form-inline my-2 my-lg-0">
-								<div class="nav-item dropdown">
-									<div class="border" style="border-radius:0px;">
-										<a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											Accounts
-										</a>
-										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/Logout.jsp">
-												<span class="border-0">
-													<img src="<%=request.getContextPath() %>/ismgroup26/imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
-												</span>
+							<!-- Account Option on Navbar + Avatars -->
+							<div id=AccountsBnC>
+								<form class="form-inline my-2 my-lg-0">
+									<div class="nav-item dropdown">
+										<div class="border" style="border-radius:0px;">
+											<a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												Accounts
 											</a>
+											<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+												<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/Logout.jsp">
+													<span class="border-0">
+														<img src="<%=request.getContextPath() %>/ismgroup26/imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
+													</span>
+												</a>
+											</div>
 										</div>
 									</div>
-								</div>
-							</form>
+								</form>
+							</div>
 						</div>
-					</div>
-					
-					<span class="border-0">
-						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;" data-toggle="tooltip" title="Signed in as a customer">
-					</span>	
-				</nav>
-				<!-- Search bar -->
-				<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;">friend</em></h1>	
-				<div class="search-box">
-					<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
-					<a class="search-btn" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/results.jsp">
-						<i class="fas fa-search-location" style="color:#6B8E23"></i>
-					</a>
-				</div>	
+						
+						<span class="border-0">
+							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/customerAv.png" alt="Avatar" class="avatar rounded-circle" style="width:50px; height:50px; border-radius:50px;" data-toggle="tooltip" title="Signed in as a <%=user.getUsername()%>">
+						</span>	
+					</nav>
+					<!-- Search bar -->
+					<form method="POST" action="<%=request.getContextPath() %>/AvailableBarbershops.jsp">
+						<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=user.getName().replace("s","")%></em></h1>	
+						<div class="search-box">
+							<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
+							<a class="search-btn" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/results.jsp">
+								<i class="fas fa-search-location" style="color:#6B8E23"></i>
+							</a>
+						</div>	
+					</form>
 				<!-- End of search bar -->
-				<%}
-			}%>
+		<%		}
+			}
+		%>
 
 		
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
