@@ -220,7 +220,7 @@ public class UserDAO {
 			con = db.getConnection();
 			PreparedStatement stmt = con.prepareStatement(INSQL);
 
-			stmt.setInt(1, buser.getBID());
+			stmt.setInt(1, getbid());
 			stmt.setString(2, buser.getUsername());
 			stmt.setString(3, buser.getPassword());
 			stmt.setString(4, buser.getEmail());
@@ -263,7 +263,7 @@ public class UserDAO {
 			con = db.getConnection();
 			PreparedStatement stmt = con.prepareStatement(INSQL);
 
-			stmt.setInt(1, user.getCID());
+			stmt.setInt(1, getcid());
 			stmt.setString(2, user.getUsername());
 			stmt.setString(3, user.getPassword());
 			stmt.setString(4, user.getName());
@@ -300,31 +300,34 @@ public class UserDAO {
 		DB db = new DB();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String GSQL;// GBSQL = Get Barbers SQL
-		GSQL = "SELECT customerID "
-			 + "FROM customer;";
+		// GBSQL = Get Barbers SQL
+		String GSQL = "SELECT customerID "
+					+ "FROM customer;";
 
 		BarbershopUser user = null;
 		List<CustomerUser> users = new ArrayList<CustomerUser>();
-		int lastBID = 0;
+		int lastCID = 0;
 		try {
 			con = db.getConnection();
 			stmt = con.prepareStatement(GSQL);
 			rs = stmt.executeQuery();
 
-				if(rs.last())
-					lastBID = rs.getInt(1);
+
+			while(rs.next()){
+				if(rs.isLast())
+					lastCID = rs.getInt(1)+1;
+			}
 
 
 			rs.close();
 			stmt.close();
 			db.close();
 
-			return lastBID;
+			return lastCID;
 
 		} catch(Exception e) {
 
-			throw new Exception("An error occured while getting the id from database. " + e.getMessage());
+			throw new Exception("An error occured while getting the customer id from database. " + e.getMessage());
 
 		} finally {
 
@@ -339,31 +342,32 @@ public class UserDAO {
 		DB db = new DB();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String GSQL;// GBSQL = Get Barbers SQL
-		GSQL = "SELECT barbershopID "
+		// GBSQL = Get Barbers SQL
+		String GSQL = "SELECT barbershopID "
 			 + "FROM barbershop;";
 
 		BarbershopUser user = null;
 		List<BarbershopUser> users = new ArrayList<BarbershopUser>();
-		int lastCID = 0;
+		int lastBID = 0;
 		try {
 			con = db.getConnection();
 			stmt = con.prepareStatement(GSQL);
 			rs = stmt.executeQuery();
 
-				if(rs.last())
-					lastCID = rs.getInt(1);
-
+			while(rs.next()){
+				if(rs.isLast())
+					lastBID = rs.getInt(1)+1;
+			}
 
 			rs.close();
 			stmt.close();
 			db.close();
 
-			return lastCID;
+			return lastBID;
 
 		} catch(Exception e) {
 
-			throw new Exception("An error occured while getting the id from database. " + e.getMessage());
+			throw new Exception("An error occured while getting the barbershop id from database. " + e.getMessage());
 
 		} finally {
 
@@ -381,7 +385,7 @@ public class UserDAO {
 		try {
 			id = Integer.parseInt(areaId);
 		} catch (NumberFormatException e) {
-			throw new Exception("Bad area id");
+			throw new Exception("bad area id: " + e.getMessage());
 		}
 
 		AreaSearch ar = new AreaSearch();
@@ -394,7 +398,7 @@ public class UserDAO {
 			}
 			return null; //area id is not valid.
 		} catch (Exception e) {
-			throw new Exception( e.getMessage() ); //An error occurred
+			throw new Exception("the area id is: " + e.getMessage() ); //An error occurred
 		}
 	}
 

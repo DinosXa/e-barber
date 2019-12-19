@@ -109,7 +109,7 @@
 										<div class="form-group">			
 											<label for="name" class="col-sm-2 control-label">Username </label>
 										<div class="col-sm-10">
-											<input name="busername" type="text" class="form-control" id="bname" placeholder="Enter your barbershop's name">
+											<input name="username" type="text" class="form-control" id="bname" placeholder="Enter your barbershop's name">
 										</div>
 										</div>
 										<div class="form-group">
@@ -121,13 +121,13 @@
 										<div class="form-group">
 											<label for="email" class="col-sm-2 control-label">E-mail</label>
 											<div class="col-sm-10">
-												<input name="bemail" type="email" class="form-control" id="bemail" placeholder="Enter your email">
+												<input name="email" type="email" class="form-control" id="bemail" placeholder="Enter your email">
 											</div>
 										</div>	
 										<div class="form-group">
 											<label for="phone" class="col-sm-2 control-label">Phone</label>
 											<div class="col-sm-10">
-												<input name="bphone" type="text" class="form-control" id="bphone" placeholder="Enter your phone">
+												<input name="phone" type="text" class="form-control" id="bphone" placeholder="Enter your phone">
 											</div>
 										</div>
 										<div class="form-group">
@@ -152,6 +152,11 @@
 										<div class="col-sm-10">
 											<input type="submit" class="btn btn-success" value="Register" />
 											<input type="reset" class="btn btn-danger"  value="Clear" />
+											<% if(request.getAttribute("rbError") != null) { %>
+												<button type="button" class="btn btn-warning" data-toggle="errorb" data-placement="right" title="Insuficcient inputs" data-content="<%=(String)request.getAttribute("rbError") %>">Insuficcient input</button>
+											<% 	}	%>		
+											
+											
 										</div>
 									</form>	
 								</div>
@@ -202,6 +207,9 @@
 										<div class="col-sm-10">
 											<input type="submit" class="btn btn-success" value="Register" />
 											<input type="reset" class="btn btn-danger"  value="Clear" />
+											<% if(request.getAttribute("rcError") != null) { %>
+												<button type="button" class="btn btn-warning">Insuficcient</button>
+											<% 	}	%>	
 										</div>
 									</form>					
 								</div>	
@@ -340,4 +348,12 @@
 		<script type="text/javascript" src="<%=request.getContextPath() %>/ismgroup26/js/custom.js"></script>		
 	</body>
 </html>
+<script>
+$(document).ready(function(){
+  $('.btn-warning').popover({title: "Wrong inputs", content: "<%=request.getAttribute("rbError")%>", html: true, placement: "right"}); 
+});
+$(document).ready(function(){
+  $('.btn-warning').popover({title: "Wrong inputs", content: "<%=request.getAttribute("rcError")%>", html: true, placement: "right"}); 
+});
 
+</script>
