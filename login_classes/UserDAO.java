@@ -113,7 +113,6 @@ public class UserDAO {
 
 	   	try {
 			con = db.getConnection();
-
 		  	stmt = con.prepareStatement(AUSQL);
 
 		  	stmt.setString(1, username);

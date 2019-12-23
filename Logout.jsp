@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%session.invalidate();%>
+<%@ page errorPage="error_page.jsp"%>
+<%@ page import= "login_classes.*"%>
+<%
+if(session.getAttribute("user") == null) {
+	request.setAttribute("message", "You are not connected. Please login.");
+%>
+	<jsp:forward page="index.jsp" />
+<% }session.invalidate();%>
 
 <!DOCTYPE html>
 <html>
@@ -11,8 +18,8 @@
 	
 		<title>Log out</title>
 	
-		<!-- automatically will redirect to index_ex1_b_8170101.jsp after 2 seconds -->
-		<meta http-equiv="refresh" content="1.5;url=<%=request.getContextPath() %>/ismgroup26/index.jsp" />
+		<!-- automatically will redirect to index_ex1_b_8170101.jsp after 1.5 seconds -->
+		<meta http-equiv="refresh" content="1.0;url=<%=request.getContextPath() %>/ismgroup26/index.jsp" />
 		<!-- Bootstrap core CSS & JQuery-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<!-- Custom styles for this template -->

@@ -4,8 +4,21 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta name="description" content="Error page">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="Error page">		
+
 		<title>Error Page</title>
+
+		<!-- Bootstrap core CSS & JQuery-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<!-- Custom styles for this template -->	
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/firstPage.css">
+		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>	
+
+
 	</head>
 	<body>			
 		

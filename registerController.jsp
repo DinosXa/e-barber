@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="login_classes.*"%>
 <%@ page errorPage="error_page.jsp"%>
+<%@ page import="login_classes.*"%>
 
-<% 
+
+<%
+	request.setAttribute("logged","");
 	if(request.getParameter("barber").equals("true")) {	
 		String isbarber = request.getParameter("isbarber");
 		UserDAO udao = new UserDAO();
@@ -109,15 +111,20 @@
 					request.setAttribute( "rcError", inputerrorc);
 				}
 			}
+		%>
+			<jsp:forward page="index.jsp"/>
+		<%
 		}catch(CustomException e) {
 				
 				request.setAttribute("cregister-message", "the prob is: " + e.getMessage());
-
+		%>
+				<jsp:forward page="index.jsp"/>
+		<%
 		}catch(Exception e) {
 				
 			throw new Exception( "error" + e.getMessage() );
 			
 		}
 	}	%>
-	<jsp:forward page="index.jsp"/>
+
 

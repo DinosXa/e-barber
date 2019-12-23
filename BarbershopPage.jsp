@@ -25,236 +25,229 @@
 		}
 	</style>
 	<body>
-		
-		
-		<%@ include file="navbar.jsp"%>	
-		
 		<%
-				if(request.getAttribute("ifbarber").equals("false")) {
-					CustomerUser user = (CustomerUser)session.getAttribute("user");
-		%>
+		if(request.getAttribute("ifbarber").equals("false")) {
+			CustomerUser user = (CustomerUser)session.getAttribute("user");	%>
+			<%@ include file="cnavbar.jsp"%>	
 						
-					<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="booktab" data-toggle="tab" href="#book" role="tab" aria-controls="book" aria-selected="false">Book</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="reviewstab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
-						</li>
-					</ul>
+			<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="booktab" data-toggle="tab" href="#book" role="tab" aria-controls="book" aria-selected="false">Book</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="reviewstab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+				</li>
+			</ul>
 
-					<div class="tab-content" id="myTabContent">
-						<!-- Info -->
-						<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
-							<div class="flex-container">							
-								<!-- info_container -->
-								<div class="info_container theme-showcase" role="main">
-									<!-- Page Title -->
-									<div class="page-header">
-										<h3>Prices</h3>
-									</div>
-									<table class="table table-hover">
-										<thead>
-											<tr>
-												<th>Service</th>
-												<th>Price</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Haircut</td>
-												<td>10&#8364</td>
-											</tr>
-											<tr>
-												<td>Shaving</td>
-												<td>5&#8364</td>
-											</tr>
-										</tbody>
-									</table>
+			<div class="tab-content" id="myTabContent">
+				<!-- Info -->
+				<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+					<div class="flex-container">							
+						<!-- info_container -->
+						<div class="info_container theme-showcase" role="main">
+							<!-- Page Title -->
+							<div class="page-header">
+								<h3>Prices</h3>
+							</div>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Service</th>
+										<th>Price</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Haircut</td>
+										<td>10&#8364</td>
+									</tr>
+									<tr>
+										<td>Shaving</td>
+										<td>5&#8364</td>
+									</tr>
+								</tbody>
+							</table>
+							
+							<div class="page-header">
+								<h3>Availability</h3>
+							</div>
+							<p></p>                 		
+							<table class="table table-dark table-hover">
+								<thead>
+									<tr>
+										<th>date</th>
+										<th>time</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
 									
-									<div class="page-header">
-										<h3>Availability</h3>
-									</div>
-									<p></p>                 		
-									<table class="table table-dark table-hover">
-										<thead>
-											<tr>
-												<th>date</th>
-												<th>time</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-											
-											<td>21/11/2019</td>
-											<td>18:00</td>
-												</tr>
-											</tbody>
-									</table>
-									<div class="page-header">
-										<h3>Phone / Business email / Address</h3>
-									</div>
-									+2101010101 / barber01@gmail.com / Patision 26, Athens
-									<br><br>
-									
-									<div class="page-header">
-										<h3>Photos</h3>
-										<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barberProf.jpg" alt="barber" style="width:200px;">
-									</div>
-								</div>
-								<!-- end of info_container -->
+									<td>21/11/2019</td>
+									<td>18:00</td>
+										</tr>
+									</tbody>
+							</table>
+							<div class="page-header">
+								<h3>Phone / Business email / Address</h3>
+							</div>
+							+2101010101 / barber01@gmail.com / Patision 26, Athens
+							<br><br>
+							
+							<div class="page-header">
+								<h3>Photos</h3>
+								<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barberProf.jpg" alt="barber" style="width:200px;">
 							</div>
 						</div>
-						
-						<!-- Reviews -->
-						<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-							<ul class="flex-container wrap">	
-								<li class="re-container fitem">
-									<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-									<span><b>Chris Fox.</b><br></span>
-									<p><small><i>Posted on February 15, 2019</i></small></p><br>
-									<em>John Doe saved us from a web disaster.</em><br>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-								</li>
-								<li class="re-container fitem">
-									<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-									<span><b>Chris Fox.</b><br></span>
-									<p><small><i>Posted on February 15, 2019</i></small></p><br>
-									<em>John Doe saved us from a web disaster.</em><br>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-								</li>
-								<li class="re-container fitem">
-									<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-									<span><b>Chris Fox.</b><br></span>
-									<p><small><i>Posted on February 15, 2019</i></small></p><br>
-									<em>John Doe saved us from a web disaster.</em><br>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-								</li>
-							</ul>
-						</div>
-					
-						<!-- Βοοκ -->
-						<div class="tab-pane fade show" id="book" role="tabpanel" aria-labelledby="book-tab">
-							<div class="flex-container">
-
-							</div>
-						</div>			
+						<!-- end of info_container -->
 					</div>
-		<% 		}
-				if(request.getAttribute("ifbarber").equals("true")){ 
-					BarbershopUser user = (BarbershopUser)session.getAttribute("user");
-				%>
-			
-				
-						
-					<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>
+				</div>
+				<!-- Reviews -->
+				<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+					<ul class="flex-container wrap">	
+						<li class="re-container fitem">
+							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
+							<span><b>Chris Fox.</b><br></span>
+							<p><small><i>Posted on February 15, 2019</i></small></p><br>
+							<em>John Doe saved us from a web disaster.</em><br>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="far fa-star"></i>
+							<i class="far fa-star"></i>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+						<li class="re-container fitem">
+							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
+							<span><b>Chris Fox.</b><br></span>
+							<p><small><i>Posted on February 15, 2019</i></small></p><br>
+							<em>John Doe saved us from a web disaster.</em><br>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="far fa-star"></i>
+							<i class="far fa-star"></i>
+						</li>
+						<li class="re-container fitem">
+							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
+							<span><b>Chris Fox.</b><br></span>
+							<p><small><i>Posted on February 15, 2019</i></small></p><br>
+							<em>John Doe saved us from a web disaster.</em><br>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="far fa-star"></i>
+							<i class="far fa-star"></i>
 						</li>
 					</ul>
+				</div>
+			
+				<!-- Βοοκ -->
+				<div class="tab-pane fade show" id="book" role="tabpanel" aria-labelledby="book-tab">
+					<div class="flex-container">
 
-					<div class="tab-content" id="myTabContent">
-						<!-- Info -->
-						<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
-							<div class="flex-container">
-								<div class="info_container theme-showcase" role="main">
-									<div class="page-header">
-										<h3>Prices</h3>
-									</div>
-									<table class="table table-hover">
-										<thead>
-											<tr>
-												<th>Service</th>
-												<th>Price</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Haircut</td>
-												<td>10&#8364</td>
-											</tr>
-											<tr>
-												<td>Shaving</td>
-												<td>5&#8364</td>
-											</tr>
-										</tbody>
-									</table>
-									
-									<div class="page-header">
-										<h3>Phone / Business email / Address </h3>
-									</div>
-									+2101010101 / barber01@gmail.com / Patision 26, Athens
-									<br><br>
-								
-									<div class="page-header">
-										<h3>Photos</h3>
-										<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barberProf.jpg" alt="barber" style="width:200px;">
-									</div>
-								</div>
+					</div>
+				</div>			
+			</div>
+<% 		}
+		if(request.getAttribute("ifbarber").equals("true")){ 
+			BarbershopUser user = (BarbershopUser)session.getAttribute("user");%>
+			<%@ include file="bnavbar.jsp"%>
+				
+			<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+				</li>
+			</ul>
+
+			<div class="tab-content" id="myTabContent">
+				<!-- Info -->
+				<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+					<div class="flex-container">
+						<div class="info_container theme-showcase" role="main">
+							<div class="page-header">
+								<h3>Prices</h3>
+							</div>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Service</th>
+										<th>Price</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Haircut</td>
+										<td>10&#8364</td>
+									</tr>
+									<tr>
+										<td>Shaving</td>
+										<td>5&#8364</td>
+									</tr>
+								</tbody>
+							</table>
+							
+							<div class="page-header">
+								<h3>Phone / Business email / Address </h3>
+							</div>
+							+2101010101 / barber01@gmail.com / Patision 26, Athens
+							<br><br>
+						
+							<div class="page-header">
+								<h3>Photos</h3>
+								<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barberProf.jpg" alt="barber" style="width:200px;">
 							</div>
 						</div>
-						
-						<!-- Reviews -->
-						<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-							<ul class="flex-container wrap">	
-								<li class="re-container fitem">
-									<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-									<span><b>Chris Fox.</b><br></span>
-									<p><small><i>Posted on February 15, 2019</i></small></p><br>
-									<em>John Doe saved us from a web disaster.</em><br>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<button type="button" class="btn btn-info btn-rounded">Answer</button>
-								</li>
-								<li class="re-container fitem">
-									<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-									<span><b>Chris Fox.</b><br></span>
-									<p><small><i>Posted on February 15, 2019</i></small></p><br>
-									<em>John Doe saved us from a web disaster.</em><br>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<button type="button" class="btn btn-info btn-rounded">Answer</button>
-								</li>
-								<li class="re-container fitem">
-									<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-									<span><b>Chris Fox.</b><br></span>
-									<p><small><i>Posted on February 15, 2019</i></small></p><br>
-									<em>John Doe saved us from a web disaster.</em><br>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<button type="button" class="btn btn-info btn-rounded">Answer</button>
-								</li>
-							</ul>
-						</div>			
-					</div>		
-			<% 	}	%>
+					</div>
+				</div>
+				
+				<!-- Reviews -->
+				<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+					<ul class="flex-container wrap">	
+						<li class="re-container fitem">
+							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
+							<span><b>Chris Fox.</b><br></span>
+							<p><small><i>Posted on February 15, 2019</i></small></p><br>
+							<em>John Doe saved us from a web disaster.</em><br>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="far fa-star"></i>
+							<i class="far fa-star"></i>
+							<button type="button" class="btn btn-info btn-rounded">Answer</button>
+						</li>
+						<li class="re-container fitem">
+							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
+							<span><b>Chris Fox.</b><br></span>
+							<p><small><i>Posted on February 15, 2019</i></small></p><br>
+							<em>John Doe saved us from a web disaster.</em><br>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="far fa-star"></i>
+							<i class="far fa-star"></i>
+							<button type="button" class="btn btn-info btn-rounded">Answer</button>
+						</li>
+						<li class="re-container fitem">
+							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
+							<span><b>Chris Fox.</b><br></span>
+							<p><small><i>Posted on February 15, 2019</i></small></p><br>
+							<em>John Doe saved us from a web disaster.</em><br>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="far fa-star"></i>
+							<i class="far fa-star"></i>
+							<button type="button" class="btn btn-info btn-rounded">Answer</button>
+						</li>
+					</ul>
+				</div>			
+			</div>		
+	<% 	}	%>
 
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
 		<!-- jQuery library -->
