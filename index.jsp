@@ -2,6 +2,7 @@
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
 <%@ page import= "java.util.*"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -61,24 +62,26 @@
 							</a>
 						</div>
 					</div>
-					<form method="POST" action="<%=request.getContextPath() %>/AvailableBarbershops.jsp">
+					<form action="<%=request.getContextPath() %>/ismgroup26/AvailableBarbershops.jsp">
 						<div class="search-box">
-							<select class="form-control" name="area" id="area" required>
+							<div class="input-group">
+								<button class="search-btn" href="">
+									<i class="fas fa-search-location" style="color:#6B8E23"></i>
+								</button>								
+								<select class="form-control" name="area" id="area" required>									
 									<optgroup label="Αθήνα">
 										<option value="" disabled selected hidden> Select your area </option>
 										<% for(Areas ar:areas) { %>
-										<option value="<%=ar.getId() %>"><%=ar.getName() %></option>
-									<% } %>
-								</optgroup>
-							</select>
-							<a class="search-btn" href="">
-								<i class="fas fa-search-location" style="color:#6B8E23"></i>
-							</a>
+											<option value="<%=ar.getId() %>"><%=ar.getName() %></option>
+										<% } %>
+									</optgroup>
+								</select>
+							</div>
 						</div>
 					</form>
 				<%
-					if(request.getAttribute("message") != null) { %>
-						<div class="alert alert-danger text-center" role="alert">error: <%=(String)request.getAttribute("message") %></div>
+					if(request.getAttribute("errors") != null) { %>
+						<div class="alert alert-danger text-center errormsg" role="alert"><%=(String)request.getAttribute("errors") %></div>
 				<% 	}	%>
 					<!-- Register Pop-up -->
 					<div class="modal fade " id="RegisterModal">
@@ -108,7 +111,7 @@
 												<form class="form-horizontal" method="POST" action="<%=request.getContextPath() %>/ismgroup26/registerController.jsp?barber=true">					
 													<%
 													if(request.getAttribute("bregister-message") != null) { %>
-														<div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("message") %></div>
+														<div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("bregister-message") %></div>
 													<% 	}	%>						
 													<div class="form-group">			
 														<label for="name" class="col-sm-2 control-label">Username </label>
@@ -157,7 +160,7 @@
 														<input type="submit" class="btn btn-success" value="Register" />
 														<input type="reset" class="btn btn-danger"  value="Clear" />
 														<% if(request.getAttribute("rbError") != null) { %>
-															<button type="button" class="btn btn-warning" data-toggle="errorb" data-placement="right" title="Insuficcient inputs" data-content="<%=(String)request.getAttribute("rbError") %>">Insuficcient input</button>
+															<button type="button" class="errorb btn btn-warning" data-toggle="errorb" data-placement="right" title="Insuficcient inputs" data-content="<%=(String)request.getAttribute("rbError") %>">Insuficcient input</button>
 														<% 	}	%>		
 														
 														
@@ -170,7 +173,7 @@
 												<form class="form-horizontal" method="POST" action="<%=request.getContextPath() %>/ismgroup26/registerController.jsp?barber=false">
 													<%
 													if(request.getAttribute("cregister-message") != null) { %>
-														<div class="alert alert-danger text-center" role="alert">error: <%=(String)request.getAttribute("message") %></div>
+														<div class="alert alert-danger text-center" role="alert">error: <%=(String)request.getAttribute("cregister-message") %></div>
 													<% 	}	%>		
 													<div class="form-group">
 														<label for="Cusername" class="col-sm-2 control-label">Username</label>
@@ -212,7 +215,7 @@
 														<input type="submit" class="btn btn-success" value="Register" />
 														<input type="reset" class="btn btn-danger"  value="Clear" />
 														<% if(request.getAttribute("rcError") != null) { %>
-															<button type="button" class="btn btn-warning">Insuficcient</button>
+															<button type="button" class="errorc btn btn-warning">Insuficcient</button>
 														<% 	}	%>	
 													</div>
 												</form>					
@@ -256,7 +259,7 @@
 												</div>
 												<div class="form-group col-sm-10">
 													<label class="form-check-label col-sm-10">
-														<input name="ifbarber" type="checkbox" class="form-check-input" value="true">I am a barber
+														<input name="ifbarber2" type="checkbox" class="form-check-input" value="true">I am a barber
 													</label>
 												</div>
 												<div class="col-sm-10">
@@ -273,15 +276,24 @@
 	<%	}else{	
 			CustomerUser user = (CustomerUser)session.getAttribute("user");%>
 			<%@ include file="cnavbar.jsp"%>
+				<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=user.getName().replace("s","")%></em></h1>
 				<!-- Search bar -->
-				<form method="POST" action="<%=request.getContextPath() %>/AvailableBarbershops.jsp">
-					<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=user.getName().replace("s","")%></em></h1>	
+				<form method="POST" action="<%=request.getContextPath() %>/ismgroup26/AvailableBarbershops.jsp">
 					<div class="search-box">
-						<input class="search-txt" type="text" name="" placeholder="Search for barbers in an area">
-						<a class="search-btn" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/results.jsp">
-							<i class="fas fa-search-location" style="color:#6B8E23"></i>
-						</a>
-					</div>	
+						<div class="input-group">
+							<button class="search-btn" href="">
+								<i class="fas fa-search-location" style="color:#6B8E23"></i>
+							</button>								
+							<select class="form-control" name="area" id="area" required>									
+								<optgroup label="Αθήνα">
+									<option value="" disabled selected hidden> Select your area </option>
+									<% for(Areas ar:areas) { %>
+										<option value="<%=ar.getId() %>"><%=ar.getName() %></option>
+									<% } %>
+								</optgroup>
+							</select>
+						</div>
+					</div>
 				</form>
 			<!-- End of search bar -->
 	<%	}	%>
@@ -298,10 +310,10 @@
 </html>
 <script>
 $(document).ready(function(){
-  $('.btn-warning').popover({title: "Wrong inputs", content: "<%=request.getAttribute("rbError")%>", html: true, placement: "right"}); 
+  $('.errorb').popover({title: "Wrong barbershop inputs", content: "<%=request.getAttribute("rbError")%>", trigger:"focus", html: true, placement: "right"}); 
 });
 $(document).ready(function(){
-  $('.btn-warning').popover({title: "Wrong inputs", content: "<%=request.getAttribute("rcError")%>", html: true, placement: "right"}); 
+  $('.errorc').popover({title: "Wrong customer inputs", content: "<%=request.getAttribute("rcError")%>", trigger:"focus", html: true, placement: "right"}); 
 });
 
 </script>

@@ -2,6 +2,8 @@
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
 <%@ page import= "java.util.*"%>
+
+<%@ include file="logincheck.jsp"%>
 <!DOCTYPE html>
 <html>
 	<head>

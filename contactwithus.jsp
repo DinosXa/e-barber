@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
+<%@ page import= "java.util.*"%>
 
+<%@ include file="logincheck.jsp"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,37 +31,21 @@
 			}
 	</style>
 	<body>
-		<% 	BarbershopUser user = (BarbershopUser)session.getAttribute("user");%>
+		<% 	BarbershopUser user = (BarbershopUser)session.getAttribute("user");
+			AreaSearch areaSearch = new AreaSearch();
+			List<Areas> areas = areaSearch.getAreas();
+		%>
 		<%@ include file="bnavbar.jsp"%>
 		<div class="contact_container theme-showcase" role="main">
 			<div class="container">
+				<label for="username">Username</label>
+				<kbd><%=user.getUsername()%></kbd><br>
+				<label for="address">Address</label>
+				<kbd><%=user.getAddress()%></kbd><br>
+				<label for="area">Area</label>
+				<kbd><%=user.getArea().getName()%></kbd><br>
+				<label for="subject">Subject</label>
 				<form action="action_page.php">
-					<label for="Busername">Username</label>
-					<input type="text" id="Busername" name="Busername" placeholder="Your barbershop..">
-					<label for="address">Address</label>
-					<input type="text" id="address" name="address" placeholder="Your address..">
-					<label for="area">Area</label>
-					<select id="area" name="area">
-						<optgroup label="Αθήνα">
-							<option value="" disabled selected hidden>-- Select your barbershop's location --</option>
-							<option value="ilisia">Ιλίσια</option>
-							<option value="kentro">Κέντρο</option>
-							<option value="kolonaki">Κολωνάκι-Λυκαβηττός</option>
-							<option value="kolonos">Κολωνός</option>
-							<option value="koukaki">Κουκάκι</option>
-							<option value="kypseli">Κυψέλη</option>
-							<option value="mets">Καλλιμάρμαρο-Μετς</option>
-							<option value="neoskosmos">Νέος Κόσμος</option>
-							<option value="pagkrati">Παγκράτι</option>
-							<option value="anopatisia">Άνω Πατήσια</option>
-							<option value="katopatisia">Κάτω Πατήσια</option>
-							<option value="petralona">Πετράλωνα</option>
-							<option value="polygono">Πολύγωνο</option>
-							<option value="sepolia">Σεπόλια</option>
-						</optgroup>
-					</select>
-					<br>
-					<label for="subject">Subject</label>
 					<textarea id="subject" name="subject" placeholder="Explain the problem..." style="height:200px"></textarea>
 					<input type="submit" value="Submit">
 				</form>

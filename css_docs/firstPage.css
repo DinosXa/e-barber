@@ -14,6 +14,13 @@ img {
 	color:black;
 }
 
+.errormsg {
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform:translate(-50%, -50%);
+}
+
 .position {
 	position:absolute;
 	top:90%;
@@ -21,43 +28,20 @@ img {
 	transform:translate(-50%, -50%);
 
 }
+
 .search-box {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform:translate(-50%, -50%);
-	background:#6B8E23;
-	height: 40px;
-	border-radius: 50px;
-	padding: 0px;
-
 }
-
 .search-btn {
 	color: ;
-	float: right;
 	width: 40px;
-	height: 40px;
-	border-radius: 50%;
 	background: #8B0000;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	transition: 0.4s;
-} 
-
-.search-txt{
-	border:none;
-	background: none;
-	outline: none;
-	float: left;
-	padding: 0;
-	color: black;
-	font-size: 16px;
-	transition: 0.7s;
-	line-height: 40px;
-	width: 0px;
-	text-align: center;
 }
 .search-box:hover > .search-txt{
 	width: 240px;
@@ -66,7 +50,6 @@ img {
 .search-box:hover > .search-btn{
 	background: white;
 }
-
 .forbidden {
 	height: 50px;
 	width: 800px;

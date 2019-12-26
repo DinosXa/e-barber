@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -25,11 +24,18 @@
 		}
 	</style>
 	<body>
+	
+<%	if(!request.getParameter("ifbarber2").equals("")){
+		request.setAttribute("ifbarber","true");
+	}else{
+		request.setAttribute("ifbarber","");
+	}
+	%>
+	
 		<%
-		if(request.getAttribute("ifbarber").equals("false")) {
+		if(request.getAttribute("ifbarber").equals("")) {
 			CustomerUser user = (CustomerUser)session.getAttribute("user");	%>
 			<%@ include file="cnavbar.jsp"%>	
-						
 			<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
 				<li class="nav-item">
 					<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>
@@ -150,11 +156,15 @@
 					</div>
 				</div>			
 			</div>
-<% 		}
-		if(request.getAttribute("ifbarber").equals("true")){ 
+<% 		}else{
+			if(!request.getAttribute("ifbarber").equals("") && request.getParameter("ifbarber2").equals("")){
+				request.setAttribute("wrong-page","You do not have permission to access this page");
+				request.setAttribute("ifbarber","true");
+			}
+		}
+		if(!request.getAttribute("ifbarber").equals("")){ 
 			BarbershopUser user = (BarbershopUser)session.getAttribute("user");%>
-			<%@ include file="bnavbar.jsp"%>
-				
+		<%@ include file="bnavbar.jsp"%>
 			<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
 				<li class="nav-item">
 					<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>

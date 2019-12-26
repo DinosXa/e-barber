@@ -21,26 +21,28 @@
 		<%
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			String ifbarber = request.getParameter("ifbarber");		
+			String ifbarber2 = request.getParameter("ifbarber2");		
 			UserDAO udao = new UserDAO();
 		  
 			   	try{
-					 if(ifbarber == null) {
+					 if(ifbarber2 == null) {
 						session.setAttribute("user", udao.authenticateCU(username, password));
-						request.setAttribute("ifbarber","false");
-		%>				
+						request.setAttribute("ifbarber","");
+		%>
 						<jsp:forward page="index.jsp"/>
-				<%	}else{	
+				<%		request.setAttribute("ifbarber","");	
+					}else{	
 						session.setAttribute("user", udao.authenticateBU(username,password));
 						request.setAttribute("ifbarber","true");
 				%>
 						<jsp:forward page="BarbershopPage.jsp"/>
-			<%		}
+			<%			request.setAttribute("ifbarber","true");
+					}
 				}catch(Exception e){
-					request.setAttribute("message", "problem is: " + e.getMessage());
+					request.setAttribute("errors", e.getMessage());
 			%>
 					<jsp:forward page="index.jsp"/>
-					<%=(String)request.getAttribute("message")%>
+					<%=(String)request.getAttribute("errors")%>
 			<% } %>
 			
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->

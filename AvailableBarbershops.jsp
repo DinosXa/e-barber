@@ -2,6 +2,14 @@
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
 <%@ page import= "java.util.*"%>
+
+<%	
+	if(request.getParameter("area") == null) {
+		request.setAttribute("errors", "You have to select an area.");
+%>
+		<jsp:forward page="index.jsp" />
+<%  } %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,61 +18,94 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		
-		<title>e-barber</title>
+		<title>Results</title>
 
 		<!-- Bootstrap core CSS & JQuery-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<!-- Custom styles for this template -->	
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/firstPage.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/menu2.css">
 		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>	
-	</head>	
+	</head>
 	<style>
+		body {
+			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
+			background-size: cover;		
+		}
+	</style>
+	<body>
 
-
-
-
-
-<!-- Page Title -->
-			<div class="page-header">	
+		<% 	if(session.getAttribute("user") != null) {	
+				CustomerUser user = (CustomerUser)session.getAttribute("user");	%>
+				<%@ include file="cnavbar.jsp"%>	
+				<%
+				BarbershopUserService brbservice = new BarbershopUserService();
+				String area_id = request.getParameter("area");
+				int id = Integer.parseInt(area_id);
+				List<BarbershopUser> busers = brbservice.getBarbershops(id);
 				
-				<h1>Welcome <code>
-				</div>
-                <%
-                        BarbershopUserService brbservice = new BarbershopUserService();
-                        List<BarbershopUser> barbershops = brbservice.getBarbershops();
-                        %>
-				<h3>Available Barbershops <a href="#"><span class="badge"><%=barbershops.size()%></span></a> </h3>
-				<table class="table table-bordered">
-				    <thead  style="background-color: blanchedalmond">
-                        <tr>
-                            <th>A/A</th>
-                             
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%
-                           for (int i = 0; i< barbershops.size(); i++) {   %>
-                            <tr>
-                                <td><b><%=(i + 1)%></b></td>
-                    
-                                <td><a href ="profile_ex2_8170192.jsp?uname=<%=barbershops.get(i).getUsername()%></a></td>
-                                <td><%=barbershops.get(i).getEmail()%></td>
-                                <td><%=barbershops.get(i).getPhone()%></td>
-                                
-                            </tr>
-                        <% 
-                        } %>
-                    </tbody>
-				</table>
-			
-			</div>
-		</div>
-		<!-- /container -->
+				if(busers.size() == 0) {
+					request.setAttribute("errors", "The are no barbershops at this area yet.");
+				%>	<jsp:forward page="index.jsp"/>
+			<%	}else{	%>		
+					<div class="container">
+						<div class="jumbotron">
+							<h1>Available barbers in the area: <span class="text-info"><%=busers.size() %></span></h1>
+						</div>
+					<%	int counter = 0;
+						for(BarbershopUser buser: busers) {	%>	
+							<div class="media border p-3">
+								<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
+								<div class="media-body">
+									<h4><%=buser.getUsername()%>  <small><%=buser.getAddress()%></small></h4><br>
+									<a class="btn btn-success" style="color:white;"><!--href="cBarbershopPage.html#book"-->Book</a>				
+									<a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp#info">More Info</a>
+									<a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/writereview.jsp">Post a Review</a>
+								</div>
+							</div>
+					
+					
+					<%	}	%>
+					</div>
+					<!-- /container -->
+			<%	}
+			}else{
+				BarbershopUserService brbservice = new BarbershopUserService();
+				String area_id = request.getParameter("area");
+				int id = Integer.parseInt(area_id);
+				List<BarbershopUser> busers = brbservice.getBarbershops(id);
+				
+				if(busers.size() == 0) {
+					request.setAttribute("errors", "The are no barbershops at this area yet.");
+				%>	<jsp:forward page="index.jsp"/>	<%
+				}else{
+				%>		
+					<div class="container">
+						<div class="jumbotron">
+							<h1>Results</h1>
+						</div>
+						Total Barbershops:	<span class="text-info"><%=busers.size() %></span></h1>
+						
+					<%	int counter = 0;
+						for(BarbershopUser buser: busers) {	%>	
+							<div class="media border p-3">
+								<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
+								<div class="media-body">
+									<h4><%=buser.getUsername()%></h4><br>
+									<a class="btn btn-success" style="color:white;"><!--href="cBarbershopPage.html#book"-->Book</a>				
+									<a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp#info">More Info</a>
+									<a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/writereview.jsp">Post a Review</a>
+								</div>
+							</div>
+					
+					
+					<%	}	%>
+					</div>
+					<!-- /container -->
 
+			<%	}	
+			}	%>
+	</body>
+</head>
 
 
 

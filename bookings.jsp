@@ -2,6 +2,7 @@
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
 
+<%@ include file="logincheck.jsp"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -31,7 +32,7 @@
 	<body>
 		<% 	BarbershopUser user = (BarbershopUser)session.getAttribute("user");%>
 		<%@ include file="bnavbar.jsp"%>
-		
+
 		<div class="container">
 			<div class="jumbotron">
 				<h1>Bookings</h1>

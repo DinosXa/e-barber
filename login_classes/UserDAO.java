@@ -26,7 +26,7 @@ public class UserDAO {
 
 			while (rs.next()) {
 				Areas ar = new Areas( rs.getInt("id"), rs.getString("name") );
-				users.add( new BarbershopUser(rs.getInt("bid"),
+				users.add( new BarbershopUser(rs.getInt("barbershopID"),
 											  rs.getString("username"),
 											  rs.getString("password"),
 											  rs.getString("email"),
@@ -125,7 +125,7 @@ public class UserDAO {
 			   	stmt.close();
 			   	db.close();
 
-			   	throw new Exception("THE !RS.NEXT=FAULT. Wrong username or password.");
+			   	throw new Exception("Wrong username or password.");
 		   	}
 			Areas ar = new Areas( rs.getInt("area.id"), rs.getString("area.name") );
 			user = new BarbershopUser(rs.getInt("barbershop.barbershopID"),
@@ -144,7 +144,7 @@ public class UserDAO {
 
 			} catch (Exception e) {
 
-				throw new Exception("User may not exist. Error is: " + e.getMessage());
+				throw new Exception(e.getMessage());
 
 			} finally {
 
@@ -177,7 +177,7 @@ public class UserDAO {
 					stmt.close();
 					db.close();
 
-					throw new Exception("THE !RS.NEXT=FAULT. Wrong username or password.");
+					throw new Exception("Wrong username or password.");
 				}
 				user = new CustomerUser(rs.getInt("customerID"),
 										rs.getString("username"),
@@ -195,7 +195,7 @@ public class UserDAO {
 
 				} catch (Exception e) {
 
-					throw new Exception("User may not exist. Error is: " + e.getMessage());
+					throw new Exception(e.getMessage());
 
 				} finally {
 
@@ -208,7 +208,7 @@ public class UserDAO {
 
 
 
-	public void registerBUser(BarbershopUser buser) throws CustomException, Exception {
+	public void registerBUser(BarbershopUser user) throws CustomException, Exception {
 		Connection con = null;
 		DB db = new DB();
 		String INSQL = "INSERT INTO barbershop "
@@ -220,12 +220,12 @@ public class UserDAO {
 			PreparedStatement stmt = con.prepareStatement(INSQL);
 
 			stmt.setInt(1, getbid());
-			stmt.setString(2, buser.getUsername());
-			stmt.setString(3, buser.getPassword());
-			stmt.setString(4, buser.getEmail());
-			stmt.setString(5, buser.getPhone());
-			stmt.setString(6, buser.getAddress());
-			stmt.setInt(7, buser.getArea().getId());
+			stmt.setString(2, user.getUsername());
+			stmt.setString(3, user.getPassword());
+			stmt.setString(4, user.getEmail());
+			stmt.setString(5, user.getPhone());
+			stmt.setString(6, user.getAddress());
+			stmt.setInt(7, user.getArea().getId());
 
 	   		stmt.executeUpdate();
 
@@ -343,7 +343,7 @@ public class UserDAO {
 		ResultSet rs = null;
 		// GBSQL = Get Barbers SQL
 		String GSQL = "SELECT barbershopID "
-			 + "FROM barbershop;";
+					+ "FROM barbershop;";
 
 		BarbershopUser user = null;
 		List<BarbershopUser> users = new ArrayList<BarbershopUser>();

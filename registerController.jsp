@@ -4,11 +4,9 @@
 
 
 <%
-	request.setAttribute("logged","");
-	if(request.getParameter("barber").equals("true")) {	
-		String isbarber = request.getParameter("isbarber");
-		UserDAO udao = new UserDAO();
-		int bid = udao.getbid();		
+	String ifbarber = request.getParameter("barber");
+	UserDAO udao = new UserDAO();
+	if(ifbarber.equals("true")) {		
 		try{
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
@@ -16,15 +14,15 @@
 			String phone = request.getParameter("phone");
 			String address = request.getParameter("address");
 			String area = request.getParameter("area");
-
+			int bid = udao.getbid();
 			
 			if( (username.length() > 4) && (password.length() > 5) && (phone.length() == 10) && (area != null) ) {
 				Areas ar = udao.getValidatedArea(area);
 				
 				//create barbershop object
-				BarbershopUser buser = new BarbershopUser(bid, username, password, email, phone, address, ar);
+				BarbershopUser user = new BarbershopUser(bid, username, password, email, phone, address, ar);
 				//save barbershop to database
-				udao.registerBUser(buser);
+				udao.registerBUser(user);
 				%>
 				<jsp:forward page="index.jsp"/> 
 				<%
@@ -46,29 +44,26 @@
 				}
 				if (countErrors > 0) {
 					inputerrorb = "<ol>" + inputerrorb + "</ol>";
-					request.setAttribute( "rbError", inputerrorb);
-			%>
-					<jsp:forward page="index.jsp"/>	
-			<%		
+					request.setAttribute( "rbError", "the input error b " + inputerrorb);
+
 				}
 			}
+			%>
+			<jsp:forward page="index.jsp"/>	
+			<%		
 		}catch(CustomException e) {
 			
-			request.setAttribute("bregister-message", "the prob is:" + e.getMessage());
+			request.setAttribute("bregister-message", e.getMessage());
 			%>
 			<jsp:forward page="index.jsp"/>
 			<%
 		}catch(Exception e) {
 			
-			throw new Exception( "error: " + e.getMessage() );
+			throw new Exception( "the bregister error: " + e.getMessage() );
 		
 		}
 	}
-	if(request.getParameter("barber").equals("false")){
-		String isbarber = request.getParameter("isbarber");
-		UserDAO udao = new UserDAO();
-		int cid = udao.getcid();
-		
+	if(ifbarber.equals("false")){
 		try{
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
@@ -76,12 +71,13 @@
 			String surname = request.getParameter("surname");
 			String email = request.getParameter("email");
 			String phone = request.getParameter("phone");
-				
+			int cid = udao.getcid();
+			
 			if( (username.length() > 4) && (password.length() > 5) && (name != null) && (surname != null) && (phone.length() == 10)) {	
 				//create customer object	
-				CustomerUser cuser = new CustomerUser(cid, username, password, name, surname, email, phone);
+				CustomerUser user = new CustomerUser(cid, username, password, name, surname, email, phone);
 				//save customer to database
-				udao.registerCUser(cuser);
+				udao.registerCUser(user);
 			}else{
 				int countErrors = 0;
 				String inputerrorc = "";	
@@ -108,21 +104,22 @@
 				}
 				if (countErrors > 0) {
 					inputerrorc = "<ol>" + inputerrorc + "</ol>";
-					request.setAttribute( "rcError", inputerrorc);
+					request.setAttribute( "rcError", "input error c " + inputerrorc);
+			
 				}
 			}
-		%>
+			%>
 			<jsp:forward page="index.jsp"/>
-		<%
+			<%	
 		}catch(CustomException e) {
 				
-				request.setAttribute("cregister-message", "the prob is: " + e.getMessage());
-		%>
+				request.setAttribute("cregister-message", e.getMessage());
+				%>
 				<jsp:forward page="index.jsp"/>
-		<%
+				<%
 		}catch(Exception e) {
 				
-			throw new Exception( "error" + e.getMessage() );
+			throw new Exception( "the cregister error: " + e.getMessage() );
 			
 		}
 	}	%>
