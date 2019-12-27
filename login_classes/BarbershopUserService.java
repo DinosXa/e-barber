@@ -1,11 +1,14 @@
 package login_classes;
 
+import java.text.Normalizer;
+import java.util.regex.Pattern;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class BarbershopUserService {
 
@@ -45,7 +48,6 @@ public class BarbershopUserService {
 				barbershops.add(bu);
 			}
 
-
 			rs.close();
 			stmt.close();
 			db.close();
@@ -62,11 +64,10 @@ public class BarbershopUserService {
 				con.close();
 
 		}
-
 	}
 
-
-public String convertIntToArea(int num) throws Exception {
+	//Get an id and find the area with that id
+	public String convertIntToArea(int num) throws Exception {
 		Connection con = null;
 		DB db = new DB();
 		String GETA ="SELECT * "
@@ -102,31 +103,65 @@ public String convertIntToArea(int num) throws Exception {
 
 			throw new Exception("the msg is " +e.getMessage());
 
+		} finally {
+
+			if(con != null)
+				con.close();
 		}
 	}
-}
-/*
-public int convertAreaToInt(String area) throws Exception {
-		int id = 0;
 
-			if(area.equals("il"))id=1;
-			else if(area.equals("Κολωνάκι-Λυκαβητός"))id=2;
-			else if(area.equals("Κολωνός"))id=3;
-			else if(area.equals("Κουκάκι"))id=4;
-			else if(area.equals("Κυψέλη"))id=5;
-			else if(area.equals("Καλλιμάρμαρο-Μετς"))id=6;
-			else if(area.equals("Μοναστηράκι"))id=7;
-			else if(area.equals("Νέα Σμύρνη"))id=8;
-			else if(area.equals("Νέος Κόσμος"))id=9;
-			else if(area.equals("Παγκράτι"))id=10;
-			else if(area.equals("’νω Πατήσια"))id=11;
-			else if(area.equals("Κάτω Πατήσια"))id=12;
-			else if(area.equals("Πετράλωνα"))id=13;
-			else if(area.equals("Πολύγωνο"))id=14;
-			else if(area.equals("Σεπόλια"))id=15;
-			else id=0;
-
-			return id;
-
+	//Convert accent characters to english
+	public String deAccent(String str) {
+		String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
+		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+		return pattern.matcher(nfdNormalizedString).replaceAll("");
 	}
-}*/
+
+	public BarbershopUser findBarberByID(String id) throws Exception {
+		Connection con = null;
+		DB db = new DB();
+		String FBSQL ="SELECT * FROM barbershop LEFT JOIN area "
+					+ "ON barbershop.area_id = area.id "
+					+ "WHERE barbershop.barbershopID=? ;";
+
+
+		BarbershopUser user = null;
+
+		try {
+			// open connection and get Connection object
+			con = db.getConnection();
+
+			PreparedStatement stmt = con.prepareStatement(FBSQL);
+			stmt.setString(1, id);
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				Areas ar = new Areas(rs.getInt("area.id"), rs.getString("area.name"));
+
+				user = new BarbershopUser(rs.getInt("barbershop.barbershopID"),
+										  rs.getString("barbershop.username"),
+										  rs.getString("barbershop.password"),
+										  rs.getString("barbershop.email"),
+										  rs.getString("barbershop.phone"),
+										  rs.getString("barbershop.address"),
+										  ar);
+			}
+
+ 			rs.close(); //closing ResultSet
+			stmt.close(); //closing PreparedStatement
+
+			return user;
+
+		} catch (Exception e) {
+
+			throw new Exception("Error while searching barber: " + e.getMessage());
+
+		} finally {
+
+			if(con != null) // if connection is still open, then close.
+				con.close();
+
+		}
+
+	} //End of findBarberByID
+}

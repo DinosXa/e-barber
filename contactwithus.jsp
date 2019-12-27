@@ -18,6 +18,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<!-- Custom styles for this template -->	
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/contactwithus.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/navbar.css">
 		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>	
 	</head>	
 	<style>

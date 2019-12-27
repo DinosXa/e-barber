@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<!-- Custom styles for this template -->	
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/firstPage.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/navbar.css">
 		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>	
 	</head>	
 	<style>
@@ -273,10 +274,10 @@
 							</div>
 						</div>
 					</div>
-	<%	}else{	
-			CustomerUser user = (CustomerUser)session.getAttribute("user");%>
-			<%@ include file="cnavbar.jsp"%>
-				<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=user.getName().replace("s","")%></em></h1>
+	<%		}else{	
+				CustomerUser user = (CustomerUser)session.getAttribute("user");%>
+				<%@ include file="cnavbar.jsp"%>
+				<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=user.getName()%></em></h1>
 				<!-- Search bar -->
 				<form method="POST" action="<%=request.getContextPath() %>/ismgroup26/AvailableBarbershops.jsp">
 					<div class="search-box">

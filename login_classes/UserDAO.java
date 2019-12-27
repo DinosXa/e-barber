@@ -144,7 +144,7 @@ public class UserDAO {
 
 			} catch (Exception e) {
 
-				throw new Exception(e.getMessage());
+				throw new Exception("Authentication problem: " + e.getMessage());
 
 			} finally {
 

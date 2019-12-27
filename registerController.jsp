@@ -16,7 +16,7 @@
 			String area = request.getParameter("area");
 			int bid = udao.getbid();
 			
-			if( (username.length() > 4) && (password.length() > 5) && (phone.length() == 10) && (area != null) ) {
+			if( (username.length() > 4 && username.length() < 26) && (password.length() > 5) && (phone.length() == 10) && (area != null) ) {
 				Areas ar = udao.getValidatedArea(area);
 				
 				//create barbershop object
@@ -30,8 +30,8 @@
 				int countErrors = 0;
 				String inputerrorb = "";	
 				
-				if(username.length() < 5){
-					inputerrorb += "<li>Username should have from 5 (min) to 20 (max) characters.</li>";
+				if(username.length() < 5 || username.length() > 26){
+					inputerrorb += "<li>Username should have from 5 (min) to 25 (max) characters.</li>";
 					countErrors++;
 				}
 				if(password.length() < 6){
@@ -73,7 +73,7 @@
 			String phone = request.getParameter("phone");
 			int cid = udao.getcid();
 			
-			if( (username.length() > 4) && (password.length() > 5) && (name != null) && (surname != null) && (phone.length() == 10)) {	
+			if( (username.length() > 4 && username.length() < 26) && (password.length() > 5) && (name != null) && (surname != null) && (phone.length() == 10)) {	
 				//create customer object	
 				CustomerUser user = new CustomerUser(cid, username, password, name, surname, email, phone);
 				//save customer to database
@@ -82,8 +82,8 @@
 				int countErrors = 0;
 				String inputerrorc = "";	
 				
-				if(username.length() < 5){
-					inputerrorc += "<li>Username should have from 5 (min) to 20 (max) characters.</li>";
+				if(username.length() < 5 || username.length() > 25){
+					inputerrorc += "<li>Username should have from 5 (min) to 25 (max) characters.</li>";
 					countErrors++;
 				}
 				if(password.length() < 6){

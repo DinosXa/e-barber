@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<!-- Custom styles for this template -->
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/BarbershopPage.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/navbar.css">
 		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>
 	</head>
 	<style>
@@ -25,144 +26,168 @@
 	</style>
 	<body>
 	
-<%	if(!request.getParameter("ifbarber2").equals("")){
-		request.setAttribute("ifbarber","true");
-	}else{
-		request.setAttribute("ifbarber","");
-	}
-	%>
+<%	BarbershopUserService brbservice = new BarbershopUserService();
 	
+	if(!request.getParameter("ifbarber2").equals("")){
+		request.setAttribute("ifbarber","true");
+	}
+
+	if(request.getParameter("ifbarber2").equals("")){
+		request.setAttribute("ifbarber","");
+
+	}
+
+	if(request.getAttribute("ifbarber").equals("")) {
+		CustomerUser user = (CustomerUser)session.getAttribute("user");	%>
+		<%@ include file="cnavbar.jsp"%>			
 		<%
-		if(request.getAttribute("ifbarber").equals("")) {
-			CustomerUser user = (CustomerUser)session.getAttribute("user");	%>
-			<%@ include file="cnavbar.jsp"%>	
-			<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="booktab" data-toggle="tab" href="#book" role="tab" aria-controls="book" aria-selected="false">Book</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="reviewstab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
-				</li>
-			</ul>
+		String bid = request.getParameter("bid");
+		if(bid == null) 
+				throw new Exception("Bad Request!");	
+		BarbershopUser buser = brbservice.findBarberByID(bid);
+		if(buser == null)
+				throw new Exception("Barber not found");
+		%>
 
-			<div class="tab-content" id="myTabContent">
-				<!-- Info -->
-				<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
-					<div class="flex-container">							
-						<!-- info_container -->
-						<div class="info_container theme-showcase" role="main">
-							<!-- Page Title -->
-							<div class="page-header">
-								<h3>Prices</h3>
-							</div>
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>Service</th>
-										<th>Price</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Haircut</td>
-										<td>10&#8364</td>
-									</tr>
-									<tr>
-										<td>Shaving</td>
-										<td>5&#8364</td>
-									</tr>
-								</tbody>
-							</table>
-							
-							<div class="page-header">
-								<h3>Availability</h3>
-							</div>
-							<p></p>                 		
-							<table class="table table-dark table-hover">
-								<thead>
-									<tr>
-										<th>date</th>
-										<th>time</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-									
-									<td>21/11/2019</td>
-									<td>18:00</td>
-										</tr>
-									</tbody>
-							</table>
-							<div class="page-header">
-								<h3>Phone / Business email / Address</h3>
-							</div>
-							+2101010101 / barber01@gmail.com / Patision 26, Athens
-							<br><br>
-							
-							<div class="page-header">
-								<h3>Photos</h3>
-								<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barberProf.jpg" alt="barber" style="width:200px;">
-							</div>
+		<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="booktab" data-toggle="tab" href="#book" role="tab" aria-controls="book" aria-selected="false">Book</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="reviewstab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+			</li>
+		</ul>
+
+		<div class="tab-content" id="myTabContent">
+			<!-- Info -->
+			<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+				<div class="flex-container">							
+					<!-- info_container -->
+					<div class="info_container theme-showcase" role="main">
+						<h1 class="display-3" style="text-align:center;"><code style="color:#6B8E23;"><%=buser.getUsername()%></code></h1>
+						<!--Price-->
+						<h4 style="text-align:center;">Prices</h4>
+						<table class="table table-hover table-bordered table-responsive-sm">
+							<thead class="thead-dark">
+								<tr>
+									<th style="width:50%">Services</th>
+									<th>Under 18</th>
+									<th>Man</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Haircut</td>
+									<td>7 €</td>
+									<td>10 €</td>
+								</tr>
+								<tr>
+									<td>Shaving</td>
+									<td>5 €</td>
+									<td>7 €</td>
+								</tr>
+								<tr>
+									<td>Trimming</td>
+									<td>3 €</td>
+									<td>5 €</td>
+								</tr>
+								<tr>
+									<td>Haircut + Shaving<span class="badge badge-success" style="background-color:#6B8E23;">Best deal</span></td>
+									<td>10 €</td>
+									<td>14 €</td>
+								</tr>
+								<tr>
+									<td>Haircut + Trimming</td>
+									<td>8 €</td>
+									<td>12 €</td>
+								</tr>
+							</tbody>
+						</table><br>
+						<!--Contact info-->
+						<h4 style="text-align:center;">Contact info</h4>            		
+						<table class="table table-hover table-bordered">
+							<thead class="thead-dark">
+								<tr>
+									<th>Phone</th>
+									<th>Business email</th>
+									<th>Address</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>+<%=buser.getPhone()%></td>
+									<td><%=buser.getEmail()%></td>
+									<td><%=buser.getAddress()%></td>
+								</tr>
+							</tbody>
+						</table><br>
+						<div class="page-header">
+							<h3>Photos</h3>
 						</div>
-						<!-- end of info_container -->
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barberProf.jpg" alt="barber" style="width:200px;">
 					</div>
+					<!-- end of info_container -->
 				</div>
-				<!-- Reviews -->
-				<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-					<ul class="flex-container wrap">	
-						<li class="re-container fitem">
-							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-							<span><b>Chris Fox.</b><br></span>
-							<p><small><i>Posted on February 15, 2019</i></small></p><br>
-							<em>John Doe saved us from a web disaster.</em><br>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<i class="far fa-star"></i>
-						</li>
-						<li class="re-container fitem">
-							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-							<span><b>Chris Fox.</b><br></span>
-							<p><small><i>Posted on February 15, 2019</i></small></p><br>
-							<em>John Doe saved us from a web disaster.</em><br>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<i class="far fa-star"></i>
-						</li>
-						<li class="re-container fitem">
-							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-							<span><b>Chris Fox.</b><br></span>
-							<p><small><i>Posted on February 15, 2019</i></small></p><br>
-							<em>John Doe saved us from a web disaster.</em><br>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<i class="far fa-star"></i>
-						</li>
-					</ul>
-				</div>
-			
-				<!-- Βοοκ -->
-				<div class="tab-pane fade show" id="book" role="tabpanel" aria-labelledby="book-tab">
-					<div class="flex-container">
-
-					</div>
-				</div>			
 			</div>
-<% 		}else{
-			if(!request.getAttribute("ifbarber").equals("") && request.getParameter("ifbarber2").equals("")){
-				request.setAttribute("wrong-page","You do not have permission to access this page");
-				request.setAttribute("ifbarber","true");
-			}
+			<!-- Reviews -->
+			<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+				<ul class="flex-container wrap">	
+					<li class="re-container fitem">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<span><b>Chris Fox.</b><br></span>
+						<p><small><i>Posted on February 15, 2019</i></small></p><br>
+						<em>John Doe saved us from a web disaster.</em><br>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="far fa-star"></i>
+						<i class="far fa-star"></i>
+					</li>
+					<li class="re-container fitem">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<span><b>Chris Fox.</b><br></span>
+						<p><small><i>Posted on February 15, 2019</i></small></p><br>
+						<em>John Doe saved us from a web disaster.</em><br>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="far fa-star"></i>
+						<i class="far fa-star"></i>
+					</li>
+					<li class="re-container fitem">
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
+						<span><b>Chris Fox.</b><br></span>
+						<p><small><i>Posted on February 15, 2019</i></small></p><br>
+						<em>John Doe saved us from a web disaster.</em><br>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="far fa-star"></i>
+						<i class="far fa-star"></i>
+					</li>
+				</ul>
+			</div>
+		
+			<!-- Βοοκ -->
+			<div class="tab-pane fade show" id="book" role="tabpanel" aria-labelledby="book-tab">
+				<div class="flex-container">
+
+
+
+
+				</div>
+			</div>			
+		</div>
+<% 	}else{
+		if(!request.getAttribute("ifbarber").equals("") && request.getParameter("ifbarber2").equals("")){
+			request.setAttribute("wrong-page","You do not have permission to access this page");
+			request.setAttribute("ifbarber","true");
 		}
-		if(!request.getAttribute("ifbarber").equals("")){ 
+	}
+		if(!request.getAttribute("ifbarber").equals("")){			
 			BarbershopUser user = (BarbershopUser)session.getAttribute("user");%>
 		<%@ include file="bnavbar.jsp"%>
 			<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
@@ -177,44 +202,75 @@
 			<div class="tab-content" id="myTabContent">
 				<!-- Info -->
 				<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
-					<div class="flex-container">
+					<div class="flex-container">							
+						<!-- info_container -->
 						<div class="info_container theme-showcase" role="main">
+							<!-- Page Title -->
 							<div class="page-header">
 								<h3>Prices</h3>
 							</div>
-							<table class="table table-hover">
-								<thead>
+							<table class="table table-hover table-striped table-bordered table-responsive-sm">
+								<thead class="thead-dark">
 									<tr>
-										<th>Service</th>
-										<th>Price</th>
+										<th style="width:50%">Services</th>
+										<th>Under 18</th>
+										<th>Man</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td>Haircut</td>
-										<td>10&#8364</td>
+										<td>7 €</td>
+										<td>10 €</td>
 									</tr>
 									<tr>
 										<td>Shaving</td>
-										<td>5&#8364</td>
+										<td>5 €</td>
+										<td>7 €</td>
+									</tr>
+									<tr>
+										<td>Trimming</td>
+										<td>3 €</td>
+										<td>5 €</td>
+									</tr>
+									<tr>
+										<td>Haircut + Shaving<span class="badge badge-success">Best deal</span></td>
+										<td>10 €</td>
+										<td>14 €</td>
+									</tr>
+									<tr>
+										<td>Haircut + Trimming</td>
+										<td>8 €</td>
+										<td>12 €</td>
 									</tr>
 								</tbody>
-							</table>
-							
+							</table><br>
 							<div class="page-header">
-								<h3>Phone / Business email / Address </h3>
-							</div>
-							+2101010101 / barber01@gmail.com / Patision 26, Athens
-							<br><br>
-						
+								<h3>Contact info</h3>
+							</div>             		
+							<table class="table table-hover table-bordered">
+								<thead class="thead-dark">
+									<tr>
+										<th>Phone</th>
+										<th>Business email</th>
+										<th>Address</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>+<%=user.getPhone()%></td>
+										<td><%=user.getEmail()%></td>
+										<td><%=user.getAddress()%></td>
+									</tr>
+								</tbody>
+							</table><br>
 							<div class="page-header">
 								<h3>Photos</h3>
-								<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barberProf.jpg" alt="barber" style="width:200px;">
 							</div>
+							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barberProf.jpg" alt="barber" style="width:200px;">
 						</div>
 					</div>
 				</div>
-				
 				<!-- Reviews -->
 				<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
 					<ul class="flex-container wrap">	

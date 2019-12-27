@@ -6,7 +6,10 @@
 	<!-- Barbershop Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="#"><em>e-barber</em></a>
-		<div class="collapse navbar-collapse" id="navbarToggler1">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bnavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="bnavbar">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item" href="<%= (request.getRequestURI().replace(request.getContextPath() + "/","").equals("ismgroup26BarbershopPage.jsp") ? "active" : "") %>">
 					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?ifbarber2=true">

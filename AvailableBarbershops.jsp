@@ -24,6 +24,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<!-- Custom styles for this template -->	
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/results.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/navbar.css">
 		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>	
 	</head>
 	<style>
@@ -47,21 +48,37 @@
 					request.setAttribute("errors", "The are no barbershops at this area yet.");
 				%>	<jsp:forward page="index.jsp"/>
 			<%	}else{	%>		
-					<ul class="container">
+					<ul class="container responsive">
 						<div class="jumbotron">
-							<h1>Ανοιχτά μπαρμπέρικα στην περιοχή "<%=brbservice.convertIntToArea(id)%>": <span class="text-info"><%=busers.size() %></span></h1>
+							<h1>Available barbershops at the area "<%=brbservice.convertIntToArea(id)%>": <span class="text-info"><%=busers.size() %></span></h1>
 						</div>
 					<%	int counter = 0;
 						for(BarbershopUser buser: busers) {	%>	
-							<li class="flex-item p-3">
-								<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-								<div class="media-body">
-									<h4><%=buser.getUsername()%>  <small><%=buser.getAddress()%></small></h4><br>
-									<a class="btn btn-success" style="color:white;"><!--href="cBarbershopPage.html#book"-->Book</a>				
-									<a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?ifbarber2=">More Info</a>
-									<a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/writereview.jsp">Post a Review</a>
-								</div>
-							</li><br>
+							<li class="flex-item">
+								<ul class="barber-container responsive">
+									<li class="bflex-item" style="flex-grow:3;">
+										<dl>
+											<dt><h1><%=buser.getUsername()%></h1></dt>
+											<dd><%=buser.getAddress()%></dd>
+											<dd><%=buser.getPhone()%></dd>
+										</dl>
+									</li>
+									<li class="bflex-item" style="flex-grow:1;">
+										<ul class="combine-cont">
+											<li class="comb-item">
+												<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barbr.jpg" alt="barbershop" class="img-fluid" width="220px"  style="border=5px; border-radius:10px; height:160px;">
+											</li>
+											<li class="comb-item">
+												<ul class="barber-btn-container">
+													<li class="btn-item"><a class="btn btn-success" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>&ifbarber2=">Make reservation</a></li>
+													<li class="btn-item"><a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>&ifbarber2=">More information</a></li>
+													<li class="btn-item"><a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/writereview.jsp">Review the barber</a></li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
 					<%	}	%>
 					</ul>
 					<!-- /container -->
@@ -78,23 +95,39 @@
 				%>	<jsp:forward page="index.jsp"/>	<%
 				}else{
 				%>		
-					<div class="container">
+					<ul class="container responsive">
 						<div class="jumbotron">
-							<h1>Ανοιχτά μπαρμπέρικα στην περιοχή "<%=brbservice.convertIntToArea(id)%>": <span class="text-info"><%=busers.size() %></span></h1>
+							<h1>Available barbershops at the area "<%=brbservice.convertIntToArea(id)%>": <span class="text-info"><%=busers.size() %></span></h1>
 						</div>
 					<%	int counter = 0;
 						for(BarbershopUser buser: busers) {	%>	
-							<div class="media border p-3">
-								<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barbr.jpg" alt="barbershop" class="mr-3 mt-3 rounded-circle">
-								<div class="media-body">
-									<h4><%=buser.getUsername()%></h4><br>
-									<a class="btn btn-success" style="color:white;"><!--href="cBarbershopPage.html#book"-->Book</a>				
-									<a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp#info">More Info</a>
-									<a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/CustomerJSP/writereview.jsp">Post a Review</a>
-								</div>
-							</div>
+							<li class="flex-item">
+								<ul class="barber-container responsive">
+									<li class="bflex-item" style="flex-grow:3; align-self:center;">
+										<dl>
+											<dt><h1><%=buser.getUsername()%></h1></dt>
+											<dd><%=buser.getAddress()%></dd>
+											<dd><%=buser.getPhone()%></dd>
+										</dl>
+									</li>
+									<li class="bflex-item" style="flex-grow:1;">
+										<ul class="combine-cont">
+											<li class="comb-item">
+												<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barbr.jpg" alt="barbershop" class="img-fluid" width="220px"  style="border=5px; border-radius:10px; height:160px;">
+											</li>
+											<li class="comb-item">
+												<ul class="barber-btn-container">
+													<li class="btn-item"><a class="btn btn-success" style="color:white;"><!--href="cBarbershopPage.html#book"-->Make reservation</a></li>
+													<li class="btn-item"><a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>&ifbarber2=">More information</a></li>
+													<li class="btn-item"><a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/writereview.jsp">Review the barber</a></li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
 					<%	}	%>
-					</div>
+					</ul>
 					<!-- /container -->
 
 			<%	}	

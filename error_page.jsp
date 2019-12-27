@@ -16,19 +16,13 @@
 		<!-- Bootstrap core CSS & JQuery-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<!-- Custom styles for this template -->	
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/firstPage.css">
-		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>	
-
-
 	</head>
 	<body>			
-		
 		<div class="container">
 			<!-- Page Title -->
 			<div class="page-header">
 				<h1>Error</h1>				
 			</div>
-				
 			<% if(exception != null) {  %>			
 				<div class="alert alert-danger" role="alert">
 					<p>
@@ -40,7 +34,6 @@
 				</div>
 			<% } %>		
 		</div>
-		<!-- /container -->
-		
+		<!-- /container -->	
 	</body>
 </html>
