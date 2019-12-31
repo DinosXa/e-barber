@@ -14,12 +14,13 @@ public class CustomerUser {
 	/**
 	 * Constructor
 	 *
+	 * @param CID
+	 * @param username
+	 * @param password
 	 * @param name
 	 * @param surname
 	 * @param email
-	 * @param username
-	 * @param password
-	 * @param barber
+	 * @param phone
 	 */
 	public CustomerUser(int cid, String username, String password, String name, String surname, String email, String phone) {
 		this.cid = cid;
@@ -56,9 +57,6 @@ public class CustomerUser {
 		this.name = name;
 	}
 
-	/**
-	 * @return the surname
-	 */
 	public String getSurname() {
 		return surname;
 	}
@@ -100,5 +98,4 @@ public class CustomerUser {
 					", name=" + name + ", surname=" + surname +
 					", email=" + email + ", phone=" + phone+"]";
 	}
-
-} //End of class
+}

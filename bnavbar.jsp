@@ -12,33 +12,31 @@
 		<div class="collapse navbar-collapse" id="bnavbar">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item" href="<%= (request.getRequestURI().replace(request.getContextPath() + "/","").equals("ismgroup26BarbershopPage.jsp") ? "active" : "") %>">
-					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?ifbarber2=true">
+					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/BarbershopPage.jsp">
 						My Barbershop
 					</a>
 				</li>	
 				<li class="nav-item" href="<%= (request.getRequestURI().replace(request.getContextPath() + "/","").equals("ismgroup26bookings.jsp") ? "active" : "") %>">
-					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/bookings.jsp?ifbarber2=true">
+					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/bookings.jsp">
 						Bookings
 					</a>
 				</li>	
 				<li class="nav-item" href="<%= (request.getRequestURI().replace(request.getContextPath() + "/","").equals("ismgroup26availability.jsp") ? "active" : "") %>">
-					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/availability.jsp?ifbarber2=true">
+					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/availability.jsp">
 						Availability
 					</a>
 				</li>								
 				<li class="nav-item" href="<%= (request.getRequestURI().replace(request.getContextPath() + "/","").equals("ismgroup26contactwithus.jsp") ? "active" : "") %>">
-					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/contactwithus.jsp?ifbarber2=true">
+					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/contactwithus.jsp">
 						Contact with us
 					</a>
 				</li>
 			<%	if(request.getAttribute("wrong-page") != null) { %>
 					<li class="nav-item">
-						<small>
 							<div class="alert alert-warning alert-dismissible" style="position:absolute;">
 								<button type="button" class="close" data-dismiss="alert">&times;</button>
 								<%=(String)request.getAttribute("wrong-page")%>
 							</div>
-						</small>
 					</li>
 			<%	}	%>
 			</ul>

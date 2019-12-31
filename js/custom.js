@@ -6,3 +6,4 @@ if (url.match('#')) {
 $('.nav-tabs a').on('shown.bs.tab', function(e) {
 	window.location.hash = e.target.hash;
 })
+textFit(document.querySelector("p"));

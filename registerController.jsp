@@ -14,7 +14,7 @@
 			String phone = request.getParameter("phone");
 			String address = request.getParameter("address");
 			String area = request.getParameter("area");
-			int bid = udao.getbid();
+			int bid = udao.sumbid();
 			
 			if( (username.length() > 4 && username.length() < 26) && (password.length() > 5) && (phone.length() == 10) && (area != null) ) {
 				Areas ar = udao.getValidatedArea(area);
@@ -71,7 +71,7 @@
 			String surname = request.getParameter("surname");
 			String email = request.getParameter("email");
 			String phone = request.getParameter("phone");
-			int cid = udao.getcid();
+			int cid = udao.sumcid();
 			
 			if( (username.length() > 4 && username.length() < 26) && (password.length() > 5) && (name != null) && (surname != null) && (phone.length() == 10)) {	
 				//create customer object	
@@ -110,7 +110,7 @@
 			}
 			%>
 			<jsp:forward page="index.jsp"/>
-			<%	
+		<%	request.setAttribute("errors","Your registration was succesfull");
 		}catch(CustomException e) {
 				
 				request.setAttribute("cregister-message", e.getMessage());

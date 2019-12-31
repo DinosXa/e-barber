@@ -13,28 +13,26 @@
 		<div class="collapse navbar-collapse" id="cnavbar">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item" href="<%= (request.getRequestURI().replace(request.getContextPath() + "/","").equals("ismgroup26 index.jsp") ? "active" : "") %>">
-					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/index.jsp?ifbarber2=">
+					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/index.jsp">
 						Search
 					</a>
 				</li>
 				<li class="nav-item" href="<%= (request.getRequestURI().replace(request.getContextPath() + "/","").equals("ismgroup26myreviews.jsp") ? "active" : "") %>">
-					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/myreviews.jsp?ifbarber2=">
+					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/myreviews.jsp">
 						My reviews
 					</a>
 				</li>		
 				<li class="nav-item" href="<%= (request.getRequestURI().replace(request.getContextPath() + "/","").equals("ismgroup26CustomerJSPmyappointments.jsp") ? "active" : "") %>">
-					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/myappointments.jsp?ifbarber2=">
+					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/myappointments.jsp">
 						My appointments
 					</a>
 				</li>
 			<%	if(request.getAttribute("wrong-page") != null) { %>
 					<li class="nav-item">
-						<small>
 							<div class="alert alert-warning alert-dismissible" style="position:absolute;">
 								<button type="button" class="close" data-dismiss="alert">&times;</button>
-								<%=(String)request.getAttribute("wrong-page") %>
+								<%=(String)request.getAttribute("wrong-page")%>
 							</div>
-						</small>
 					</li>
 			<%	}	%>
 			</ul>

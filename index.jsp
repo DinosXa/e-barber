@@ -38,9 +38,14 @@
 
 			if(session.getAttribute("user") == null){
 		%>
+				<%	if(request.getAttribute("messages") != null) { %>
+						<div class="alert alert-danger text-center allert-dismissible fade show errormsg" role="alert"><%=(String)request.getAttribute("messages") %>
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+						</div>
+				<% 	}	%>
+
 					<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;"><em>e-barber</em></h1>
 					<h3 class="text-center font-weight-lighter" style="color:#6B8E23;">for <b>men</b></h3>
-				
 
 					<div class="position dropdown dropup">
 						<button type="button" class="btn bg-dark dropdown-toggle" style="color:white;" data-toggle="dropdown">
@@ -80,10 +85,6 @@
 							</div>
 						</div>
 					</form>
-				<%
-					if(request.getAttribute("errors") != null) { %>
-						<div class="alert alert-danger text-center errormsg" role="alert"><%=(String)request.getAttribute("errors") %></div>
-				<% 	}	%>
 					<!-- Register Pop-up -->
 					<div class="modal fade " id="RegisterModal">
 						<div class="modal-dialog modal-dialog-centered modal-xl">
@@ -274,9 +275,10 @@
 							</div>
 						</div>
 					</div>
-	<%		}else{	
-				CustomerUser user = (CustomerUser)session.getAttribute("user");%>
-				<%@ include file="cnavbar.jsp"%>
+	<%		}else{	%>
+			<%@	include file="ccc.jsp"%>	
+			<%	CustomerUser user = (CustomerUser)session.getAttribute("user");%>
+			<%@	include file="cnavbar.jsp"%>
 				<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=user.getName()%></em></h1>
 				<!-- Search bar -->
 				<form method="POST" action="<%=request.getContextPath() %>/ismgroup26/AvailableBarbershops.jsp">
@@ -296,8 +298,16 @@
 						</div>
 					</div>
 				</form>
-			<!-- End of search bar -->
-	<%	}	%>
+				<!-- End of search bar -->
+			<%	if(request.getAttribute("indexerror") != null) { %>
+					<div class="alert alert-danger text-center errormsg" role="alert"><%=(String)request.getAttribute("indexerror") %></div>
+			<% 	}	%>
+			<%	if(request.getAttribute("success") != null) { %>
+					<div class="alert alert-success text-center errormsg alert-dismisible fade show" role="alert"><%=(String)request.getAttribute("success") %>
+							<button type="button" class="close" data-dismiss="alert">&times;</button>			
+					</div>
+			<% 	}
+			}	%>
 
 		
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->

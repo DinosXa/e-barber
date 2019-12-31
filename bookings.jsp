@@ -3,6 +3,7 @@
 <%@ page import= "login_classes.*"%>
 
 <%@ include file="logincheck.jsp"%>
+<%@ include file="bcc.jsp"%>
 <!DOCTYPE html>
 <html>
 	<head>

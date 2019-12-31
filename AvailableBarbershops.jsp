@@ -5,7 +5,8 @@
 
 <%	
 	if(request.getParameter("area") == null) {
-		request.setAttribute("errors", "You have to select an area.");
+		request.setAttribute("messages", "You have to select an area");
+		request.setAttribute("indexerror","You have to select an area");
 %>
 		<jsp:forward page="index.jsp" />
 <%  } %>
@@ -34,19 +35,20 @@
 		}
 	</style>
 	<body>
-
-		<% 	if(session.getAttribute("user") != null) {	
-				CustomerUser user = (CustomerUser)session.getAttribute("user");	%>
+		<% 	if(session.getAttribute("user") != null) {	%>
+				<%@ include file="ccc.jsp"%>
+				<!-- Available Barbershops for customers -->
+			<%	CustomerUser user = (CustomerUser)session.getAttribute("user");	%>
 				<%@ include file="cnavbar.jsp"%>	
-				<%
-				BarbershopUserService brbservice = new BarbershopUserService();
+			<%	BarbershopUserService brbservice = new BarbershopUserService();
 				String area_id = request.getParameter("area");
 				int id = Integer.parseInt(area_id);
 				List<BarbershopUser> busers = brbservice.getBarbershops(id);
-				
+
 				if(busers.size() == 0) {
-					request.setAttribute("errors", "The are no barbershops at this area yet.");
-				%>	<jsp:forward page="index.jsp"/>
+					request.setAttribute("messages", "The are no barbershops at this area yet");
+					request.setAttribute("indexerror", "The are no barbershops at this area yet");					%>	
+					<jsp:forward page="index.jsp"/>
 			<%	}else{	%>		
 					<ul class="container responsive">
 						<div class="jumbotron">
@@ -70,9 +72,9 @@
 											</li>
 											<li class="comb-item">
 												<ul class="barber-btn-container">
-													<li class="btn-item"><a class="btn btn-success" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>&ifbarber2=">Make reservation</a></li>
-													<li class="btn-item"><a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>&ifbarber2=">More information</a></li>
-													<li class="btn-item"><a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/writereview.jsp">Review the barber</a></li>
+													<li class="btn-item"><a class="btn btn-success" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>">Make reservation</a></li>
+													<li class="btn-item"><a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>">More information</a></li>
+													<li class="btn-item"><a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>">Review the barber</a></li>
 												</ul>
 											</li>
 										</ul>
@@ -83,15 +85,16 @@
 					</ul>
 					<!-- /container -->
 			<%	}
-			}else{
-				Areas area = null;
+			}else{	%>
+				<!-- Available Barbershops for guests -->
+			<%	Areas area = null;
 				BarbershopUserService brbservice = new BarbershopUserService();
 				String area_id = request.getParameter("area");
 				int id = Integer.parseInt(area_id);
 				List<BarbershopUser> busers = brbservice.getBarbershops(id);
 				
 				if(busers.size() == 0) {
-					request.setAttribute("errors", "The are no barbershops at this area yet.");
+					request.setAttribute("messages", "The are no barbershops at this area yet.");
 				%>	<jsp:forward page="index.jsp"/>	<%
 				}else{
 				%>		
@@ -99,6 +102,7 @@
 						<div class="jumbotron">
 							<h1>Available barbershops at the area "<%=brbservice.convertIntToArea(id)%>": <span class="text-info"><%=busers.size() %></span></h1>
 						</div>
+						<a type="button" class="btn btn-light btn-block" style="background-color:#8B0000; color:white;" href="<%=request.getContextPath() %>/ismgroup26/index.jsp">Back to menu</a>
 					<%	int counter = 0;
 						for(BarbershopUser buser: busers) {	%>	
 							<li class="flex-item">
@@ -117,9 +121,9 @@
 											</li>
 											<li class="comb-item">
 												<ul class="barber-btn-container">
-													<li class="btn-item"><a class="btn btn-success" style="color:white;"><!--href="cBarbershopPage.html#book"-->Make reservation</a></li>
-													<li class="btn-item"><a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>&ifbarber2=">More information</a></li>
-													<li class="btn-item"><a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/writereview.jsp">Review the barber</a></li>
+													<li class="btn-item"><a class="btn btn-success" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>">Make reservation</a></li>
+													<li class="btn-item"><a class="btn btn-info" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>">More information</a></li>
+													<li class="btn-item"><a class="btn btn-warning" style="color:white;" href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=buser.getBID()%>">Review the barber</a></li>
 												</ul>
 											</li>
 										</ul>

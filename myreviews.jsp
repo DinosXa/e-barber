@@ -4,6 +4,7 @@
 <%@ page import= "java.util.*"%>
 
 <%@ include file="logincheck.jsp"%>
+<%@ include file="ccc.jsp"%>
 <!DOCTYPE html>
 <html>
 	<head>

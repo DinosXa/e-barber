@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
+<%@ page import= "java.util.*"%>
+<%
+	if(session.getAttribute("user") == null) {
+		request.setAttribute("messages", "To access this page you must first register");
+%>
+	<jsp:forward page="index.jsp" />
+<%  } %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,6 +24,7 @@
 		<!-- Custom styles for this template -->
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/BarbershopPage.css">
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/navbar.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/rating.css">		
 		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>
 	</head>
 	<style>
@@ -28,26 +37,23 @@
 	
 <%	BarbershopUserService brbservice = new BarbershopUserService();
 	
-	if(!request.getParameter("ifbarber2").equals("")){
-		request.setAttribute("ifbarber","true");
-	}
-
-	if(request.getParameter("ifbarber2").equals("")){
-		request.setAttribute("ifbarber","");
-
-	}
-
-	if(request.getAttribute("ifbarber").equals("")) {
-		CustomerUser user = (CustomerUser)session.getAttribute("user");	%>
-		<%@ include file="cnavbar.jsp"%>			
-		<%
+	if(session.getAttribute("user").getClass() == CustomerUser.class){	
 		String bid = request.getParameter("bid");
-		if(bid == null) 
-				throw new Exception("Bad Request!");	
-		BarbershopUser buser = brbservice.findBarberByID(bid);
-		if(buser == null)
-				throw new Exception("Barber not found");
-		%>
+		if(bid == null)
+			request.setAttribute("indexerror","You have to select an area.");
+		
+		CustomerUser user = (CustomerUser)session.getAttribute("user");	%>
+	<%@ include file="cnavbar.jsp"%>			
+	<%	BarbershopUser buser = brbservice.findBarberByID(bid);
+		String areaname = buser.getArea().getName();
+		if(buser == null){
+			request.setAttribute("indexerror","No barbers found at " + areaname);%>
+			<jsp:forward page="index.jsp"/>
+	<%	}	
+		int intbid = Integer.parseInt(bid);
+		forReviews fr = new forReviews();
+		List<Review> reviews = fr.getReviews(intbid);
+	%>
 
 		<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
 			<li class="nav-item">
@@ -134,6 +140,176 @@
 			</div>
 			<!-- Reviews -->
 			<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+			
+				<ul class="flex-container">
+					<li class="re-container">
+						<form action="<%=request.getContextPath() %>/ismgroup26/reviewController.jsp?">	
+							<ul class="inside-cont">
+								<li class="idrr">
+									<ul class="ii-cont text-center">
+										<li class="ii-item ii-img">
+											<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" data-toggle="tooltip" title="<%=user.getUsername() %>">
+											<img src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" style="height:80px;" alt="Avatar" data-toggle="tooltip" title="<%=buser.getUsername() %>">
+										</li>
+			
+									</ul>
+								</li>
+								<li class="idrr">
+									<div class="form-group text-center">
+										<small><label for="usr">Post your review for <%=buser.getUsername()%></label></small>
+										<input name="comment" type="text" class="form-control form-control-sm form-control-plaintext text-center" style="color:#0c1a00;" id="comment" maxlength="50" size="33" placeholder="..."/>
+									</div>								
+								</li>
+								<li class="idrr">
+									<div class="slidecontainer">
+									  <input type="range" min="1" max="5" value="2.5" name="rate" class="slider" id="myRange">
+									  <p class="text-center"><sup><span id="demo"></span>-star rating</sup></p>
+									</div>
+								</li>
+								<li class="iddr">
+									<button type="submit" class="btn btn-dark btn-sm btn-block">Post</button>
+								</li>
+								<input type="hidden" name="bid" value="<%=buser.getBID()%>"/>
+								<input type="hidden" name="cid" value="<%=user.getCID()%>"/>
+							</ul>
+						</form>
+					</li>
+				<%	if(reviews == null){%>
+						<h2 class="color:white"><em>No reviews yet. Post the first review!</em><h2>
+				<%	}else{
+						int counter = 0;
+						for(Review review: reviews) {	%>						
+						<li class="re-container fitem">
+							<ul class="inside-cont">
+								<li class="idrr">
+									<ul class="ii-cont text-center">
+										<li class="ii-item">
+											<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar">
+										</li>
+										<li class="ii-item">
+											<span><b>1234567890123456789012345.</b></span>
+											<p><small>Posted on "dd/mm/yyyy"</small></p>
+										</li>
+									</ul>
+								</li>
+								<li class="idrr">
+									<em style="background:#5c5c8a;"><%=review.getReview()%></em>
+								</li>
+								<li class="idrr">
+									<%
+									int stars = review.getRating();
+									if(stars == 1){%>
+										<i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+									<%}else if(stars == 2){%>
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+									<%}else if(stars == 3){%>
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+									<%}else if(stars == 4){%>
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+									<%}else{%>
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+									<%}%>
+								</li>
+							</ul>
+						</li>			
+					<%	}	%>
+				</ul>
+				<%	}	%>
+			</div>
+			<!-- Βοοκ -->
+			<div class="tab-pane fade show" id="book" role="tabpanel" aria-labelledby="book-tab">
+				<div class="flex-container">
+					
+
+
+
+				</div>
+			</div>			
+		</div>
+<%	}
+	if(session.getAttribute("user").getClass() == BarbershopUser.class){			
+		BarbershopUser user = (BarbershopUser)session.getAttribute("user");%>
+	<%@ include file="bnavbar.jsp"%>
+		<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+			</li>
+		</ul>
+
+		<div class="tab-content" id="myTabContent">
+			<!-- Info -->
+			<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+				<div class="flex-container">							
+					<!-- info_container -->
+					<div class="info_container theme-showcase" role="main">
+						<h1 class="display-3" style="text-align:center;"><code style="color:#6B8E23;"><%=user.getUsername()%></code></h1>
+						<!--Price-->
+						<h4 style="text-align:center;">Prices</h4>
+						<table class="table table-hover table-bordered table-responsive-sm">
+							<thead class="thead-dark">
+								<tr>
+									<th style="width:50%">Services</th>
+									<th>Under 18</th>
+									<th>Man</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Haircut</td>
+									<td>7 €</td>
+									<td>10 €</td>
+								</tr>
+								<tr>
+									<td>Shaving</td>
+									<td>5 €</td>
+									<td>7 €</td>
+								</tr>
+								<tr>
+									<td>Trimming</td>
+									<td>3 €</td>
+									<td>5 €</td>
+								</tr>
+								<tr>
+									<td>Haircut + Shaving<span class="badge badge-success" style="background-color:#6B8E23;">Best deal</span></td>
+									<td>10 €</td>
+									<td>14 €</td>
+								</tr>
+								<tr>
+									<td>Haircut + Trimming</td>
+									<td>8 €</td>
+									<td>12 €</td>
+								</tr>
+							</tbody>
+						</table><br>
+						<!--Contact info-->
+						<h4 style="text-align:center;">Contact info</h4>            		
+						<table class="table table-hover table-bordered">
+							<thead class="thead-dark">
+								<tr>
+									<th>Phone</th>
+									<th>Business email</th>
+									<th>Address</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>+<%=user.getPhone()%></td>
+									<td><%=user.getEmail()%></td>
+									<td><%=user.getAddress()%></td>
+								</tr>
+							</tbody>
+						</table><br>
+						<h4 style="text-align:center;">Photos</h4>
+						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barberProf.jpg" alt="barber" style="width:200px;">
+					</div>
+					<!-- end of info container -->
+				</div>
+			</div>
+			<!-- Reviews -->
+			<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
 				<ul class="flex-container wrap">	
 					<li class="re-container fitem">
 						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
@@ -145,6 +321,7 @@
 						<i class="fas fa-star"></i>
 						<i class="far fa-star"></i>
 						<i class="far fa-star"></i>
+						<button type="button" class="btn btn-info btn-rounded">Answer</button>
 					</li>
 					<li class="re-container fitem">
 						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
@@ -156,6 +333,7 @@
 						<i class="fas fa-star"></i>
 						<i class="far fa-star"></i>
 						<i class="far fa-star"></i>
+						<button type="button" class="btn btn-info btn-rounded">Answer</button>
 					</li>
 					<li class="re-container fitem">
 						<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
@@ -167,153 +345,12 @@
 						<i class="fas fa-star"></i>
 						<i class="far fa-star"></i>
 						<i class="far fa-star"></i>
+						<button type="button" class="btn btn-info btn-rounded">Answer</button>
 					</li>
 				</ul>
-			</div>
-		
-			<!-- Βοοκ -->
-			<div class="tab-pane fade show" id="book" role="tabpanel" aria-labelledby="book-tab">
-				<div class="flex-container">
-
-
-
-
-				</div>
 			</div>			
-		</div>
-<% 	}else{
-		if(!request.getAttribute("ifbarber").equals("") && request.getParameter("ifbarber2").equals("")){
-			request.setAttribute("wrong-page","You do not have permission to access this page");
-			request.setAttribute("ifbarber","true");
-		}
-	}
-		if(!request.getAttribute("ifbarber").equals("")){			
-			BarbershopUser user = (BarbershopUser)session.getAttribute("user");%>
-		<%@ include file="bnavbar.jsp"%>
-			<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
-				</li>
-			</ul>
-
-			<div class="tab-content" id="myTabContent">
-				<!-- Info -->
-				<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
-					<div class="flex-container">							
-						<!-- info_container -->
-						<div class="info_container theme-showcase" role="main">
-							<!-- Page Title -->
-							<div class="page-header">
-								<h3>Prices</h3>
-							</div>
-							<table class="table table-hover table-striped table-bordered table-responsive-sm">
-								<thead class="thead-dark">
-									<tr>
-										<th style="width:50%">Services</th>
-										<th>Under 18</th>
-										<th>Man</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Haircut</td>
-										<td>7 €</td>
-										<td>10 €</td>
-									</tr>
-									<tr>
-										<td>Shaving</td>
-										<td>5 €</td>
-										<td>7 €</td>
-									</tr>
-									<tr>
-										<td>Trimming</td>
-										<td>3 €</td>
-										<td>5 €</td>
-									</tr>
-									<tr>
-										<td>Haircut + Shaving<span class="badge badge-success">Best deal</span></td>
-										<td>10 €</td>
-										<td>14 €</td>
-									</tr>
-									<tr>
-										<td>Haircut + Trimming</td>
-										<td>8 €</td>
-										<td>12 €</td>
-									</tr>
-								</tbody>
-							</table><br>
-							<div class="page-header">
-								<h3>Contact info</h3>
-							</div>             		
-							<table class="table table-hover table-bordered">
-								<thead class="thead-dark">
-									<tr>
-										<th>Phone</th>
-										<th>Business email</th>
-										<th>Address</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>+<%=user.getPhone()%></td>
-										<td><%=user.getEmail()%></td>
-										<td><%=user.getAddress()%></td>
-									</tr>
-								</tbody>
-							</table><br>
-							<div class="page-header">
-								<h3>Photos</h3>
-							</div>
-							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barberProf.jpg" alt="barber" style="width:200px;">
-						</div>
-					</div>
-				</div>
-				<!-- Reviews -->
-				<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-					<ul class="flex-container wrap">	
-						<li class="re-container fitem">
-							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-							<span><b>Chris Fox.</b><br></span>
-							<p><small><i>Posted on February 15, 2019</i></small></p><br>
-							<em>John Doe saved us from a web disaster.</em><br>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<i class="far fa-star"></i>
-							<button type="button" class="btn btn-info btn-rounded">Answer</button>
-						</li>
-						<li class="re-container fitem">
-							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-							<span><b>Chris Fox.</b><br></span>
-							<p><small><i>Posted on February 15, 2019</i></small></p><br>
-							<em>John Doe saved us from a web disaster.</em><br>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<i class="far fa-star"></i>
-							<button type="button" class="btn btn-info btn-rounded">Answer</button>
-						</li>
-						<li class="re-container fitem">
-							<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Avatar" style="width:80px">
-							<span><b>Chris Fox.</b><br></span>
-							<p><small><i>Posted on February 15, 2019</i></small></p><br>
-							<em>John Doe saved us from a web disaster.</em><br>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<i class="far fa-star"></i>
-							<button type="button" class="btn btn-info btn-rounded">Answer</button>
-						</li>
-					</ul>
-				</div>			
-			</div>		
-	<% 	}	%>
+		</div>		
+<% 	}	%>
 
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
 		<!-- jQuery library -->
@@ -324,3 +361,12 @@
 	</body>
 </html>
 
+<script>
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>

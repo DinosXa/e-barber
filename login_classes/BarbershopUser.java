@@ -48,7 +48,6 @@ public class BarbershopUser {
 		this.address = address;
 	}
 
-
 	public Areas getArea() {
 		return area;
 	}
