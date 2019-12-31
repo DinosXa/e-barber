@@ -25,13 +25,11 @@ public class forReviews {
 			stmt.setInt(1, getrid());
 			stmt.setString(2, rev.getReview());
 			stmt.setInt(3, rev.getRating());
-			stmt.setInt(4, rev.getCustomerid().getCID());
-			stmt.setInt(5, rev.getBarbershopid().getBID());
+			stmt.setInt(4, rev.getCustomer().getCID());
+			stmt.setInt(5, rev.getBarbershop().getBID());
 			stmt.executeUpdate();
 			stmt.close();
 			db.close();
-		} catch (SQLIntegrityConstraintViolationException  e) {
-			throw new CustomException("Review id already exists.");
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		} catch (Exception e) {

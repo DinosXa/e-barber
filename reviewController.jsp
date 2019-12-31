@@ -53,3 +53,4 @@ try{
 		throw new Exception( "Error is" + e.getMessage() );
 	
 	}	%>
+	<jsp:forward page="index.jsp"/>

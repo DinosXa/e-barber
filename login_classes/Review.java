@@ -37,17 +37,17 @@ public class Review {
 		this.rating = rating;
 	}
 
-	public CustomerUser getCustomerid() {
+	public CustomerUser getCustomer() {
 		return cid;
 	}
-	public void setCid(CustomerUser cid) {
+	public void setCustomer(CustomerUser cid) {
 		this.cid = cid;
 	}
 
-	public BarbershopUser getBarbershopid() {
+	public BarbershopUser getBarbershop() {
 		return bid;
 	}
-	public void setBid(BarbershopUser bid) {
+	public void setBarbershop(BarbershopUser bid) {
 		this.bid = bid;
 	}
 	@Override
