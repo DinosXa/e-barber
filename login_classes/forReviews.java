@@ -46,10 +46,8 @@ public class forReviews {
 		DB db = new DB();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		// GBSQL = Get Barbers SQL
 		String GSQL = "SELECT reviewID "
 					+ "FROM reviews;";
-		BarbershopUser user = null;
 		List<Review> users = new ArrayList<Review>();
 		int lastRID = 0;
 		try {
@@ -72,59 +70,7 @@ public class forReviews {
 		}
 	}
 
-	//STORING THE DATE OF THE REVIEW
-	public String storeDate(Date date){
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		date = new Date();
-		return formatter.format(date);
-	}
 
-	//SHOWING THE REVIEWS OF THE BARBER
-	/*public List<Review> getReview(int bid) throws Exception {
-		Connection con = null;
-		DB db = new DB();
-		String GRSQL = "SELECT * "
-					  +"FROM reviews "
-					  +"WHERE reviews.barbershopID=? ;";
-		ResultSet rs = null;
-		PreparedStatement stmt = null;
-		List<Review> reviews=  new ArrayList<Review>();
-		UserDAO udao = null;
-		BarbershopUser buser = null;
-		CustomerUser cuser = null;
-		Areas ar = null;
-		Review rev = null;
-		try {
-			con = db.getConnection();
-			stmt = con.prepareStatement(GRSQL);
-			stmt.setInt(1, 1);
-			rs = stmt.executeQuery();
-			if(!rs.next()) {
-				rs.close();
-				stmt.close();
-				db.close();
-				throw new Exception("No comments ");
-			}
-			while (rs.next()) {
-
-				rev = new Review(rs.getInt("reviewID"),
-								 rs.getString("comment"),
-								 rs.getInt("rating"),
-								 udao.getCustomerID(String.valueOf(2)),
-								 udao.getBarbershopID(String.valueOf(1)));
-				reviews.add(rev);
-			}
-			rs.close();
-			stmt.close();
-			db.close();
-			return reviews;
-		} catch (Exception e) {
-			throw new Exception("An error occured while getting reviews from database: " + e.getMessage());
-		} finally {
-			if(con != null)
-				con.close();
-		}
-	}*/
 	public List<Review> getReviews(int bid) throws Exception, CustomException{
 		Connection con = null;
 		DB db = new DB();

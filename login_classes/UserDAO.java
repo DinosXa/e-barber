@@ -128,7 +128,7 @@ public class UserDAO {
 
 			} catch (Exception e) {
 
-				throw new Exception(e.getMessage() + "You may need to check/uncheck the box 'I am a barber'");
+				throw new Exception(e.getMessage() + "You may need to switch the box 'I am a barber'");
 
 			} finally {
 
@@ -171,7 +171,7 @@ public class UserDAO {
 				db.close();
 				return user;
 				} catch (Exception e) {
-					throw new Exception(e.getMessage() + "You may need to check/uncheck the box 'I am a barber'");
+					throw new Exception(e.getMessage() + "You may need to switch the box 'I am a barber'");
 				} finally {
 					if(con != null)
 						con.close();

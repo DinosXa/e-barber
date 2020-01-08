@@ -246,7 +246,6 @@
 									<form class="form-signin" method="POST" action="<%=request.getContextPath() %>/ismgroup26/loginController.jsp">		
 										<div id="clog" class="container tab-pane"><br>
 											<div class="modal-body">
-
 												<div class="form-group">			
 													<label for="username" class="col-sm-2 control-label text-center">Username </label>
 													<div class="col-sm-10">
@@ -259,10 +258,9 @@
 														<input name="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
 													</div>
 												</div>
-												<div class="form-group col-sm-10">
-													<label class="form-check-label col-sm-10">
-														<input name="ifbarber2" type="checkbox" class="form-check-input" value="true">I am a barber
-													</label>
+												<div class="form-group custom-control custom-switch col-sm-10">
+													<input name="ifbarber2" id="ifbarber2" type="checkbox" class="form-check-input custom-control-input" value="true">
+													<label for="ifbarber2" class="form-check-label custom-control-label">I am a barber</label>
 												</div>
 												<div class="col-sm-10">
 													<button type="submit" class="btn btn-success">Log in</button>
@@ -279,7 +277,7 @@
 			<%@	include file="ccc.jsp"%>	
 			<%	CustomerUser user = (CustomerUser)session.getAttribute("user");%>
 			<%@	include file="cnavbar.jsp"%>
-				<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em style="color:#88B04B;"><%=user.getName()%></em></h1>
+				<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;">Hello <em class="text-capitalize" style="color:#88B04B;"><%=user.getName()%></em></h1>
 				<!-- Search bar -->
 				<form method="POST" action="<%=request.getContextPath() %>/ismgroup26/AvailableBarbershops.jsp">
 					<div class="search-box">
