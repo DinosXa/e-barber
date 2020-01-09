@@ -166,7 +166,7 @@
 							dt = sdf.format(day.getTime());%>				
 							<div class="form-check-inline">
 								<label class="form-check-label" for="day<%=i%>">
-									<input type="radio" class="form-check-input" name="day" value="option<%=i%>" oninput="this.className = ''"><%=dt%>
+									<input type="radio" class="form-check-input" name="day" id="day" value="<%=dt%>"><%=dt%>
 								</label>
 							</div>
 						<%	day.add(Calendar.DATE, -i);	
@@ -194,7 +194,7 @@
 										mtm2 = msdf2.format(time.getTime());%>
 										<div class="form-check-inline">
 											<label class="form-check-label" for="day<%=j%>">
-												<input type="radio" class="form-check-input" name="time" value="timeoption<%=j%>"><%=mtm1%>-<%=mtm2%>
+												<input type="radio" class="form-check-input" name="time" id="time" value="<%=mtm1%>-<%=mtm2%>"><%=mtm1%>-<%=mtm2%>
 											</label>
 										</div>
 									<%	}	%>
@@ -219,7 +219,7 @@
 										ntm2 = nsdf2.format(time.getTime());%>
 										<div class="form-check-inline">
 											<label class="form-check-label" for="day<%=j%>">
-												<input type="radio" class="form-check-input" name="time" value="timeoption<%=j%>"><%=ntm1%>-<%=ntm2%>
+												<input type="radio" class="form-check-input" name="time" id="time" value="<%=ntm1%>-<%=ntm2%>"><%=ntm1%>-<%=ntm2%>
 											</label>
 										</div>
 									<%	}	%>
@@ -244,7 +244,7 @@
 									atm2 = asdf2.format(time.getTime());%>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="day<%=j%>">
-											<input type="radio" class="form-check-input" name="time" value="timeoption<%=j%>"><%=atm1%>-<%=atm2%>
+											<input type="radio" class="form-check-input" name="time" id="time" value="<%=atm1%>-<%=atm2%>"><%=atm1%>-<%=atm2%>
 										</label>
 									</div>
 								<%	}	%>
@@ -270,14 +270,14 @@
 									<td>
 										<div class="form-check-inline">
 											<label class="form-check-label" for="srv11">
-												7 €<input type="radio" class="form-check-input" name="service" value="srvoption11">
+												7 €<input type="radio" class="form-check-input" name="service" id="srv11" value="Under18-Haircut">
 											</label>
 										</div>
 									</td>
 									<td>
 										<div class="form-check-inline">
 											<label class="form-check-label" for="srv12">
-												10 €<input type="radio" class="form-check-input" name="service" value="srvoption12">
+												10 €<input type="radio" class="form-check-input" name="service" id="srv12" value="Man-Haircut">
 											</label>
 										</div>
 									</td>
@@ -287,7 +287,7 @@
 									<td>
 										<div class="form-check-inline">
 											<label class="form-check-label" for="srv21">
-												5 €<input type="radio" class="form-check-input" name="service" value="srvoption21">
+												5 €<input type="radio" class="form-check-input" name="service" id="srv21" value="Under18-Shaving">
 											</label>
 										</div>
 									</td>
@@ -295,7 +295,7 @@
 									<td>
 										<div class="form-check-inline">
 											<label class="form-check-label" for="srv22">
-												7 €<input type="radio" class="form-check-input" name="service" value="srvoption22">
+												7 €<input type="radio" class="form-check-input" name="service" id="srv22" value="Man-Shaving">
 											</label>
 										</div>									
 									</td>
@@ -305,7 +305,7 @@
 									<td>
 										<div class="form-check-inline">
 											<label class="form-check-label" for="srv31">
-												3 €<input type="radio" class="form-check-input" name="service" value="srvoption31">
+												3 €<input type="radio" class="form-check-input" name="service" id="srv31" value="Under18-Trimming">
 											</label>
 										</div>
 									</td>
@@ -313,34 +313,58 @@
 									<td>
 										<div class="form-check-inline">
 											<label class="form-check-label" for="srv32">
-												5 €<input type="radio" class="form-check-input" name="service" value="srvoption32">
+												5 €<input type="radio" class="form-check-input" name="service" id="srv32" value="Man-Trimming">
 											</label>
 										</div>									
 									</td>
 								</tr>
 								<tr>
 									<td>Haircut + Shaving <span class="badge badge-success" style="background-color:#6B8E23;">Best deal</span></td>
-									<td>10 €</td>
-									<td>14 €</td>
+									<td>
+										<div class="form-check-inline">
+											<label class="form-check-label" for="srv41">
+												10 €<input type="radio" class="form-check-input" name="service" id="srv41" value="Under18-HaircutAndShaving">
+											</label>
+										</div>									
+									</td>
+									<td>
+										<div class="form-check-inline">
+											<label class="form-check-label" for="srv42">
+												14 €<input type="radio" class="form-check-input" name="service" id="srv42" value="Man-HaircutAndShaving">
+											</label>
+										</div>						
+									</td>
 								</tr>
 								<tr>
 									<td>Haircut + Trimming</td>
-									<td>8 €</td>
-									<td>12 €</td>
+									<td>
+										<div class="form-check-inline">
+											<label class="form-check-label" for="srv51">
+												8 €<input type="radio" class="form-check-input" name="service" id="srv51" value="Under18-HaircutAndTrimming">
+											</label>
+										</div>								
+									</td>
+									<td>
+										<div class="form-check-inline">
+											<label class="form-check-label" for="srv52">
+												12 €<input type="radio" class="form-check-input" name="service" id="srv52" value="Man-HaircutAndTrimming">
+											</label>
+										</div>									
+									</td>
 								</tr>
 							</tbody>
 						</table>
 				</div>
 				
 				<div class="tab">
-					<h3>checking-testing</h3>
-					<p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
-					<p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
-					<p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
+					<h3>Verify your book stats.</h3>
+					Date: <span id="outputDay"></span><br>
+					Time: <span id="outputTime"></span><br>
+					Service: <span id="outputService"></span>€
 				</div>
 				<div style="overflow:auto; text-align:center; margin-top:5%;">
-					  <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-					  <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+					<button class="btn btn-secondary" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+					<button class="btn btn-success" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
 				</div>
 				<!-- Circles which indicates the steps of the form: -->
 				<div style="text-align:center;margin-top:40px;">
@@ -349,6 +373,8 @@
 					<span class="step"></span>
 					<span class="step"></span>
 				</div>
+				<input type="hidden" name="bid" value="<%=buser.getBID()%>"/>
+				<input type="hidden" name="cid" value="<%=user.getCID()%>"/>
 			</form>		
 		</div>
 			<!-- Reviews -->
@@ -581,6 +607,21 @@
 </html>
 
 <script>
+//For verification of book stats
+var day = document.getElementById("day");
+var output1 = document.getElementById("outputDay");
+output1.innerHTML = day.value;
+day.onchange = function() {
+  output1.innerHTML = this.value;
+}
+var time = document.getElementById("time");
+var output2 = document.getElementById("outputTime");
+output2.innerHTML = time.value;
+time.onchange = function() {
+  output2.innerHTML = this.value;
+}
+
+//For the review
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
 output.innerHTML = slider.value;

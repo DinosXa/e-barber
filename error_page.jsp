@@ -26,10 +26,10 @@
 			<% if(exception != null) {  %>			
 				<div class="alert alert-danger" role="alert">
 					<p>
-						<b>Message: </b> <%= exception.getMessage() %>
+						<b>The Message: </b> <%= exception.getMessage() %>
 					</p>
 					<p>
-						<b>Class: </b> <%= exception.getClass() %>
+						<b>The Class: </b> <%= exception.getClass() %>
 					</p>
 				</div>
 			<% } %>		

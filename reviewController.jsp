@@ -6,13 +6,12 @@
 <%@ include file="ccc.jsp"%>
 
 <%
-
 try{
 	UserDAO udao = new UserDAO();
 	CustomerUser user = (CustomerUser)session.getAttribute("user");
-	String comment = request.getParameter("comment");	
+	String comment = request.getParameter("comment");
 	String stars = request.getParameter("rate");
-	String cuserid = request.getParameter("cid");	
+	String cuserid = request.getParameter("cid");
 	String buserid = request.getParameter("bid");
 	if(buserid == null)
 		request.setAttribute("indexerror","You must go to a barber's profile");
@@ -20,7 +19,7 @@ try{
 	forReviews frev = new forReviews();
 	BarbershopUserService brbservice = new BarbershopUserService();
 	BarbershopUser buser = brbservice.findBarberByID(buserid);
-	
+
 	int rid = frev.getrid();
 	int rating = Integer.parseInt(stars);
 
@@ -31,7 +30,6 @@ try{
 	//validate customer id
 	CustomerUser cid = null;
 	cid = udao.getCustomerID( cuserid );
-	
 
 	if(buser==null)
 		request.setAttribute("indexerror","There was not given an id.");
@@ -40,17 +38,17 @@ try{
 	Review review = new Review(rid, comment, rating, cid, bid);
 	//save review to database
 	frev.writeReview(review);
-	
+
 	request.setAttribute("success","Your review was posted");
 %>	<jsp:forward page="index.jsp"/>
-<%	
+<%
 	}catch(CustomException e) {
-		
+
 		request.setAttribute("indexerror", e.getMessage());
 
 	}catch(Exception e) {
-		
+
 		throw new Exception( "Error is" + e.getMessage() );
-	
+
 	}	%>
 	<jsp:forward page="index.jsp"/>

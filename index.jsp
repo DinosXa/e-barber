@@ -298,9 +298,9 @@
 				</form>
 				<!-- End of search bar -->
 			<%	if(request.getAttribute("indexerror") != null) { %>
-					<div class="alert alert-danger text-center errormsg" role="alert"><%=(String)request.getAttribute("indexerror") %></div>
-			<% 	}	%>
-			<%	if(request.getAttribute("success") != null) { %>
+					<div class="alert alert-danger errormsg" style="" role="alert"><%=(String)request.getAttribute("indexerror") %></div>
+			<% 	}
+				if(request.getAttribute("success") != null) { %>
 					<div class="alert alert-success text-center errormsg alert-dismisible fade show" role="alert"><%=(String)request.getAttribute("success") %>
 							<button type="button" class="close" data-dismiss="alert">&times;</button>			
 					</div>

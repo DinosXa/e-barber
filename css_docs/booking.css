@@ -33,22 +33,13 @@ input.invalid {
   display: none;
 }
 
-button {
-  background-color: #4CAF50;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 17px;
-  cursor: pointer;
-}
+
 
 button:hover {
   opacity: 0.8;
 }
 
-#prevBtn {
-  background-color: #bbbbbb;
-}
+
 
 /* Make circles that indicate the steps of the form: */
 .step {
