@@ -42,3 +42,7 @@ img {
 }
 
 * {box-sizing: border-box;}
+
+.fa-star{
+	color:#FFD700;
+}

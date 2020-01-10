@@ -128,4 +128,62 @@ public class forReviews {
 		}
 	}
 
+
+public List<Review> getReviewsForCustomer(int cid) throws Exception, CustomException{
+		Connection con = null;
+		DB db = new DB();
+		String GRSQL = "SELECT * "
+					+  "FROM reviews "
+					+  "LEFT JOIN barbershop ON barbershop.barbershopID=reviews.barbershopID "
+					+  "LEFT JOIN customer ON customer.customerID=reviews.customerID "
+					+  "LEFT JOIN area ON area.id = barbershop.area_id "
+					+  "WHERE reviews.customerID = ? ;";
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<Review> reviews=  new ArrayList<Review>();
+		Review rev = null;
+
+		try {
+			con = db.getConnection();
+			stmt = con.prepareStatement(GRSQL);
+			stmt.setInt(1, cid);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				CustomerUser cuser = new CustomerUser( rs.getInt("customer.customerID"),
+										  rs.getString("customer.username"),
+										  rs.getString("customer.password"),
+										  rs.getString("customer.name"),
+										  rs.getString("customer.surname"),
+										  rs.getString("customer.email"),
+										  rs.getString("customer.phone") );
+
+				Areas area = new Areas( rs.getInt("area.id"), rs.getString("area.name") );
+				BarbershopUser buser = new BarbershopUser(rs.getInt("barbershop.barbershopID"),
+														 rs.getString("barbershop.username"),
+														 rs.getString("barbershop.password"),
+														 rs.getString("barbershop.email"),
+														 rs.getString("barbershop.phone"),
+														 rs.getString("barbershop.address"),
+														 area );
+
+				rev = new Review(rs.getInt("reviews.reviewID"),
+								 rs.getString("reviews.comment"),
+								 rs.getInt("reviews.rating"),
+								 cuser,
+								 buser);
+
+				reviews.add(rev);
+			}
+			rs.close();
+			stmt.close();
+
+			return reviews;
+		} catch (Exception e) {
+				throw new Exception("Error is: " + e.getMessage());
+		} finally {
+			if(con != null)
+				con.close();
+		}
+	}
+
 }

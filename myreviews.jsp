@@ -30,29 +30,44 @@
 		}
 	</style>	
 	<body>			
-		<%	CustomerUser user = (CustomerUser)session.getAttribute("user");	%>
+		<%	CustomerUser user = (CustomerUser)session.getAttribute("user");	
+			
+			forReviews fr = new forReviews();
+			List<Review> reviews = fr.getReviewsForCustomer(user.getCID());
+		%>
 		<%@ include file="cnavbar.jsp"%>
 		<div class="container theme-showcase" role="main">
 			<div class="jumbotron">
-				<h1>My reviews</h1>
+				<h1>My reviews <%=user.getCID()%></h1>
 			</div>
-			<div class="container">
+			<%	if(reviews.size() == 0) {	%>
+				
+			<%	}else{
+					int counter = 0;
+					for(Review review: reviews) {
+			%>
 				<div class="media border p-3">
 					<img src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="barber-photo" class="mr-3 mt-3 rounded-circle" style="width:120px;">
 					<div class="media-body">
-						<h4>Barber01 <small><i>Answered on February 15, 2019<i></small></h4>
-						<p>Ευχαριστούμε για την κριτική! </p>
-						<p>
-							<span class="fas fa-star"></span>
-							<span class="fas fa-star"></span>
-							<span class="fas fa-star"></span>
-							<span class="fas fa-star"></span>
-							<span class="far fa-star"></span>
-						</p>	
-						<button type="button" class="btn btn-info btn-rounded">Answer</button>
+						<h4>You made a review for <text style="color:#808000;"><%=review.getBarbershop().getUsername()%></text></h4>
+						<i><%=review.getReview()%></i> 
+						<%
+						int stars = review.getRating();
+						if(stars == 1){%>
+							<i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+						<%}else if(stars == 2){%>
+							<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+						<%}else if(stars == 3){%>
+							<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+						<%}else if(stars == 4){%>
+							<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+						<%}else{%>
+							<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+						<%}%>
 					</div>
-				</div>
-			</div> 
+				</div><br>
+			<%		}	
+				}	%>
 		</div>
 				
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->

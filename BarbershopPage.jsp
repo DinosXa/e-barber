@@ -38,7 +38,6 @@
 	
 <%	BarbershopUserService brbservice = new BarbershopUserService();
 	
-
 	if(session.getAttribute("user").getClass() == CustomerUser.class){	
 		String bid = request.getParameter("bid");
 		if(bid == null)
