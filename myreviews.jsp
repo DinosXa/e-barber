@@ -38,10 +38,10 @@
 		<%@ include file="cnavbar.jsp"%>
 		<div class="container theme-showcase" role="main">
 			<div class="jumbotron">
-				<h1>My reviews <%=user.getCID()%></h1>
+				<h1>My reviews</h1>
 			</div>
 			<%	if(reviews.size() == 0) {	%>
-				
+				You have not made any reviews yet.
 			<%	}else{
 					int counter = 0;
 					for(Review review: reviews) {

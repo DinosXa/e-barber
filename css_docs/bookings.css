@@ -45,3 +45,20 @@ img {
 }
 
 * {box-sizing: border-box;}
+
+.book-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-around;;
+}
+
+.book-item {
+	display:flex;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
