@@ -1,0 +1,23 @@
+.gif-index{
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform:translate(-50%, -50%);
+	border-radius:100px;
+}
+.gif-congrats{
+	position: absolute;
+	top: 75%;
+	left: 50%;
+	transform:translate(-50%, -50%);
+	border-radius:100px;
+/*	border-style: groove;*/
+}
+
+.gif-congrats2{
+	position: absolute;
+	top: 74%;
+	left: 50%;
+	transform:translate(-50%, -50%);
+	
+}

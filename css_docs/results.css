@@ -37,17 +37,20 @@ input[type=submit]:hover {
 	justify-content: space-evenly;
 }
 .flex-item{
-	background-color: #D3D3D3;
+	background-color: white;
 	border:10px solid #997300;
-	border-width: 3px 3px 3px 10px;
-	border-radius:60px;
+	border-style: groove;
+	border-width: 3px 3px 3px 7px;
+	border-radius:0px;
 	border-left-color:#009900;
-	border-top-color:black;
-	border-bottom-color:black;
-	border-right-color:black;
+	border-right-color:#009900;
+	border-top-width:0px;
+	border-right-width:0px;
+	border-bottom-width:0px;
 	padding:5px;
 	margin-top:8px;
 	flex-basis: auto;
+	box-shadow: 10px 10px 7px grey;
 }
 /*Style the layout inside barbershops box*/
 .barber-container {
@@ -58,7 +61,7 @@ input[type=submit]:hover {
 	display: flex;
 	flex-direction: row-reverse;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	align-items: center; 
 }
 .bflex-item{

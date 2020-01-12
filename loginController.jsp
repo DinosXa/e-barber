@@ -10,7 +10,8 @@ UserDAO udao = new UserDAO();
 
 	try{
 		if(ifbarber2 == null) {
-			session.setAttribute("user", udao.authenticateCU(username, password));%>
+			session.setAttribute("user", udao.authenticateCU(username, password));
+			request.setAttribute("success","You have logged in succesfully");%>
 			<jsp:forward page="index.jsp"/>
 	<%	}else{	
 			session.setAttribute("user", udao.authenticateBU(username,password));%>

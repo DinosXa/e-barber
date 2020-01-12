@@ -30,8 +30,8 @@
 	</head>
 	<style>
 		body {
-			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
-			background-size: cover;		
+			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberShop.jpg"); 
+			background-size: 30%;		
 		}
 	</style>
 	<body>
@@ -54,23 +54,28 @@
 		int intbid = Integer.parseInt(bid);
 		forReviews fr = new forReviews();
 		List<Review> reviews = fr.getReviews(intbid);
+		String active = request.getParameter("active");
 	%>
 
 		<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
-			<li class="nav-item">
-				<a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Information</a>
+			<li class="nav-item" role="presentation">
+				<a class=" nav-link" data-toggle="tab" href="#info" role="tab" aria-controls="info">Information</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" id="book-tab" data-toggle="tab" href="#book" role="tab" aria-controls="book" aria-selected="false">Book</a>
+			<li class="nav-item" role="presentation">
+				<a class="nav-link" data-toggle="tab" href="#book" role="tab" aria-controls="book">Book</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+			<li class="nav-item" role="presentation">
+				<a  class="nav-link" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews">Reviews</a>
 			</li>
 		</ul>
 
 		<div class="tab-content" id="myTabContent">
 			<!-- Info -->
-			<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+		<%	if(active.equals("info")){%>
+			<div class="tab-pane fade show active" id="info" role="tabpanel">
+		<%	}else{	%>
+			<div class="tab-pane fade show" id="info" role="tabpanel">
+		<%	}	%>
 				<div class="flex-container">							
 					<!-- info_container -->
 					<div class="info_container theme-showcase" role="main">
@@ -139,7 +144,6 @@
 					<!-- end of info_container -->
 				</div>
 			</div>
-			
 			<!-- Booking -->
 			<%
 			//For the selection of the day
@@ -153,8 +157,11 @@
 			//For the selection of the time
 			Calendar time = Calendar.getInstance();
 			%>
-			
-		<div class="tab-pane fade" id="book" role="tabpanel" aria-labelledby="book-tab">
+		<%	if(active.equals("book")){%>	
+			<div class="tab-pane fade show active" id="book" role="tabpanel">
+		<%	}else{	%>
+			<div class="tab-pane fade" id="book" role="tabpanel">
+		<%	}	%>
 			<form style="text-align:center;" id="bookForm" action="<%=request.getContextPath() %>/ismgroup26/bookController.jsp">
 				<h1>Make your <text style="color:#8B0000">booking</text></h1><br>
 				<!-- One "tab" for each step in the form: -->
@@ -377,9 +384,13 @@
 			</form>		
 		</div>
 			<!-- Reviews -->
-			<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+		<%	if(active.equals("reviews")){%>
+			<div class="tab-pane fade show active" id="reviews" role="tabpanel">
+		<%	}else{	%>
+			<div class="tab-pane fade" id="reviews" role="tabpanel">
+		<%	}	%>
 				<ul class="flex-container">
-					<li class="re-container">
+					<li class="re-container" style="flex-basis:13%;">
 						<form action="<%=request.getContextPath() %>/ismgroup26/reviewController.jsp?">	
 							<ul class="inside-cont">
 								<li class="idrr">
@@ -452,16 +463,7 @@
 					<%	}	%>
 				</ul>
 				<%	}	%>
-			</div>
-			<!-- Βοοκ -->
-			<div class="tab-pane fade show" id="book" role="tabpanel" aria-labelledby="book-tab">
-				<div class="flex-container">
-					
-
-
-
-				</div>
-			</div>			
+			</div>		
 		</div>
 <%	}
 	if(session.getAttribute("user").getClass() == BarbershopUser.class){			

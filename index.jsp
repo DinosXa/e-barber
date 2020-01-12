@@ -18,6 +18,7 @@
 		<!-- Custom styles for this template -->	
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/firstPage.css">
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/navbar.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/gifs.css">
 		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>	
 	</head>	
 	<style>
@@ -44,6 +45,10 @@
 						</div>
 				<% 	}	%>
 
+					
+					<!--Index Gif -->
+					<img style="width:50px;" class="gif-index" src="https://media.giphy.com/media/dC3oDqOspb8mriSZk7/giphy.gif"></img>
+					
 					<h1 class="text-center font-weight-lighter" style="color:white; margin-top:5%;"><em>e-barber</em></h1>
 					<h3 class="text-center font-weight-lighter" style="color:#6B8E23;">for <b>men</b></h3>
 
@@ -68,6 +73,7 @@
 							</a>
 						</div>
 					</div>
+					
 					<form action="<%=request.getContextPath() %>/ismgroup26/AvailableBarbershops.jsp">
 						<div class="search-box">
 							<div class="input-group">
@@ -85,6 +91,7 @@
 							</div>
 						</div>
 					</form>
+					
 					<!-- Register Pop-up -->
 					<div class="modal fade " id="RegisterModal">
 						<div class="modal-dialog modal-dialog-centered modal-xl">
@@ -301,9 +308,13 @@
 					<div class="alert alert-danger errormsg" style="" role="alert"><%=(String)request.getAttribute("indexerror") %></div>
 			<% 	}
 				if(request.getAttribute("success") != null) { %>
+					<!--<img class="gif-congrats2" style="width:15%; height:20%;" src="https://media.giphy.com/media/ZFcZaNW9YMKDjR7gCe/giphy.gif"></img>-->
 					<div class="alert alert-success text-center errormsg alert-dismisible fade show" role="alert"><%=(String)request.getAttribute("success") %>
 							<button type="button" class="close" data-dismiss="alert">&times;</button>			
 					</div>
+					<img class="gif-congrats" src="https://media.giphy.com/media/xT8qBepJQzUjXpeWU8/giphy.gif"></img>
+						
+					
 			<% 	}
 			}	%>
 
