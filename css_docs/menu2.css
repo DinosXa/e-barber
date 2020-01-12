@@ -24,11 +24,17 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
-/* Add a background color and some padding around the form */
-.container {
+.container{
   border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 20px;
+  padding: 10px;
+}
+
+.appointments-container {
+  display:flex;
+  justify-content:space-evenly;
+  flex-direction:row;
+  flex-wrap:wrap;
 }
 img {
 	width:130px;
@@ -45,4 +51,10 @@ img {
 
 .fa-star{
 	color:#FFD700;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

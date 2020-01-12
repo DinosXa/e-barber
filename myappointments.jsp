@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
+<%@ page import= "java.util.*"%>
 
 <%@ include file="logincheck.jsp"%>
 <%@ include file="ccc.jsp"%>
@@ -27,27 +28,43 @@
 		}
 	</style>	
 	<body>
-		<% CustomerUser user = (CustomerUser)session.getAttribute("user");%>
+	<%	 CustomerUser user = (CustomerUser)session.getAttribute("user");
+		forBookings fb = new forBookings();
+		List<Booking> bookings = fb.getBookingsForCustomer(user.getCID());		
+	%>
 		<%@ include file="cnavbar.jsp"%>
 
 		<div class="container theme-showcase" role="main">
 			<div class="jumbotron">
 				<h1>My appointments</h1>
 			</div>
-			<div class="container">
-				<div class="card" style="width:250px;">
-					<img class="card-img-top" src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="Card image" style="width:250px; height:200px;">
-					<div class="card-body">
-						<h4 class="card-title">Barber01</h4>
-						<p class="card-text">phone: 2109999999</p>
-						<p class="card-text">email: barber01@gmail.com</p>
-						<p class="card-text">date: 21/11/2019</p>
-						<p class="card-text">time: 18:00pm</p>
-						<a href="#" class="btn btn-primary">Change</a>
-						<button type="button" class="btn btn-danger">Cancel</button>  
-					</div>
-				</div>
-			</div> 
+		<%	if(bookings.size() == 0){	%>
+				<p class="display-4 text-center">You have not made any <text style="color:#808000;">bookings</text> yet.</p>			
+		<%	}else{
+				String size = "bookings";
+				if(bookings.size() == 1) size = "booking";
+				int counter = 0;	%>			
+				<ul class="appointments-container">
+		<%		for(Booking booking: bookings) { %>				
+					<li class="a-item">
+						<div class="card" style="width:250px;">
+							<img class="card-img-top" src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="Card image" style="width:250px; height:200px;">
+							<div class="card-body" style="line-height:13px; font-weight:500; font-size:14px;">
+								<h4 class="card-title"><%=booking.getBarbershop().getUsername()%></h4>
+								<p class="card-text">Telephone: <%=booking.getBarbershop().getPhone()%></p>
+								<p class="card-text">E-mail: <%=booking.getBarbershop().getEmail()%></p>
+								<p class="card-text">Day: <%=booking.getDay()%></p>
+								<p class="card-text">Time: <%=booking.getTime()%></p>
+								<p class="card-text">Service: <%=booking.getService()%></p>
+								<p class="card-text">Price: <%=booking.getPrice()%></p>
+								<a href="#" class="btn btn-primary">Change</a>
+								<button type="button" class="btn btn-danger">Cancel</button>  
+							</div>
+						</div>
+					</li>
+			<%	}	%>
+				</ul> 
+		<%	}	%>
 		</div>
 		
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->

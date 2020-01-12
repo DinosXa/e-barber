@@ -72,8 +72,8 @@ public class forBookings {
 		}
 	}
 
-	//GET BOOKINGS
-	public List<Booking> getBookings(int bkid) throws Exception, CustomException{
+	//GET BOOKINGS WITH BARBERSHOP ID
+	public List<Booking> getBookings(int bid) throws Exception, CustomException{
 		Connection con = null;
 		DB db = new DB();
 		String GBKSQL = "SELECT * "
@@ -90,7 +90,7 @@ public class forBookings {
 		try {
 			con = db.getConnection();
 			stmt = con.prepareStatement(GBKSQL);
-			stmt.setInt(1, bkid);
+			stmt.setInt(1, bid);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				CustomerUser cuser = new CustomerUser( rs.getInt("customer.customerID"),
@@ -132,6 +132,68 @@ public class forBookings {
 		}
 	}
 
+	//GET BOOKINGS WITH BCUSTOMER ID
+	public List<Booking> getBookingsForCustomer(int cid) throws Exception, CustomException{
+		Connection con = null;
+		DB db = new DB();
+		String GBKSQL = "SELECT * "
+					+  "FROM booking "
+					+  "LEFT JOIN barbershop ON barbershop.barbershopID=booking.barbershopID "
+					+  "LEFT JOIN customer ON customer.customerID=booking.customerID "
+					+  "LEFT JOIN area ON area.id = barbershop.area_id "
+					+  "WHERE booking.barbershopID = ? ;";
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<Booking> bookings=  new ArrayList<Booking>();
+		Booking boo = null;
+
+		try {
+			con = db.getConnection();
+			stmt = con.prepareStatement(GBKSQL);
+			stmt.setInt(1, cid);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				CustomerUser cuser = new CustomerUser( rs.getInt("customer.customerID"),
+										  rs.getString("customer.username"),
+										  rs.getString("customer.password"),
+										  rs.getString("customer.name"),
+										  rs.getString("customer.surname"),
+										  rs.getString("customer.email"),
+										  rs.getString("customer.phone") );
+
+				Areas area = new Areas( rs.getInt("area.id"), rs.getString("area.name") );
+				BarbershopUser buser = new BarbershopUser(rs.getInt("barbershop.barbershopID"),
+														 rs.getString("barbershop.username"),
+														 rs.getString("barbershop.password"),
+														 rs.getString("barbershop.email"),
+														 rs.getString("barbershop.phone"),
+														 rs.getString("barbershop.address"),
+														 area );
+
+				boo = new Booking(rs.getInt("booking.bookID"),
+								 rs.getString("booking.day"),
+								 rs.getString("booking.time"),
+								 rs.getString("booking.service"),
+								 rs.getInt("booking.price"),
+								 cuser,
+								 buser);
+
+				bookings.add(boo);
+			}
+			rs.close();
+			stmt.close();
+
+			return bookings;
+		} catch (Exception e) {
+				throw new Exception("Error is: " + e.getMessage());
+		} finally {
+			if(con != null)
+				con.close();
+		}
+	}
+
+
+	//SET SERVICE AND GET PRICE
 	public int getPrice(String service){
 		int price = 0;
 		if(service.equals("Under18-Haircut")){

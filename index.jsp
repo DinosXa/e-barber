@@ -43,8 +43,14 @@
 						<div class="alert alert-danger text-center allert-dismissible fade show errormsg" role="alert"><%=(String)request.getAttribute("messages") %>
 							<button type="button" class="close" data-dismiss="alert">&times;</button>
 						</div>
-				<% 	}	%>
+				<% 	}	
+				if(request.getAttribute("success") != null) {	%>
+					<div class="alert alert-success text-center errormsg alert-dismisible fade show" role="alert"><%=(String)request.getAttribute("success") %>
+						<!--<button type="button" class="close" data-dismiss="alert">&times;</button>			-->
+					</div>
+					<img class="gif-congrats" src="https://media.giphy.com/media/f6DrLe7roeIRnNjhfI/giphy.gif"></img>
 
+			 <%	}	%>
 					
 					<!--Index Gif -->
 					<img style="width:50px;" class="gif-index" src="https://media.giphy.com/media/dC3oDqOspb8mriSZk7/giphy.gif"></img>

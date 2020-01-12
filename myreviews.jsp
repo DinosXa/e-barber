@@ -41,7 +41,7 @@
 				<h1>My reviews</h1>
 			</div>
 			<%	if(reviews.size() == 0) {	%>
-				You have not made any reviews yet.
+				<p class="display-4 text-center">You have not made any <text style="color:#808000;">reviews</text> yet.</p>
 			<%	}else{
 					int counter = 0;
 					for(Review review: reviews) {

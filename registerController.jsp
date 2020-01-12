@@ -48,9 +48,8 @@
 
 				}
 			}
-			%>
-			<jsp:forward page="index.jsp"/>	
-			<%		
+			request.setAttribute("success","Your registration was succesfull");	%>
+			<jsp:forward page="index.jsp"/>	<%		
 		}catch(CustomException e) {
 			
 			request.setAttribute("bregister-message", e.getMessage());
@@ -108,9 +107,8 @@
 			
 				}
 			}
-			%>
-			<jsp:forward page="index.jsp"/>
-		<%	request.setAttribute("errors","Your registration was succesfull");
+			request.setAttribute("success","Your registration was succesfull");%>
+			<jsp:forward page="index.jsp"/>	<%
 		}catch(CustomException e) {
 				
 				request.setAttribute("cregister-message", e.getMessage());

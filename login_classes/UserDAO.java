@@ -200,6 +200,8 @@ public class UserDAO {
 	   		stmt.executeUpdate();
 	   		stmt.close();
 	   		db.close();
+		} catch (SQLIntegrityConstraintViolationException e) {
+			throw new CustomException(e.getMessage());
 		} catch (SQLException e) {
 			throw new Exception("1st error: " + e.getMessage());
 		} catch (Exception e) {
@@ -231,7 +233,7 @@ public class UserDAO {
 	   		stmt.close();
 	   		db.close();
 		} catch (SQLIntegrityConstraintViolationException e) {
-			throw new CustomException("This email is already registered.");
+			throw new CustomException(e.getMessage());
 		} catch (SQLException e) {
 			throw new Exception("The 1st error is: " + e.getMessage());
 		} catch (Exception e) {
