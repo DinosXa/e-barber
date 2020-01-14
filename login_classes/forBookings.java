@@ -56,10 +56,17 @@ public class forBookings {
 			con = db.getConnection();
 			stmt = con.prepareStatement(BKSQL);
 			rs = stmt.executeQuery();
+
+			int bigger = 0;
 			while(rs.next()){
-				if(rs.isLast())
-					lastBKID = rs.getInt(1)+1;
+				if(rs.getInt(1) > bigger) bigger = rs.getInt(1);
+				lastBKID = bigger+1;
+				System.out.println("element is: '" + rs.getInt(1) + "' and bigger is '" + bigger + "'"); //this is to see all the elements, when executing "main" (just for checking reasons)
+
 			}
+			System.out.println("lastBKID is: " + lastBKID);
+
+
 			rs.close();
 			stmt.close();
 			db.close();
@@ -136,12 +143,12 @@ public class forBookings {
 	public List<Booking> getBookingsForCustomer(int cid) throws Exception, CustomException{
 		Connection con = null;
 		DB db = new DB();
-		String GBKSQL = "SELECT * "
+		String GBKSQL ="SELECT * "
 					+  "FROM booking "
 					+  "LEFT JOIN barbershop ON barbershop.barbershopID=booking.barbershopID "
 					+  "LEFT JOIN customer ON customer.customerID=booking.customerID "
 					+  "LEFT JOIN area ON area.id = barbershop.area_id "
-					+  "WHERE booking.barbershopID = ? ;";
+					+  "WHERE booking.customerID = ? ;";
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		List<Booking> bookings=  new ArrayList<Booking>();

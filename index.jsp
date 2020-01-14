@@ -19,11 +19,11 @@
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/firstPage.css">
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/navbar.css">
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/gifs.css">
-		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>	
-	</head>	
+		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>
+	</head>
 	<style>
 		body {
-			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg"); 
+			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberBG1.jpg");
 			background-size: cover;		
 			}
 		#AccountsBnC{
@@ -33,7 +33,6 @@
 	</style>
 	<body>
 
-	
 		<%	AreaSearch areaSearch = new AreaSearch();
 			List<Areas> areas = areaSearch.getAreas();
 
@@ -49,9 +48,7 @@
 						<!--<button type="button" class="close" data-dismiss="alert">&times;</button>			-->
 					</div>
 					<img class="gif-congrats" src="https://media.giphy.com/media/f6DrLe7roeIRnNjhfI/giphy.gif"></img>
-
-			 <%	}	%>
-					
+			<%	}	%>
 					<!--Index Gif -->
 					<img style="width:50px;" class="gif-index" src="https://media.giphy.com/media/dC3oDqOspb8mriSZk7/giphy.gif"></img>
 					
@@ -61,10 +58,10 @@
 					<div class="position dropdown dropup">
 						<button type="button" class="btn bg-dark dropdown-toggle" style="color:white;" data-toggle="dropdown">
 						Register/Login
-						</button>			
+						</button>
 						<div class="dropdown-menu">
 							<a class="dropdown-item">
-								<span class="border-0">		
+								<span class="border-0">
 									<button type="button" class="btn" data-toggle="modal" data-target="#RegisterModal">
 										Register
 									</button>
@@ -74,19 +71,19 @@
 								<span class="border-0">
 									<button type="button" class="btn" data-toggle="modal" data-target="#LogInModal">
 										Log In
-									</button>										
+									</button>
 								</span>
 							</a>
 						</div>
 					</div>
-					
+
 					<form action="<%=request.getContextPath() %>/ismgroup26/AvailableBarbershops.jsp">
 						<div class="search-box">
 							<div class="input-group">
 								<button class="search-btn" href="">
 									<i class="fas fa-search-location" style="color:#6B8E23"></i>
-								</button>								
-								<select class="form-control" name="area" id="area" required>									
+								</button>
+								<select class="form-control" name="area" id="area" required>
 									<optgroup label="Αθήνα">
 										<option value="" disabled selected hidden> Select your area </option>
 										<% for(Areas ar:areas) { %>
@@ -97,18 +94,15 @@
 							</div>
 						</div>
 					</form>
-					
 					<!-- Register Pop-up -->
 					<div class="modal fade " id="RegisterModal">
 						<div class="modal-dialog modal-dialog-centered modal-xl">
 							<div class="modal-content">
-						  
 								<!-- Modal Header -->
 								<div class="modal-header text-center">
 									<h4 class="modal-title">Register</h4><br>
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 								</div>
-							
 								<!-- Modal body -->
 								<div class="container">
 									<ul class="nav nav-tabs nav-justified" role="tablist">
@@ -123,9 +117,8 @@
 									<div class="tab-content">
 										<div id="breg" class="container tab-pane"><br>						
 											<div class="modal-body">
-												<form class="form-horizontal" method="POST" action="<%=request.getContextPath() %>/ismgroup26/registerController.jsp?barber=true">					
-													<%
-													if(request.getAttribute("bregister-message") != null) { %>
+												<form class="form-horizontal" method="POST" action="<%=request.getContextPath() %>/ismgroup26/registerController.jsp?barber=true">
+												<%	if(request.getAttribute("bregister-message") != null) { %>
 														<div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("bregister-message") %></div>
 													<% 	}	%>						
 													<div class="form-group">			
@@ -145,7 +138,7 @@
 														<div class="col-sm-10">
 															<input name="email" type="email" class="form-control" id="bemail" placeholder="Enter your email">
 														</div>
-													</div>	
+													</div>
 													<div class="form-group">
 														<label for="phone" class="col-sm-2 control-label">Phone</label>
 														<div class="col-sm-10">
@@ -176,9 +169,7 @@
 														<input type="reset" class="btn btn-danger"  value="Clear" />
 														<% if(request.getAttribute("rbError") != null) { %>
 															<button type="button" class="errorb btn btn-warning" data-toggle="errorb" data-placement="right" title="Insuficcient inputs" data-content="<%=(String)request.getAttribute("rbError") %>">Insuficcient input</button>
-														<% 	}	%>		
-														
-														
+														<% 	}	%>
 													</div>
 												</form>	
 											</div>
@@ -213,7 +204,7 @@
 														<div class="col-sm-10">
 															<input name="surname" type="text" class="form-control" id="csurname" placeholder="Enter your surname" >
 														</div>
-													</div>		
+													</div>
 													<div class="form-group">
 														<label for="Cemail" class="col-sm-2 control-label">E-mail</label>
 														<div class="col-sm-10">
@@ -231,9 +222,9 @@
 														<input type="reset" class="btn btn-danger"  value="Clear" />
 														<% if(request.getAttribute("rcError") != null) { %>
 															<button type="button" class="errorc btn btn-warning">Insuficcient</button>
-														<% 	}	%>	
+														<% 	}	%>
 													</div>
-												</form>					
+												</form>
 											</div>	
 										</div>
 									</div>	
@@ -259,7 +250,7 @@
 									<form class="form-signin" method="POST" action="<%=request.getContextPath() %>/ismgroup26/loginController.jsp">		
 										<div id="clog" class="container tab-pane"><br>
 											<div class="modal-body">
-												<div class="form-group">			
+												<div class="form-group">
 													<label for="username" class="col-sm-2 control-label text-center">Username </label>
 													<div class="col-sm-10">
 														<input name="username" type="text" class="form-control" id="username" placeholder="Enter your username" required>
@@ -297,8 +288,8 @@
 						<div class="input-group">
 							<button class="search-btn" href="">
 								<i class="fas fa-search-location" style="color:#6B8E23"></i>
-							</button>								
-							<select class="form-control" name="area" id="area" required>									
+							</button>
+							<select class="form-control" name="area" id="area" required>
 								<optgroup label="Αθήνα">
 									<option value="" disabled selected hidden> Select your area </option>
 									<% for(Areas ar:areas) { %>
@@ -314,32 +305,27 @@
 					<div class="alert alert-danger errormsg" style="" role="alert"><%=(String)request.getAttribute("indexerror") %></div>
 			<% 	}
 				if(request.getAttribute("success") != null) { %>
-					<!--<img class="gif-congrats2" style="width:15%; height:20%;" src="https://media.giphy.com/media/ZFcZaNW9YMKDjR7gCe/giphy.gif"></img>-->
 					<div class="alert alert-success text-center errormsg alert-dismisible fade show" role="alert"><%=(String)request.getAttribute("success") %>
-							<button type="button" class="close" data-dismiss="alert">&times;</button>			
+						<button type="button" class="close" data-dismiss="alert">&times;</button>			
 					</div>
-					<img class="gif-congrats" src="https://media.giphy.com/media/xT8qBepJQzUjXpeWU8/giphy.gif"></img>
-						
-					
-			<% 	}
+					<img class="gif-congrats" src="https://media.giphy.com/media/xT8qBepJQzUjXpeWU8/giphy.gif"></img>	
+			<!--	<img class="gif-congrats2" style="width:15%; height:20%;" src="https://media.giphy.com/media/ZFcZaNW9YMKDjR7gCe/giphy.gif"></img>-->
+			<%	}
 			}	%>
-
-		
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>	
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<!-- Bootstrap core JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath() %>/ismgroup26/js/custom.js"></script>		
+		<script type="text/javascript" src="<%=request.getContextPath() %>/ismgroup26/js/custom.js"></script>
 	</body>
 </html>
 <script>
 $(document).ready(function(){
-  $('.errorb').popover({title: "Wrong barbershop inputs", content: "<%=request.getAttribute("rbError")%>", trigger:"focus", html: true, placement: "right"}); 
+  $('.errorb').popover({title: "Wrong barbershop inputs", content: "<%=request.getAttribute("rbError")%>", trigger:"focus", html: true, placement: "right"});
 });
 $(document).ready(function(){
-  $('.errorc').popover({title: "Wrong customer inputs", content: "<%=request.getAttribute("rcError")%>", trigger:"focus", html: true, placement: "right"}); 
+  $('.errorc').popover({title: "Wrong customer inputs", content: "<%=request.getAttribute("rcError")%>", trigger:"focus", html: true, placement: "right"});
 });
-
 </script>

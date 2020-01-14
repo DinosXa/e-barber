@@ -11,12 +11,15 @@ public class main{
 	public static void main(String args[]){
 
 		try{
-		BarbershopUserService serv = new BarbershopUserService();
+			UserDAO ud = new UserDAO();
+			forReviews fr = new forReviews();
+			forBookings fb = new forBookings();
+			ud.sumbid();
+			ud.sumcid();
+			fb.getbkid();
+			fr.getrid();
+		}catch(Exception e){
 
-		int i = Integer.parseInt("1");
-		System.out.println(i+2);
-	}catch(Exception e){
-
-	}
+		}
 	}
 }

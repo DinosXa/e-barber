@@ -265,11 +265,14 @@ public class UserDAO {
 			stmt = con.prepareStatement(GSQL);
 			rs = stmt.executeQuery();
 
-
+			int bigger = 0;
 			while(rs.next()){
-				if(rs.isLast())
-					lastCID = rs.getInt(1)+1;
+				if(rs.getInt(1) > bigger) bigger = rs.getInt(1);
+				lastCID = bigger+1;
+				System.out.println("element is: '" + rs.getInt(1) + "' and bigger is '" + bigger + "'"); //this is to see all the elements, when executing "main" (just for checking reasons)
+
 			}
+			System.out.println("lastCID is: " + lastCID);
 
 
 			rs.close();
@@ -305,10 +308,16 @@ public class UserDAO {
 			con = db.getConnection();
 			stmt = con.prepareStatement(GSQL);
 			rs = stmt.executeQuery();
+
+			int bigger = 0;
 			while(rs.next()){
-				if(rs.isLast())
-					lastBID = rs.getInt(1)+1;
+				if(rs.getInt(1) > bigger) bigger = rs.getInt(1);
+				lastBID = bigger+1;
+				System.out.println("element is: '" + rs.getInt(1) + "' and bigger is '" + bigger + "'"); //this is to see all the elements, when executing "main" (just for checking reasons)
+
 			}
+			System.out.println("lastBID is: " + lastBID);
+
 			rs.close();
 			stmt.close();
 			db.close();

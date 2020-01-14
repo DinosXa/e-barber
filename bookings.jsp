@@ -56,13 +56,13 @@
 						<div class="card" style="width:290px;">
 							<img class="card-img-top" src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Card image" style="width:287px; height:230px;">
 							<div class="card-body" style="line-height:13px; font-weight:500; font-size:14px;">
-								<h4 class="card-title text-capitalize"><%=booking.getCustomer().getName()%> <%=booking.getCustomer().getSurname()%></h4>
-								<p class="card-text">Telephone: <%=booking.getCustomer().getPhone()%></p>
-								<p class="card-text">E-mail: <%=booking.getCustomer().getEmail()%></p>
-								<p class="card-text">Day: <%=booking.getDay()%></p>
-								<p class="card-text">Time: <%=booking.getTime()%></p>
-								<p class="card-text">Service: <%=booking.getService()%></p>
-								<p class="card-text">Price: <%=booking.getPrice()%></p>
+								<h4 class="card-title text-capitalize"><%=booking.getCustomer().getName()%> <%=booking.getCustomer().getSurname()%></text></h4>
+								<p class="card-text">Telephone: <text style="color:#0000CD;"><%=booking.getCustomer().getPhone()%></text></p>
+								<p class="card-text">E-mail: <text style="color:#0000CD;"><%=booking.getCustomer().getEmail()%></text></p>
+								<p class="card-text">Day: <text style="color:#0000CD;"><%=booking.getDay()%></text></p>
+								<p class="card-text">Time: <text style="color:#0000CD;"><%=booking.getTime()%></text></p>
+								<p class="card-text">Service: <text style="color:#0000CD;"><%=booking.getService()%></text></p>
+								<p class="card-text">Price: <text style="color:#0000CD;"><%=booking.getPrice()%></text></p>
 								<a href="#" class="btn btn-primary">Accept</a>
 								<button type="button" class="btn btn-danger">Decline</button>
 							</div>

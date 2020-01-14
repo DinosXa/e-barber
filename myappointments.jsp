@@ -28,7 +28,7 @@
 		}
 	</style>	
 	<body>
-	<%	 CustomerUser user = (CustomerUser)session.getAttribute("user");
+	<%	CustomerUser user = (CustomerUser)session.getAttribute("user");
 		forBookings fb = new forBookings();
 		List<Booking> bookings = fb.getBookingsForCustomer(user.getCID());		
 	%>
@@ -49,14 +49,14 @@
 					<li class="a-item">
 						<div class="card" style="width:250px;">
 							<img class="card-img-top" src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="Card image" style="width:250px; height:200px;">
-							<div class="card-body" style="line-height:13px; font-weight:500; font-size:14px;">
+							<div class="card-body" style="line-height:13px; font-weight:450; font-size:13px;">
 								<h4 class="card-title"><%=booking.getBarbershop().getUsername()%></h4>
-								<p class="card-text">Telephone: <%=booking.getBarbershop().getPhone()%></p>
-								<p class="card-text">E-mail: <%=booking.getBarbershop().getEmail()%></p>
-								<p class="card-text">Day: <%=booking.getDay()%></p>
-								<p class="card-text">Time: <%=booking.getTime()%></p>
-								<p class="card-text">Service: <%=booking.getService()%></p>
-								<p class="card-text">Price: <%=booking.getPrice()%></p>
+								<p class="card-text">Telephone: <text style="color:#0000CD;"><%=booking.getBarbershop().getPhone()%></text></p>
+								<p class="card-text">E-mail: <text style="color:#0000CD;"><%=booking.getBarbershop().getEmail()%></text></p>
+								<p class="card-text">Day: <text style="color:#0000CD;"><%=booking.getDay()%></text></p>
+								<p class="card-text">Time: <text style="color:#0000CD;"><%=booking.getTime()%></text></p>
+								<p class="card-text">Service: <text style="color:#0000CD;"><%=booking.getService()%></text></p>
+								<p class="card-text">Price: <text style="color:#0000CD;"><%=booking.getPrice()%></text></p>
 								<a href="#" class="btn btn-primary">Change</a>
 								<button type="button" class="btn btn-danger">Cancel</button>  
 							</div>

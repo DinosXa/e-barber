@@ -42,32 +42,35 @@
 			</div>
 			<%	if(reviews.size() == 0) {	%>
 				<p class="display-4 text-center">You have not made any <text style="color:#808000;">reviews</text> yet.</p>
-			<%	}else{
-					int counter = 0;
+			<%	}else{	%>
+				<ul class="review-container">
+			<%		int counter = 0;
 					for(Review review: reviews) {
-			%>
-				<div class="media border p-3">
-					<img src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="barber-photo" class="mr-3 mt-3 rounded-circle" style="width:120px;">
-					<div class="media-body">
-						<h4>You made a review for <a style="color:#808000;" href="<%=request.getContextPath()%>/ismgroup26/BarbershopPage.jsp?bid=<%=review.getBarbershop().getBID()%>"><%=review.getBarbershop().getUsername()%></a></h4>
-						<i><%=review.getReview()%></i> 
-						<%
-						int stars = review.getRating();
-						if(stars == 1){%>
-							<i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-						<%}else if(stars == 2){%>
-							<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-						<%}else if(stars == 3){%>
-							<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-						<%}else if(stars == 4){%>
-							<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-						<%}else{%>
-							<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-						<%}%>
-					</div>
-				</div><br>
-			<%		}	
-				}	%>
+			%>			<li class="review-item">
+							<div class="media border p-3">
+								<img src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="barber-photo" class="mr-3 mt-3 rounded-circle" style="width:120px;">
+								<div class="media-body">
+									<h4>You made a review for <a style="color:#808000;" href="<%=request.getContextPath()%>/ismgroup26/BarbershopPage.jsp?bid=<%=review.getBarbershop().getBID()%>"><%=review.getBarbershop().getUsername()%></a></h4>
+									<i><%=review.getReview()%></i> 
+									<%
+									int stars = review.getRating();
+									if(stars == 1){%>
+										<i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+									<%}else if(stars == 2){%>
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+									<%}else if(stars == 3){%>
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+									<%}else if(stars == 4){%>
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+									<%}else{%>
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+									<%}%>
+								</div>
+							</div>
+						</li>
+			<%		}	%>
+				</ul>
+			<%	}	%>
 		</div>
 				
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->

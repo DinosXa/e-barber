@@ -54,10 +54,17 @@ public class forReviews {
 			con = db.getConnection();
 			stmt = con.prepareStatement(GSQL);
 			rs = stmt.executeQuery();
+
+			int bigger = 0;
 			while(rs.next()){
-				if(rs.isLast())
-					lastRID = rs.getInt(1)+1;
+				if(rs.getInt(1) > bigger) bigger = rs.getInt(1);
+				lastRID = bigger+1;
+				System.out.println("element is: '" + rs.getInt(1) + "' and bigger is '" + bigger + "'"); //this is to see all the elements, when executing "main" (just for checking reasons)
+
 			}
+			System.out.println("lastRID is: " + lastRID);
+
+
 			rs.close();
 			stmt.close();
 			db.close();

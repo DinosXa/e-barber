@@ -138,7 +138,7 @@
 									<li class="bflex-item" style="flex-grow:1;">
 										<ul class="combine-cont">
 											<li class="comb-item">
-												<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barbr.jpg" alt="barbershop" class="img-fluid" width="220px"  style="border=5px; border-radius:10px; height:160px;">
+												<img src="<%=request.getContextPath() %>/ismgroup26/imgs/barbr.jpg" alt="barbershop" class="img-fluid" width="220px"  style="border:3px grey;; border-radius:50px; height:160px;">
 											</li>
 											<li class="comb-item">
 												<ul class="barber-btn-container">

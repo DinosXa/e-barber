@@ -30,8 +30,8 @@
 	</head>
 	<style>
 		body {
-			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs/barberShop.jpg"); 
-			background-size: 30%;		
+			background-image: url("<%=request.getContextPath() %>/ismgroup26/imgs//barberBG1.jpg"); 
+			background-size: cover;		
 		}
 	</style>
 	<body>

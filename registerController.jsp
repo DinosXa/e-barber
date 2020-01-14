@@ -15,21 +15,18 @@
 			String address = request.getParameter("address");
 			String area = request.getParameter("area");
 			int bid = udao.sumbid();
-			
 			if( (username.length() > 4 && username.length() < 26) && (password.length() > 5) && (phone.length() == 10) && (area != null) ) {
 				Areas ar = udao.getValidatedArea(area);
-				
 				//create barbershop object
 				BarbershopUser user = new BarbershopUser(bid, username, password, email, phone, address, ar);
 				//save barbershop to database
 				udao.registerBUser(user);
-				%>
-				<jsp:forward page="index.jsp"/> 
-				<%
+				request.setAttribute("success","Your registration was succesfull");	%>
+				<jsp:forward page="index.jsp"/>	<%
 			}else{
 				int countErrors = 0;
-				String inputerrorb = "";	
-				
+				String inputerrorb = "";
+
 				if(username.length() < 5 || username.length() > 26){
 					inputerrorb += "<li>Username should have from 5 (min) to 25 (max) characters.</li>";
 					countErrors++;
@@ -45,21 +42,14 @@
 				if (countErrors > 0) {
 					inputerrorb = "<ol>" + inputerrorb + "</ol>";
 					request.setAttribute( "rbError", "the input error b " + inputerrorb);
-
 				}
-			}
-			request.setAttribute("success","Your registration was succesfull");	%>
+			}%>
 			<jsp:forward page="index.jsp"/>	<%		
 		}catch(CustomException e) {
-			
-			request.setAttribute("bregister-message", e.getMessage());
-			%>
-			<jsp:forward page="index.jsp"/>
-			<%
+			request.setAttribute("bregister-message", "1st Problem: " + e.getMessage());%>
+			<jsp:forward page="index.jsp"/><%
 		}catch(Exception e) {
-			
-			throw new Exception( "the bregister error: " + e.getMessage() );
-		
+			throw new Exception("bregister-message" + "2nd Problem: " + e.getMessage() );
 		}
 	}
 	if(ifbarber.equals("false")){
@@ -77,6 +67,8 @@
 				CustomerUser user = new CustomerUser(cid, username, password, name, surname, email, phone);
 				//save customer to database
 				udao.registerCUser(user);
+				request.setAttribute("success","Your registration was succesfull");
+			%>	<jsp:forward page="index.jsp"/>	<%
 			}else{
 				int countErrors = 0;
 				String inputerrorc = "";	
@@ -104,21 +96,14 @@
 				if (countErrors > 0) {
 					inputerrorc = "<ol>" + inputerrorc + "</ol>";
 					request.setAttribute( "rcError", "input error c " + inputerrorc);
-			
 				}
 			}
-			request.setAttribute("success","Your registration was succesfull");%>
-			<jsp:forward page="index.jsp"/>	<%
+		%>	<jsp:forward page="index.jsp"/>	<%
 		}catch(CustomException e) {
-				
-				request.setAttribute("cregister-message", e.getMessage());
-				%>
-				<jsp:forward page="index.jsp"/>
-				<%
+			request.setAttribute("cregister-message", "1st Problem: " + e.getMessage() );%>
+			<jsp:forward page="index.jsp"/><%
 		}catch(Exception e) {
-				
-			throw new Exception( "the cregister error: " + e.getMessage() );
-			
+			throw new Exception("2nd Problem: " + e.getMessage() );
 		}
 	}	%>
 

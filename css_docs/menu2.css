@@ -33,9 +33,23 @@ input[type=submit]:hover {
 .appointments-container {
   display:flex;
   justify-content:space-evenly;
-  flex-direction:row;
+  flex-direction:row-reverse;
+  flex-wrap:nowrap;
+}
+
+.review-container {
+  display:flex;
+  justify-content:space-evenly;
+  flex-direction:column-reverse;
   flex-wrap:wrap;
 }
+
+.review-item{
+	background-color:white;
+	box-shadow: 5px 5px 3px grey;
+	margin:3px;
+}
+
 img {
 	width:130px;
 	height:90px;
