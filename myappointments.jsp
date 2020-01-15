@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page errorPage="error_page.jsp"%>
+
 <%@ page import= "login_classes.*"%>
-<%@ page import= "java.util.*"%>
+<%@ page import= "java.util.*, java.text.*, java.time.format.*, java.time.*"%>
 
 <%@ include file="logincheck.jsp"%>
 <%@ include file="ccc.jsp"%>
@@ -20,6 +20,7 @@
 		<!-- Custom styles for this template -->
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/menu2.css">
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/navbar.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/cards.css">
 	</head>
 	<style>
 		body {
@@ -45,24 +46,75 @@
 				if(bookings.size() == 1) size = "booking";
 				int counter = 0;	%>			
 				<ul class="appointments-container">
-		<%		for(Booking booking: bookings) { %>				
-					<li class="a-item">
-						<div class="card" style="width:250px;">
-							<img class="card-img-top" src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="Card image" style="width:250px; height:200px;">
-							<div class="card-body" style="line-height:13px; font-weight:450; font-size:13px;">
-								<h4 class="card-title"><%=booking.getBarbershop().getUsername()%></h4>
-								<p class="card-text">Telephone: <text style="color:#0000CD;"><%=booking.getBarbershop().getPhone()%></text></p>
-								<p class="card-text">E-mail: <text style="color:#0000CD;"><%=booking.getBarbershop().getEmail()%></text></p>
-								<p class="card-text">Day: <text style="color:#0000CD;"><%=booking.getDay()%></text></p>
-								<p class="card-text">Time: <text style="color:#0000CD;"><%=booking.getTime()%></text></p>
-								<p class="card-text">Service: <text style="color:#0000CD;"><%=booking.getService()%></text></p>
-								<p class="card-text">Price: <text style="color:#0000CD;"><%=booking.getPrice()%></text></p>
-								<a href="#" class="btn btn-primary">Change</a>
-								<button type="button" class="btn btn-danger">Cancel</button>  
-							</div>
-						</div>
-					</li>
-			<%	}	%>
+		<%		
+					SimpleDateFormat dtf = new SimpleDateFormat("dd-MM-yyyy HH:mm"); //dtf = DateTime Formatter		
+				
+					//get current local datetime as Date
+					DateTimeFormatter cdtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");  
+					LocalDateTime now = LocalDateTime.now();  
+					String currentDatetime = cdtf.format(now);
+					Date cdt = dtf.parse(currentDatetime); //covert string-type currentDaytime to date-type currentDaytime \ cdt = Current DateTime		
+		
+					for(Booking booking: bookings) {
+						//get book datetime as Date
+						String bookDatetime = booking.getDay() + " " + booking.getTime().substring(6,11); //Combining day & time
+						Date bdt = dtf.parse(bookDatetime); //covert string-type bookDaytime to date-type bookDaytime \ bdt = Book DateTime
+						
+						//Difference of hours						
+						if(cdt.compareTo(bdt) < 0)	{
+							long diff = bdt.getTime() - cdt.getTime();
+							int diffHours = (int) (diff / (60 * 60 * 1000)); //difference in hours
+							int diffMin = (int) (diff / (60 * 1000)); //difference in minutes	
+							
+							int difference = diffHours;
+							String timeLeft = "hours";
+							if (diffHours < 1)	{
+								difference = diffMin;
+								timeLeft = "minutes";
+							}%>
+							<li class="a-item">
+								<div class="card" style="width:250px;">
+									<div class="img-container">
+										<img class="card-img-top mx-auto d-block" src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="Card image" style="width:248.5px; height:200px;">
+										<div class="middle">
+											<h2 c	lass="text"><%=booking.getBarbershop().getUsername()%><br><b style="font-size:19px;"><%=difference%> <%=timeLeft%></b></h2>
+										</div>
+									</div>
+									<div class="card-body" style="line-height:13px; font-weight:450; font-size:13px;">
+										<p class="card-text">Telephone: <text style="color:#0000CD;"><%=booking.getBarbershop().getPhone()%></text></p>
+										<p class="card-text">E-mail: <text style="color:#0000CD;"><%=booking.getBarbershop().getEmail()%></text></p>
+										<p class="card-text">Day: <text style="color:#0000CD;"><%=booking.getDay()%></text></p>
+										<p class="card-text">Time: <text style="color:#0000CD;"><%=booking.getTime()%></text></p>
+										<p class="card-text">Service: <text style="color:#0000CD; font-size:12px;"><%=booking.getService()%></text></p>
+										<p class="card-text">Price: <text style="color:#0000CD;"><%=booking.getPrice()%></text></p>
+										<a href="#" class="btn btn-primary">Change</a>
+										<button type="button" class="btn btn-danger">Cancel</button>  
+									</div>
+								</div>
+							</li>
+					<%	}else{	%>
+							<li class="a-item">
+								<div class="card" style="width:250px; border-color:red; border-style:ridge; border-width:4px;">
+									<div class="img-container finished1">										
+										<img class="card-img-top mx-auto d-block" src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="Card image" style="width:242px; height:200px;">
+										<div class="middle finished2">
+											<h2 class="text"><text style="color:black;"><%=booking.getBarbershop().getUsername()%></text> <b style="color:white;">FINISHED</b></h2>
+										</div>
+									</div>
+									<div class="card-body" style="line-height:13px; font-weight:450; font-size:13px;">
+										<p class="card-text">Telephone: <text style="color:#0000CD;"><%=booking.getBarbershop().getPhone()%></text></p>
+										<p class="card-text">E-mail: <text style="color:#0000CD;"><%=booking.getBarbershop().getEmail()%></text></p>
+										<p class="card-text">Day: <text style="color:#0000CD;"><%=booking.getDay()%></text></p>
+										<p class="card-text">Time: <text style="color:#0000CD;"><%=booking.getTime()%></text></p>
+										<p class="card-text">Service: <text style="color:#0000CD;"><%=booking.getService()%></text></p>
+										<p class="card-text">Price: <text style="color:#0000CD;"><%=booking.getPrice()%></text></p>
+										<button href="#" type="button" class="btn btn-primary" disabled>Change</button>
+										<button type="button" class="btn btn-danger" disabled>Cancel</button>  
+									</div>
+								</div>
+							</li>
+					<%	}
+					}	%>
 				</ul> 
 		<%	}	%>
 		</div>

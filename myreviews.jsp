@@ -50,7 +50,7 @@
 							<div class="media border p-3">
 								<img src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="barber-photo" class="mr-3 mt-3 rounded-circle" style="width:120px;">
 								<div class="media-body">
-									<h4>You made a review for <a style="color:#808000;" href="<%=request.getContextPath()%>/ismgroup26/BarbershopPage.jsp?bid=<%=review.getBarbershop().getBID()%>"><%=review.getBarbershop().getUsername()%></a></h4>
+									<h4>You made a review for <a style="color:#808000;" href="<%=request.getContextPath()%>/ismgroup26/BarbershopPage.jsp?bid=<%=review.getBarbershop().getBID()%>&active=reviews"><%=review.getBarbershop().getUsername()%></a></h4>
 									<i><%=review.getReview()%></i> 
 									<%
 									int stars = review.getRating();

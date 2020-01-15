@@ -308,8 +308,8 @@
 					<div class="alert alert-success text-center errormsg alert-dismisible fade show" role="alert"><%=(String)request.getAttribute("success") %>
 						<button type="button" class="close" data-dismiss="alert">&times;</button>			
 					</div>
-					<img class="gif-congrats" src="https://media.giphy.com/media/xT8qBepJQzUjXpeWU8/giphy.gif"></img>	
-			<!--	<img class="gif-congrats2" style="width:15%; height:20%;" src="https://media.giphy.com/media/ZFcZaNW9YMKDjR7gCe/giphy.gif"></img>-->
+					<img class="gif-congrats" src="https://media.giphy.com/media/JTW1eFMgGbuNmlbEwZ/giphy.gif"></img>	
+			<!--	<img class="gif-congrats2" style="width:15%; height:20%;" src="https://media.giphy.com/media/ZFcZaNW9YMKDjR7gCe/giphy.gif | https://media.giphy.com/media/xT8qBepJQzUjXpeWU8/giphy.gif"></img>-->
 			<%	}
 			}	%>
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->

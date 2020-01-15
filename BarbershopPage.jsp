@@ -71,7 +71,7 @@
 
 		<div class="tab-content" id="myTabContent">
 			<!-- Info -->
-		<%	if(active.equals("info")){%>
+		<%	if(active.equals("info") || (!active.equals("reviews") && !active.equals("book"))){%>
 			<div class="tab-pane fade show active" id="info" role="tabpanel">
 		<%	}else{	%>
 			<div class="tab-pane fade show" id="info" role="tabpanel">
@@ -388,8 +388,16 @@
 			<div class="tab-pane fade show active" id="reviews" role="tabpanel">
 		<%	}else{	%>
 			<div class="tab-pane fade" id="reviews" role="tabpanel">
-		<%	}	%>
-				<ul class="flex-container">
+		<%	}
+			boolean one_review = false;	
+			if(reviews.size() != 0){
+				for(Review review: reviews){
+					if(review.getCustomer().getCID() == user.getCID()) one_review = true;
+				}
+			}	
+		%>
+			<ul class="flex-container">
+			<%	if(one_review == false){	%>
 					<li class="re-container" style="flex-basis:13%;">
 						<form action="<%=request.getContextPath() %>/ismgroup26/reviewController.jsp?">	
 							<ul class="inside-cont">
@@ -422,49 +430,50 @@
 							</ul>
 						</form>
 					</li>
-				<%	if(reviews.size() == 0){%>
-						<h2 style="color:white; margin-top:5%;"><em class="display-4 font-weight-bolder">No <text style="color:#8B0000;">reviews</text> yet.<br>Post the <text style="color:#FFD700;">first</text> review!</em><h2>
-				<%	}else{
-						int counter = 0;
-						for(Review review: reviews) {	%>						
-						<li class="re-container fitem">
-							<ul class="inside-cont">
-								<li class="idrr">
-									<ul class="ii-cont text-center">
-										<li class="ii-item">
-											<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="customer" data-toggle="tooltip" title="<%=review.getCustomer().getUsername() %>">
-										</li>
-										<li class="ii-item">
-											<span><b><%=review.getCustomer().getName()%> <%=review.getCustomer().getSurname()%></b></span>
-											<p><small>Posted on "dd/mm/yyyy"</small></p>
-										</li>
-									</ul>
-								</li>
-								<li class="idrr">
-									<em style="background:#5c5c8a;"><%=review.getReview()%></em>
-								</li>
-								<li class="idrr rating">
-									<%
-									int stars = review.getRating();
-									if(stars == 1){%>
-										<i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-									<%}else if(stars == 2){%>
-										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-									<%}else if(stars == 3){%>
-										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-									<%}else if(stars == 4){%>
-										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-									<%}else{%>
-										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-									<%}%>
-								</li>
-							</ul>
-						</li>			
-					<%	}	%>
-				</ul>
-				<%	}	%>
-			</div>		
-		</div>
+			<%	}	%>
+			<%	if(reviews.size() == 0){%>
+					<h2 style="color:white; margin-top:5%;"><em class="display-4 font-weight-bolder">No <text style="color:#8B0000;">reviews</text> yet.<br>Post the <text style="color:#FFD700;">first</text> review!</em><h2>
+			<%	}else{
+					int counter = 0;
+					for(Review review: reviews) {	%>						
+					<li class="re-container fitem">
+						<ul class="inside-cont">
+							<li class="idrr">
+								<ul class="ii-cont text-center">
+									<li class="ii-item">
+										<img src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="customer" data-toggle="tooltip" title="<%=review.getCustomer().getUsername() %>">
+									</li>
+									<li class="ii-item">
+										<span><b><%=review.getCustomer().getName()%> <%=review.getCustomer().getSurname()%></b></span>
+										<p><small>Posted on "dd/mm/yyyy"</small></p>
+									</li>
+								</ul>
+							</li>
+							<li class="idrr">
+								<em style="background:#5c5c8a;"><%=review.getReview()%></em>
+							</li>
+							<li class="idrr rating">
+								<%
+								int stars = review.getRating();
+								if(stars == 1){%>
+									<i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+								<%}else if(stars == 2){%>
+									<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+								<%}else if(stars == 3){%>
+									<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+								<%}else if(stars == 4){%>
+									<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+								<%}else{%>
+									<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+								<%}%>
+							</li>
+						</ul>
+					</li>			
+				<%	}
+				}	%>
+			</ul>
+		</div>		
+	</div>
 <%	}
 	if(session.getAttribute("user").getClass() == BarbershopUser.class){			
 		BarbershopUser user = (BarbershopUser)session.getAttribute("user");

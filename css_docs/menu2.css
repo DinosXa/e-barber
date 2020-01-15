@@ -25,25 +25,31 @@ input[type=submit]:hover {
 }
 
 .container{
-  border-radius: 5px;
+  border-radius: 0px;
   background-color: #f2f2f2;
   padding: 10px;
 }
 
+/*For appointments*/
 .appointments-container {
   display:flex;
   justify-content:space-evenly;
-  flex-direction:row-reverse;
+  flex-direction:row;
   flex-wrap:nowrap;
 }
+.finished {
+    width: 100%;
+    border-top-left-radius:0px;
+    border-top-right-radius:0px;
+}
 
+/*For reviews*/
 .review-container {
   display:flex;
   justify-content:space-evenly;
   flex-direction:column-reverse;
   flex-wrap:wrap;
 }
-
 .review-item{
 	background-color:white;
 	box-shadow: 5px 5px 3px grey;
