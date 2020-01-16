@@ -145,7 +145,9 @@
 				</div>
 			</div>
 			<!-- Booking -->
-			<%
+		<%	forBookings fb = new forBookings();
+			List<Booking> bookings = fb.getBookings(buser.getBID());
+			
 			//For the selection of the day
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
 			LocalDateTime now = LocalDateTime.now();  
@@ -164,20 +166,48 @@
 		<%	}	%>
 			<form style="text-align:center;" id="bookForm" action="<%=request.getContextPath() %>/ismgroup26/bookController.jsp">
 				<h1>Make your <text style="color:#8B0000">booking</text></h1><br>
+
 				<!-- One "tab" for each step in the form: -->
+				<div class="tab">
+					<!--<h3>Verify your book stats.</h3>
+					Date: <span id="outputDay"></span><br>
+					Time: <span id="outputTime"></span><br>
+					Service: <span id="outputService"></span>€-->
+					Please, do not select the days with the hours that are shown together. Thank you.
+						<table class="table table-hover table-responsive-sm">
+							<thead class="thead-dark">
+								<tr>
+									<th>Day</th>
+									<th>Time</th>
+								</tr>
+							</thead>
+							<tbody>
+						<%	for(Booking booking: bookings){	%>
+								<tr class="table-warning">
+									<td><%=booking.getDay()%></td>
+									<td><%=booking.getTime()%></td>
+								</tr>
+						<%	}	%>
+						</tbody>
+					</table>
+				</div>				
+				
+				<!--Day tab-->
 				<div class="tab" >
 					<h3 style="margin-bottom:3%;">Select day</h3>
-					<%	for(int i=0;i<=7;i++){	
-							day.add(Calendar.DATE, i);
-							dt = sdf.format(day.getTime());%>				
-							<div class="form-check-inline">
-								<label class="form-check-label" for="day<%=i%>">
-									<input type="radio" class="form-check-input" name="day" id="day" value="<%=dt%>"><%=dt%>
-								</label>
-							</div>
-						<%	day.add(Calendar.DATE, -i);	
-						}	%>
+				<%	for(int i=0;i<=7;i++){
+						day.add(Calendar.DATE, i);
+						dt = sdf.format(day.getTime());%>				
+						<div class="form-check-inline">
+							<label class="form-check-label" for="day<%=i%>">
+								<input type="radio" class="form-check-input" name="day" id="day" value="<%=dt%>"><%=dt%>
+							</label>
+						</div>
+				<%		day.add(Calendar.DATE, -i);	
+					}	%>
 				</div>
+				
+				<!--Time tab-->
 				<div class="tab">
 					<h3>Select time</h3>
 					<div class="text-center" id="accordion">
@@ -190,19 +220,24 @@
 							</div>
 							<div id="collapseOne" class="collapse" data-parent="#accordion">
 								<div class="card-body">
-								<%	String mtm1 = "08:00";
+								<%	boolean booked = false;
+								
+									String mtm1 = "08:00";
 									String mtm2;
+									String combMTimes;
 									SimpleDateFormat msdf2 = new SimpleDateFormat("HH:mm");
 									time.setTime(msdf2.parse(mtm1));
 									for(int j=0;j<=11;j++){
 										mtm1 = msdf2.format(time.getTime());
 										time.add(Calendar.MINUTE, 20);	
-										mtm2 = msdf2.format(time.getTime());%>
+										mtm2 = msdf2.format(time.getTime());
+										combMTimes = mtm1 + "-" + mtm2;
+									%>
 										<div class="form-check-inline">
 											<label class="form-check-label" for="day<%=j%>">
 												<input type="radio" class="form-check-input" name="time" id="time" value="<%=mtm1%>-<%=mtm2%>"><%=mtm1%>-<%=mtm2%>
 											</label>
-										</div>
+										</div>									
 									<%	}	%>
 								</div>
 							</div>
@@ -222,10 +257,11 @@
 									for(int j=12;j<=23;j++){
 										ntm1 = nsdf2.format(time.getTime());
 										time.add(Calendar.MINUTE, 20);	
-										ntm2 = nsdf2.format(time.getTime());%>
+										ntm2 = nsdf2.format(time.getTime());
+										String combNItems = ntm1 + "-" + ntm2;	%>
 										<div class="form-check-inline">
 											<label class="form-check-label" for="day<%=j%>">
-												<input type="radio" class="form-check-input" name="time" id="time" value="<%=ntm1%>-<%=ntm2%>"><%=ntm1%>-<%=ntm2%>
+												<input type="radio" class="form-check-input" name="time" id="time" value="<%=combNItems%>"><%=combNItems%>
 											</label>
 										</div>
 									<%	}	%>
@@ -242,15 +278,17 @@
 								<div class="card-body">
 							<%	String atm1 = "16:00";
 								String atm2;
+								String combATimes;
 								SimpleDateFormat asdf2 = new SimpleDateFormat("HH:mm");
 								time.setTime(asdf2.parse(atm1));
 								for(int j=24;j<=29;j++){
 									atm1 = asdf2.format(time.getTime());
 									time.add(Calendar.MINUTE, 20);	
-									atm2 = asdf2.format(time.getTime());%>
+									atm2 = asdf2.format(time.getTime());
+									combATimes = atm1 + "-" + atm2;	%>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="day<%=j%>">
-											<input type="radio" class="form-check-input" name="time" id="time" value="<%=atm1%>-<%=atm2%>"><%=atm1%>-<%=atm2%>
+											<input type="radio" class="form-check-input" name="time" id="time" value="<%=combATimes%>"><%=combATimes%>
 										</label>
 									</div>
 								<%	}	%>
@@ -360,13 +398,6 @@
 								</tr>
 							</tbody>
 						</table>
-				</div>
-				
-				<div class="tab">
-					<h3>Verify your book stats.</h3>
-					Date: <span id="outputDay"></span><br>
-					Time: <span id="outputTime"></span><br>
-					Service: <span id="outputService"></span>€
 				</div>
 				<div style="overflow:auto; text-align:center; margin-top:5%;">
 					<button class="btn btn-secondary" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
