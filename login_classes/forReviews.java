@@ -20,8 +20,8 @@ public class forReviews {
 		Connection con = null;
 		DB db = new DB();
 		String reviewSQL ="INSERT INTO reviews "
-						+ "(reviewID, comment, rating, datetime customerID, barbershopID) "
-						+ "VALUES(?, ?, ?, ?, ?)";
+						+ "(reviewID, comment, rating, datetime, customerID, barbershopID) "
+						+ "VALUES(?, ?, ?, ?, ?, ?)";
 		try{
 			con = db.getConnection();
 			PreparedStatement stmt = con.prepareStatement(reviewSQL);

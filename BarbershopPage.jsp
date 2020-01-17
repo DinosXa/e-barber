@@ -610,7 +610,7 @@
 									</li>
 									<li class="ii-item">
 										<span><b><%=review.getCustomer().getName()%> <%=review.getCustomer().getSurname()%></b></span>
-										<p><small>Posted on "dd/mm/yyyy"</small></p>
+										<p><small>Posted on <%=review.getDatetime()%></small></p>
 									</li>
 								</ul>
 							</li>
@@ -651,20 +651,6 @@
 </html>
 
 <script>
-//For verification of book stats
-var day = document.getElementById("day");
-var output1 = document.getElementById("outputDay");
-output1.innerHTML = day.value;
-day.onchange = function() {
-  output1.innerHTML = this.value;
-}
-var time = document.getElementById("time");
-var output2 = document.getElementById("outputTime");
-output2.innerHTML = time.value;
-time.onchange = function() {
-  output2.innerHTML = this.value;
-}
-
 //For the review
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");

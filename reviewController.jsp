@@ -49,7 +49,7 @@ try{
 
 	}catch(Exception e) {
 
-		throw new Exception( "Error is" + e.getMessage() );
+		throw new Exception( "Error is: " + e.getMessage() );
 
 	}	%>
 	<jsp:forward page="index.jsp"/>
