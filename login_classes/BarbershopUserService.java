@@ -1,3 +1,6 @@
+
+//t8170101 (για όλα)
+
 package login_classes;
 
 import java.text.Normalizer;
@@ -8,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class BarbershopUserService {
 

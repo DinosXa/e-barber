@@ -11,6 +11,7 @@ try{
 	CustomerUser user = (CustomerUser)session.getAttribute("user");
 	String comment = request.getParameter("comment");
 	String stars = request.getParameter("rate");
+	String datetime = request.getParameter("reviewDT");
 	String cuserid = request.getParameter("cid");
 	String buserid = request.getParameter("bid");
 	if(buserid == null)
@@ -35,7 +36,7 @@ try{
 		request.setAttribute("indexerror","There was not given an id.");
 
 	//create Review object
-	Review review = new Review(rid, comment, rating, cid, bid);
+	Review review = new Review(rid, comment, rating, datetime, cid, bid);
 	//save review to database
 	frev.writeReview(review);
 

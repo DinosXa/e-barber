@@ -1,3 +1,6 @@
+
+//t8170101 (για όλα)
+
 package login_classes;
 
 import java.util.ArrayList;
@@ -331,31 +334,7 @@ public class UserDAO {
 	}
 
 
-	//GET  AREA CUSTOMER & BARBER ID's WITH THEIR TYPES
-
-	//GET AREA ID
-	public Areas getValidatedArea(String areaId) throws Exception {
-		int id;
-		if( areaId == null || areaId.equals("") ) {
-			throw new Exception("Please choose an area");
-		}
-		try {
-			id = Integer.parseInt(areaId);
-		} catch (NumberFormatException e) {
-			throw new Exception("bad area id: " + e.getMessage());
-		}
-		AreaSearch ar = new AreaSearch();
-		Areas area= null;
-		try {
-			area = ar.getAreaByID( id );
-			if( area != null ) {
-				return area; //is valid.
-			}
-			return null; //area id is not valid.
-		} catch (Exception e) {
-			throw new Exception("the area id is: " + e.getMessage() ); //An error occurred
-		}
-	}
+	//GET CUSTOMER & BARBER ID's WITH THEIR TYPES
 
 	//GET CUSTOMER ID
 	public CustomerUser getCustomerID(String customerId) throws Exception {
@@ -404,4 +383,140 @@ public class UserDAO {
 			throw new Exception("GET BARBER BY ID ERROR: " + e.getMessage() ); //An error occurred
 		}
 	}
+
+		//8170107//
+		public void changePasswordBU(String username, String password, String new_password) throws Exception {
+			DB db = new DB();
+			Connection con = null;
+			String CPSQL = "update barbershop set password=? where username =?;";
+		  	PreparedStatement stmt = null;
+
+		   	try {
+				con = db.getConnection();
+			  	stmt = con.prepareStatement(CPSQL);
+			  	stmt.setString(1, new_password);
+			  	stmt.setString(2, username);
+				if (checkPasswordBU(username, password))
+              	  stmt.executeUpdate();
+              	else
+              	  throw new Exception ("Wrong password");
+
+				stmt.close();
+				db.close();
+
+				} catch (Exception e) {
+
+					throw new Exception(e.getMessage() + "An exception occured while updating your password");
+
+				} finally {
+
+					if(con != null)
+						con.close();
+				}
+			}
+
+		//8170107//
+		public void changePasswordCU(String username, String password, String new_password) throws Exception {
+						DB db = new DB();
+						Connection con = null;
+						String CPSQL = "update customer set password=? where username =?;";
+					  	PreparedStatement stmt = null;
+
+					   	try {
+							con = db.getConnection();
+						  	stmt = con.prepareStatement(CPSQL);
+						  	stmt.setString(1, new_password);
+						  	stmt.setString(2, username);
+							if (checkPasswordCU(username,password))
+			              	  stmt.executeUpdate();
+			              	else
+			              	  throw new Exception ("Wrong password");
+
+							stmt.close();
+							db.close();
+
+							} catch (Exception e) {
+
+								throw new Exception(e.getMessage() + "An exception occured while updating your password");
+
+							} finally {
+
+								if(con != null)
+									con.close();
+							}
+				}
+
+
+
+
+
+				//8170107//
+				public boolean checkPasswordCU (String username, String old_password) throws Exception {
+					DB db = new DB();
+					Connection con = null;
+					PreparedStatement stmt1 = null;
+					String confirmSQL= "SELECT password FROM customer WHERE username = ? ;";
+					boolean correct = false;
+					ResultSet rs = null;
+					try{
+						con= db.getConnection();
+						stmt1= con.prepareStatement(confirmSQL);
+						stmt1.setString(1,username);
+						rs = stmt1.executeQuery();
+						if (rs.next()){
+							if (rs.getString("password").equals(old_password))
+								correct=true;
+							else
+								correct= false;
+						}else{
+							throw new Exception ("User not found");
+						}
+					db.close();
+					rs.close();
+					stmt1.close();
+					return correct;
+				}catch(SQLException e){
+					throw new Exception("An error occured in DB" +e.getMessage());
+				}finally{
+					if(con!=null)
+						con.close();
+				}
+			}
+
+			//8170107//
+			public boolean checkPasswordBU (String username, String old_password) throws Exception {
+					DB db = new DB();
+					Connection con = null;
+					PreparedStatement stmt1 = null;
+					String confirmSQL= "SELECT password FROM barbershop WHERE username = ? ;";
+					boolean correct = false;
+					ResultSet rs = null;
+					try{
+						con= db.getConnection();
+						stmt1= con.prepareStatement(confirmSQL);
+						stmt1.setString(1,username);
+						rs = stmt1.executeQuery();
+						if (rs.next()){
+							if (rs.getString("password").equals(old_password))
+								correct=true;
+							else
+								correct= false;
+						}else{
+							throw new Exception ("User not found");
+						}
+					db.close();
+					rs.close();
+					stmt1.close();
+					return correct;
+				}catch(SQLException e){
+					throw new Exception("An error occured in DB" +e.getMessage());
+				}finally{
+					if(con!=null)
+						con.close();
+				}
+			}
+
+
+
 }
+

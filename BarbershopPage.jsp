@@ -156,6 +156,8 @@
 			Calendar day = Calendar.getInstance();
 			day.setTime(sdf.parse(dt));
 			
+			String reviewDT = sdf.format(day.getTime()); //to save the datetime that a review was posted
+			
 			//For the selection of the time
 			Calendar time = Calendar.getInstance();
 			%>
@@ -459,6 +461,7 @@
 								<input type="hidden" name="bid" value="<%=buser.getBID()%>"/>
 								<input type="hidden" name="cid" value="<%=user.getCID()%>"/>
 							</ul>
+							<input type="hidden" name="reviewDT" value="<%=reviewDT%>"/>
 						</form>
 					</li>
 			<%	}	%>
@@ -476,7 +479,7 @@
 									</li>
 									<li class="ii-item">
 										<span><b><%=review.getCustomer().getName()%> <%=review.getCustomer().getSurname()%></b></span>
-										<p><small>Posted on "dd/mm/yyyy"</small></p>
+										<p><small>Posted on <%=review.getDatetime()%></small></p>
 									</li>
 								</ul>
 							</li>

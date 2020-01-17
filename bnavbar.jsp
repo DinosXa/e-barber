@@ -33,10 +33,10 @@
 				</li>
 			<%	if(request.getAttribute("wrong-page") != null) { %>
 					<li class="nav-item">
-							<div class="alert alert-warning alert-dismissible" style="position:absolute;">
-								<button type="button" class="close" data-dismiss="alert">&times;</button>
-								<%=(String)request.getAttribute("wrong-page")%>
-							</div>
+						<div class="alert alert-warning alert-dismissible" style="position:absolute;">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<%=(String)request.getAttribute("wrong-page")%>
+						</div>
 					</li>
 			<%	}	%>
 			</ul>
@@ -49,10 +49,15 @@
 						<a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						  Accounts
 						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">										
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/Logout.jsp">
 								<span class="border-0">
 									<img src="<%=request.getContextPath() %>/ismgroup26/imgs/logoutAv.jpg" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Log out
+								</span>
+							</a>
+							<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/ChangePassword.jsp">
+								<span class="border-0">
+									<img src="<%=request.getContextPath() %>/ismgroup26/imgs/change.png" alt="Avatar" class="avatar rounded-circle" style="width:25px; height:25px; border-radius:25px;"> Change your Password
 								</span>
 							</a>
 						</div>

@@ -1,3 +1,6 @@
+
+//t8170101 (για όλα)
+
 package login_classes;
 
 import java.text.SimpleDateFormat;
@@ -17,7 +20,7 @@ public class forReviews {
 		Connection con = null;
 		DB db = new DB();
 		String reviewSQL ="INSERT INTO reviews "
-						+ "(reviewID, comment, rating, customerID, barbershopID) "
+						+ "(reviewID, comment, rating, datetime customerID, barbershopID) "
 						+ "VALUES(?, ?, ?, ?, ?)";
 		try{
 			con = db.getConnection();
@@ -25,8 +28,9 @@ public class forReviews {
 			stmt.setInt(1, getrid());
 			stmt.setString(2, rev.getReview());
 			stmt.setInt(3, rev.getRating());
-			stmt.setInt(4, rev.getCustomer().getCID());
-			stmt.setInt(5, rev.getBarbershop().getBID());
+			stmt.setString(4, rev.getDatetime());
+			stmt.setInt(5, rev.getCustomer().getCID());
+			stmt.setInt(6, rev.getBarbershop().getBID());
 			stmt.executeUpdate();
 			stmt.close();
 			db.close();
@@ -118,6 +122,7 @@ public class forReviews {
 				rev = new Review(rs.getInt("reviews.reviewID"),
 								 rs.getString("reviews.comment"),
 								 rs.getInt("reviews.rating"),
+								 rs.getString("reviews.datetime"),
 								 cuser,
 								 buser);
 
@@ -176,6 +181,7 @@ public List<Review> getReviewsForCustomer(int cid) throws Exception, CustomExcep
 				rev = new Review(rs.getInt("reviews.reviewID"),
 								 rs.getString("reviews.comment"),
 								 rs.getInt("reviews.rating"),
+								 rs.getString("reviews.datetime"),
 								 cuser,
 								 buser);
 
