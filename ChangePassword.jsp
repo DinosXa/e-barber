@@ -18,7 +18,6 @@
 		<!-- Custom styles for this template -->	
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/firstPage.css">
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/navbar.css">
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/ismgroup26/css_docs/gifs.css">
 		<script src="https://kit.fontawesome.com/3781654338.js" crossorigin="anonymous"></script>
 	</head>
 	<style>
@@ -33,60 +32,81 @@
 	</style>
 	<body>
 
-		<%	
-			if(session.getAttribute("user") == null){
-		%>
-				
-						<div class="alert alert-danger text-center allert-dismissible fade show errormsg" role="alert"> You can not access this page. Please login
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
-						</div>
-	
-
-					
-	
-			<%	}else{	%>
-					
-					
-							
-								
-									<center><h4 class="modal-title" style="color:white;">Change Password</h4></center>
-								
-
-								<!-- Modal body -->
-								<div class="container">
-									<form class="form-signin" method="POST" action="<%=request.getContextPath() %>/ismgroup26/ChangeController.jsp">		
-										<div id="clog" class="container tab-pane"><br>
-											<div class="modal-body">
-												<div class="form-group">
-													
-													<div class="col-sm-10">
-														<input name="username" type="text" class="form-control" id="username" placeholder="Enter your username" required>
-													</div>
-												</div>
-												<div class="form-group">
-													
-													<div class="col-sm-10">
-														<input name="old_password" type="password" class="form-control" id="password" placeholder="Enter your old password" required>
-													</div>
-												</div>
-												<div class="form-group">
-													
-													<div class="col-sm-10">
-														<input name="new_password" type="password" class="form-control" id="password" placeholder="Enter your new password" required>
-													</div>
-												</div>
-												
-												<div class="col-sm-10">
-													<button type="submit" class="btn btn-success">Update</button>
-													<input type="reset" class="btn btn-danger" value="Clear" />
-												</div>
-											</div>	
-										</div>
-									</form>
+<%
+	if(session.getAttribute("user") == null) {
+		request.setAttribute("messages", "You are not authorized to access this resource. Please login.");	%>
+		<jsp:forward page="index.jsp" />
+<%  }else{	%>
+	<%	if (session.getAttribute("user").getClass() == CustomerUser.class){%>
+									
+		<%	CustomerUser user = (CustomerUser)session.getAttribute("user");%>
+		<%@	include file="cnavbar.jsp"%>
+			<div class="flex-container">					
+				<div class="pwd-container theme-showcase" role="main">
+					<center><h4 class="modal-title" style="color:black;">Change<text style="color:#8B0000;">Password</text></h4></center>
+					<!-- Modal body -->
+					<div class="container">
+						<form class="form-signin" method="POST" action="<%=request.getContextPath() %>/ismgroup26/ChangeController.jsp">		
+							<div id="changePWD" class="container"><br>
+								<div class="modal-body">
+									<div class="form-group">
+										<input name="username" type="text" class="form-control" id="username" placeholder="Enter your username" required>
+									</div>
+									<div class="form-group">
+										<input name="old_password" type="password" class="form-control" id="password" placeholder="Enter your old password" required>
+									</div>
+									<div class="form-group">
+										<input name="new_password" type="password" class="form-control" id="password" placeholder="Enter your new password" required>
+									</div>
+									<button type="submit" class="btn btn-success">Update</button>
+									<input type="reset" class="btn btn-danger" value="Clear"/>
 								</div>
-						
-			<% } %>
-		
+							</div>
+							<input type="hidden" name="username" value="<%=user.getUsername()%>"/>
+							<input type="hidden" name="oldPWD" value="<%=user.getPassword()%>"/>	
+						</form>
+					<%	if(request.getAttribute("pwd_errors") != null) { %>
+							<div class="alert alert-danger" style="" role="alert"><%=(String)request.getAttribute("pwd_errors") %></div>
+					<%	}	%>
+					</div>
+				</div>
+			</div>		
+	<%	}else{
+			BarbershopUser user = (BarbershopUser)session.getAttribute("user");%>
+		<%@	include file="bnavbar.jsp"%>
+		<div class="flex-container">					
+			<div class="pwd-container theme-showcase" role="main">
+				<center><h4 class="modal-title" style="color:black;">Change <text style="color:#8B0000;">Password</text></h4></center>
+				<!-- Modal body -->
+				<div class="container">
+					<form class="form-signin" method="POST" action="<%=request.getContextPath() %>/ismgroup26/ChangeController.jsp">		
+						<div id="changePWD" class="container"><br>
+							<div class="modal-body">
+								<div class="form-group">
+									<input name="username" type="text" class="form-control" id="username" placeholder="Enter your username" required>
+								</div>
+								<div class="form-group">
+									<input name="old_password" type="password" class="form-control" id="password" placeholder="Enter your old password" required>
+								</div>
+								<div class="form-group">
+									<input name="new_password" type="password" class="form-control" id="password" placeholder="Enter your new password" required>
+								</div>
+								<button type="submit" class="btn btn-success">Update</button>
+								<input type="reset" class="btn btn-danger" value="Clear"/>
+							</div>	
+						</div>
+						<input type="hidden" name="username" value="<%=user.getUsername()%>"/>				
+						<input type="hidden" name="oldPWD" value="<%=user.getPassword()%>"/>										
+					</form>
+					<%	if(request.getAttribute("pwd_errors") != null) { %>
+							<div class="alert alert-danger" style="" role="alert"><%=(String)request.getAttribute("pwd_errors") %></div>
+					<%	}	%>
+				</div>
+			</div>
+		</div>						 
+	<%	}
+	}	%>
+	
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

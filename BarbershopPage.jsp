@@ -167,7 +167,7 @@
 			<div class="tab-pane fade" id="book" role="tabpanel">
 		<%	}	%>
 			<form style="text-align:center;" id="bookForm" action="<%=request.getContextPath() %>/ismgroup26/bookController.jsp">
-				<h1>Make your <text style="color:#8B0000">booking</text></h1><br>
+				<h1>Make your <text style="color:#8B0000;">booking</text></h1><br>
 
 				<!-- One "tab" for each step in the form: -->
 				<div class="tab">
@@ -596,8 +596,8 @@
 			<!-- Reviews -->
 			<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
 				<ul class="flex-container">
-			<%	if(reviews == null){%>
-					<h2 class="color:white"><em>No reviews yet. Post the first review!</em><h2>
+			<%	if(reviews.size() == 0){%>
+					<h2 class="text-center" style="color:white; margin-top:5%;"><em class="display-4 font-weight-bolder">No <text style="color:#8B0000;">reviews</text> yet.</h2>
 			<%	}else{
 					int counter = 0;
 					for(Review review: reviews) {	%>						

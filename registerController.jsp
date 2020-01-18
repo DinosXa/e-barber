@@ -20,12 +20,12 @@
 			int countErrors = 0;
 			String inputerrorb = "";
 
-			if(username == null || username.length() < 5 || username.length() > 26){
+			if(username == null || username.length() < 5 || username.length() > 25){
 				inputerrorb += "<li>Username should have from 5 (min) to 25 (max) characters.</li>";
 				countErrors++;
 			}
 			if(password == null || password.length() < 6){
-				inputerrorb += "<li>Password should have from 6 (min) to 20 (max) characters.</li>";
+				inputerrorb += "<li>Password must have at least 6 (min) characters.</li>";
 				countErrors++;
 			}
 			if( !rv.isValidEmailAddress(email) ) {
@@ -69,12 +69,12 @@
 			int countErrors = 0;
 			String inputerrorc = "";	
 			
-			if(username.length() < 5 || username.length() > 25){
+			if(username == null || username.length() < 5 || username.length() > 25){
 				inputerrorc += "<li>Username should have from 5 (min) to 25 (max) characters.</li>";
 				countErrors++;
 			}
-			if(password.length() < 6){
-				inputerrorc += "<li>Password should have from 6 (min) to 20 (max) characters.</li>";
+			if(password == null || password.length() < 6){
+				inputerrorc += "<li>Password must have at least 6 (min) characters.</li>";
 				countErrors++;
 			}
 			if(name != null) {

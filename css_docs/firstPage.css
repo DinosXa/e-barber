@@ -14,6 +14,12 @@ img {
 	color:black;
 }
 
+.pwd-container {
+  border-radius: 15px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
 .errormsg {
 	position: absolute;
 	top: 65%;
