@@ -1,3 +1,5 @@
+<!-- t8170101 (κατανόηση όλων) -->
+
 <%	
 	if(session.getAttribute("user") == null){
 		request.setAttribute("message", "Your access to this resource is forbidden. Please login.");

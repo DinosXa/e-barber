@@ -1,3 +1,5 @@
+<!-- t8170101 (κατανόηση όλων) -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
@@ -37,9 +39,8 @@
 		request.setAttribute("messages", "You are not authorized to access this resource. Please login.");	%>
 		<jsp:forward page="index.jsp" />
 <%  }else{	%>
-	<%	if (session.getAttribute("user").getClass() == CustomerUser.class){%>
-									
-		<%	CustomerUser user = (CustomerUser)session.getAttribute("user");%>
+	<%	if (session.getAttribute("user").getClass() == CustomerUser.class){
+			CustomerUser user = (CustomerUser)session.getAttribute("user");%>
 		<%@	include file="cnavbar.jsp"%>
 			<div class="flex-container">					
 				<div class="pwd-container theme-showcase" role="main">
@@ -62,7 +63,7 @@
 									<input type="reset" class="btn btn-danger" value="Clear"/>
 								</div>
 							</div>
-							<input type="hidden" name="username" value="<%=user.getUsername()%>"/>
+							<input type="hidden" name="realUsern" value="<%=user.getUsername()%>"/>
 							<input type="hidden" name="oldPWD" value="<%=user.getPassword()%>"/>	
 						</form>
 					<%	if(request.getAttribute("pwd_errors") != null) { %>

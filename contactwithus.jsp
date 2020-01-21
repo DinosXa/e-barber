@@ -1,3 +1,5 @@
+<!-- t8170101 (κατανόηση όλων) -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
@@ -40,19 +42,30 @@
 		<%@ include file="bnavbar.jsp"%>
 		<div class="contact_container theme-showcase" role="main">
 			<div class="container">
-				<label for="username">Username</label>
-				<kbd><%=user.getUsername()%></kbd><br>
-				<label for="address">Address</label>
-				<kbd><%=user.getAddress()%></kbd><br>
-				<label for="area">Area</label>
-				<kbd><%=user.getArea().getName()%></kbd><br>
-				<label for="subject">Subject</label>
-				<form action="action_page.php">
-					<textarea id="subject" name="subject" placeholder="Explain the problem..." style="height:200px"></textarea>
+				<form action="reportController.jsp">
+					<label for="username">Username</label>
+					<kbd><%=user.getUsername()%></kbd><br>
+					<label for="address">Address</label>
+					<kbd><%=user.getAddress()%></kbd><br>
+					<label for="area">Area</label>
+					<kbd><%=user.getArea().getName()%></kbd><br>
+					<select name="subject" class="custom-select" required>
+						<option value="" disabled selected hidden>Choose subject</option>
+						<option value="question">I have a question about the system.</option>
+						<option value="suggestion">I have a suggestion for the system.</option>
+						<option value="problem">I want to report a problem.</option>
+						<option value="other">Other</option>
+					</select>
+					<textarea id="report" name="report" maxlength="200" placeholder="Explain here" style="height:100px"></textarea>
 					<input type="submit" value="Submit">
-				</form>
-			</div> 
-		</div>
+					<input type="hidden" name="bid" value="<%=user.getBID()%>"/>
+				</form><br>
+			<%	if(request.getAttribute("reportmsg") != null) { %>
+					<div class="alert alert-danger text-center allert-dismissible fade show errormsg" role="alert"><%=(String)request.getAttribute("reportmsg") %>
+					</div>
+			<% 	}	%>
+			</div>			
+		 </div>
 		<!-- End of container -->	
 
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->

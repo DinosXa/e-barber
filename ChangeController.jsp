@@ -1,3 +1,5 @@
+<!-- t8170101 (κατανόηση όλων) -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
@@ -7,6 +9,7 @@
 <% 
 	try	{
 		String username = request.getParameter("username");
+		String realUsername = request.getParameter("realUsern");
 		String old_password = request.getParameter("old_password");
 		String new_password = request.getParameter("new_password");
 		UserDAO dao = new UserDAO();
@@ -14,6 +17,10 @@
 		
 		int countErrors = 0;
 		String pwd_errors = "";
+		if(!username.equals(realUsername)){
+			pwd_errors += "<li>Username is wrong!</li>";
+			countErrors++;
+		}		
 		if(!old_password.equals(oldPWD)){
 			pwd_errors += "<li>Old password is not correct!</li>";
 			countErrors++;

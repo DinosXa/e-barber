@@ -1,7 +1,8 @@
+<!-- t8170101 (κατανόηση όλων) -->
+
 <%	if(session.getAttribute("user") == null){
 		request.setAttribute("message", "Your access to this resource is forbidden. Please login.");
 	}
-	request.setAttribute("ifbarber","true");
 %>	
 	<!-- Barbershop Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -21,11 +22,11 @@
 						Bookings
 					</a>
 				</li>	
-				<li class="nav-item" href="<%= (request.getRequestURI().replace(request.getContextPath() + "/","").equals("ismgroup26availability.jsp") ? "active" : "") %>">
+			<!--	<li class="nav-item" href="<%= (request.getRequestURI().replace(request.getContextPath() + "/","").equals("ismgroup26availability.jsp") ? "active" : "") %>">
 					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/availability.jsp">
 						Availability
 					</a>
-				</li>								
+				</li>	-->
 				<li class="nav-item" href="<%= (request.getRequestURI().replace(request.getContextPath() + "/","").equals("ismgroup26contactwithus.jsp") ? "active" : "") %>">
 					<a class="nav-link" style="color:#6B8E23" href="<%= request.getContextPath() %>/ismgroup26/contactwithus.jsp">
 						Contact with us
@@ -36,6 +37,14 @@
 						<div class="alert alert-warning alert-dismissible" style="position:absolute;">
 							<button type="button" class="close" data-dismiss="alert">&times;</button>
 							<%=(String)request.getAttribute("wrong-page")%>
+						</div>
+					</li>
+			<%	}	%>
+			<%	if(request.getAttribute("success") != null) { %>
+					<li class="nav-item">
+						<div class="alert alert-success alert-dismissible" style="position:absolute;">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<%=(String)request.getAttribute("success")%>
 						</div>
 					</li>
 			<%	}	%>

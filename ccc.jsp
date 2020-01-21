@@ -1,3 +1,4 @@
+<!-- t8170101 (κατανόηση όλων) -->
 
 <!-- This is a jsp page to check the type of user when being on a customer's page. C.C.C. stands for Customer Class Check. -->
 <%	if(session.getAttribute("user").getClass() != CustomerUser.class){	

@@ -1,3 +1,5 @@
+<!-- t8170101 (κατανόηση όλων) -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
@@ -39,10 +41,12 @@
 <%	BarbershopUserService brbservice = new BarbershopUserService();
 	
 	if(session.getAttribute("user").getClass() == CustomerUser.class){	
+		String biggerId = request.getParameter("bigger");
 		String bid = request.getParameter("bid");
-		if(bid == null)
-			request.setAttribute("indexerror","You have to select an area.");
-		
+		if(bid.equals("")){
+			request.setAttribute("indexerror","There is no barbershop with this id.");
+		%>	<jsp:forward page="index.jsp"/>	<%
+		}
 		CustomerUser user = (CustomerUser)session.getAttribute("user");	%>
 	<%@ include file="cnavbar.jsp"%>			
 	<%	BarbershopUser buser = brbservice.findBarberByID(bid);
@@ -59,7 +63,7 @@
 
 		<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
 			<li class="nav-item" role="presentation">
-				<a class=" nav-link" data-toggle="tab" href="#info" role="tab" aria-controls="info">Information</a>
+				<a class=" nav-link" data-toggle="tab" href="#info" role="tab" aria-controls="info">Information<%=biggerId%></a>
 			</li>
 			<li class="nav-item" role="presentation">
 				<a class="nav-link" data-toggle="tab" href="#book" role="tab" aria-controls="book">Book</a>
@@ -71,7 +75,7 @@
 
 		<div class="tab-content" id="myTabContent">
 			<!-- Info -->
-		<%	if(active.equals("info") || (!active.equals("reviews") && !active.equals("book"))){%>
+		<%	if(active.equals("") || active.equals("info") || (!active.equals("reviews") && !active.equals("book"))){%>
 			<div class="tab-pane fade show active" id="info" role="tabpanel">
 		<%	}else{	%>
 			<div class="tab-pane fade show" id="info" role="tabpanel">
@@ -184,12 +188,28 @@
 								</tr>
 							</thead>
 							<tbody>
-						<%	for(Booking booking: bookings){	%>
+						<%	
+						SimpleDateFormat checkDTF = new SimpleDateFormat("dd-MM-yyyy HH:mm"); //checkDTF = Check DateTime Formatter	\ checking for overdue bookings so that they do not show up
+					
+						//get current local datetime as Date
+						DateTimeFormatter cdtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");  
+						LocalDateTime checkNOW = LocalDateTime.now();  
+						String currentDatetime = cdtf.format(checkNOW);
+						Date cdt = checkDTF.parse(currentDatetime); //covert string-type currentDaytime to date-type currentDaytime \ cdt = Current DateTime
+
+						for(Booking booking: bookings){
+							//get book datetime as Date
+							String bookDatetime = booking.getDay() + " " + booking.getTime().substring(6,11); //Combining day & time
+							Date bdt = checkDTF.parse(bookDatetime); //covert string-type bookDaytime to date-type bookDaytime \ bdt = Book DateTime
+							
+							if(cdt.compareTo(bdt) < 0)	{
+								%>
 								<tr class="table-warning">
 									<td><%=booking.getDay()%></td>
 									<td><%=booking.getTime()%></td>
 								</tr>
-						<%	}	%>
+						<%	}
+						}	%>
 						</tbody>
 					</table>
 				</div>				
@@ -199,7 +219,7 @@
 					<h3 style="margin-bottom:3%;">Select day</h3>
 				<%	for(int i=0;i<=7;i++){
 						day.add(Calendar.DATE, i);
-						dt = sdf.format(day.getTime());%>				
+						dt = sdf.format(day.getTime());%>
 						<div class="form-check-inline">
 							<label class="form-check-label" for="day<%=i%>">
 								<input type="radio" class="form-check-input" name="day" id="day" value="<%=dt%>"><%=dt%>
@@ -239,7 +259,7 @@
 											<label class="form-check-label" for="day<%=j%>">
 												<input type="radio" class="form-check-input" name="time" id="time" value="<%=mtm1%>-<%=mtm2%>"><%=mtm1%>-<%=mtm2%>
 											</label>
-										</div>									
+										</div>
 									<%	}	%>
 								</div>
 							</div>
@@ -299,7 +319,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="tab">
 					<h3>Select service</h3>
 						<table class="table table-hover table-responsive-sm">
@@ -343,7 +363,7 @@
 											<label class="form-check-label" for="srv22">
 												7 €<input type="radio" class="form-check-input" name="service" id="srv22" value="Man-Shaving">
 											</label>
-										</div>									
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -371,14 +391,14 @@
 											<label class="form-check-label" for="srv41">
 												10 €<input type="radio" class="form-check-input" name="service" id="srv41" value="Under18-HaircutAndShaving">
 											</label>
-										</div>									
+										</div>
 									</td>
 									<td>
 										<div class="form-check-inline">
 											<label class="form-check-label" for="srv42">
 												14 €<input type="radio" class="form-check-input" name="service" id="srv42" value="Man-HaircutAndShaving">
 											</label>
-										</div>						
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -395,7 +415,7 @@
 											<label class="form-check-label" for="srv52">
 												12 €<input type="radio" class="form-check-input" name="service" id="srv52" value="Man-HaircutAndTrimming">
 											</label>
-										</div>									
+										</div>
 									</td>
 								</tr>
 							</tbody>
@@ -469,7 +489,7 @@
 					<h2 style="color:white; margin-top:5%;"><em class="display-4 font-weight-bolder">No <text style="color:#8B0000;">reviews</text> yet.<br>Post the <text style="color:#FFD700;">first</text> review!</em><h2>
 			<%	}else{
 					int counter = 0;
-					for(Review review: reviews) {	%>						
+					for(Review review: reviews) {	%>
 					<li class="re-container fitem">
 						<ul class="inside-cont">
 							<li class="idrr">
@@ -502,11 +522,11 @@
 								<%}%>
 							</li>
 						</ul>
-					</li>			
+					</li>
 				<%	}
 				}	%>
 			</ul>
-		</div>		
+		</div>
 	</div>
 <%	}
 	if(session.getAttribute("user").getClass() == BarbershopUser.class){			
@@ -600,7 +620,7 @@
 					<h2 class="text-center" style="color:white; margin-top:5%;"><em class="display-4 font-weight-bolder">No <text style="color:#8B0000;">reviews</text> yet.</h2>
 			<%	}else{
 					int counter = 0;
-					for(Review review: reviews) {	%>						
+					for(Review review: reviews) {	%>
 					<li class="re-container fitem">
 						<ul class="inside-cont">
 							<li class="idrr">
@@ -633,12 +653,12 @@
 								<%}%>
 							</li>
 						</ul>
-					</li>			
+					</li>
 				<%	}	%>
 				</ul>
 			<%	}	%>
-		</div>			
-	</div>		
+		</div>
+	</div>
 <% 	}	%>
 
 		<!-- =================== Place all javascript at the end of the document so the pages load faster =================== -->

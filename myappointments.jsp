@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- t8170101 (κατανόηση όλων) -->
 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import= "login_classes.*"%>
 <%@ page import= "java.util.*, java.text.*, java.time.format.*, java.time.*"%>
 
@@ -87,8 +88,7 @@
 										<p class="card-text">Time: <text style="color:#0000CD;"><%=booking.getTime()%></text></p>
 										<p class="card-text">Service: <text style="color:#0000CD; font-size:12px;"><%=booking.getService()%></text></p>
 										<p class="card-text">Price: <text style="color:#0000CD;"><%=booking.getPrice()%></text></p>
-										<a href="#" class="btn btn-primary">Change</a>
-										<button type="button" class="btn btn-danger">Cancel</button>  
+										<a href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=booking.getBarbershop().getBID()%>&active=info" class="btn btn-primary">Go to barbershop</a>
 									</div>
 								</div>
 							</li>
@@ -108,8 +108,7 @@
 										<p class="card-text">Time: <text style="color:#0000CD;"><%=booking.getTime()%></text></p>
 										<p class="card-text">Service: <text style="color:#0000CD;"><%=booking.getService()%></text></p>
 										<p class="card-text">Price: <text style="color:#0000CD;"><%=booking.getPrice()%></text></p>
-										<button href="#" type="button" class="btn btn-primary" disabled>Change</button>
-										<button type="button" class="btn btn-danger" disabled>Cancel</button>  
+										<a href="<%=request.getContextPath() %>/ismgroup26/BarbershopPage.jsp?bid=<%=booking.getBarbershop().getBID()%>&active=info" type="button" class="btn btn-primary">Go to barbershop</a>
 									</div>
 								</div>
 							</li>

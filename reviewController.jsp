@@ -1,3 +1,5 @@
+<!-- t8170101 (κατανόηση όλων) -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import="login_classes.*"%>
@@ -14,8 +16,10 @@ try{
 	String datetime = request.getParameter("reviewDT");
 	String cuserid = request.getParameter("cid");
 	String buserid = request.getParameter("bid");
-	if(buserid == null)
+	if(buserid == null){
 		request.setAttribute("indexerror","You must go to a barber's profile");
+	%>	<jsp:forward page="index.jsp"/>	<%
+	}
 
 	forReviews frev = new forReviews();
 	BarbershopUserService brbservice = new BarbershopUserService();

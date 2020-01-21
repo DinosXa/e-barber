@@ -14,10 +14,12 @@ public class main{
 			UserDAO ud = new UserDAO();
 			forReviews fr = new forReviews();
 			forBookings fb = new forBookings();
-			ud.sumbid();
-			ud.sumcid();
-			fb.getbkid();
-			fr.getrid();
+			forReports frep = new forReports();
+		//	ud.sumbid();
+		//	ud.sumcid();
+		//	fb.getbkid();
+		//	fr.getrid();
+			frep.getrpid();
 		}catch(Exception e){
 
 		}
