@@ -14,7 +14,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		
-		<title>My appointments</title>
+		<title>e-barber</title>
 		
 		<!-- Bootstrap core CSS & JQuery-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -52,9 +52,9 @@
 				
 					//get current local datetime as Date
 					DateTimeFormatter cdtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");  
-					LocalDateTime now = LocalDateTime.now();  
+					LocalDateTime now = LocalDateTime.now();
 					String currentDatetime = cdtf.format(now);
-					Date cdt = dtf.parse(currentDatetime); //covert string-type currentDaytime to date-type currentDaytime \ cdt = Current DateTime		
+					Date cdt = dtf.parse(currentDatetime); //covert string-type currentDaytime to date-type currentDaytime \ cdt = Current DateTime
 		
 					for(Booking booking: bookings) {
 						//get book datetime as Date
@@ -78,7 +78,7 @@
 									<div class="img-container">
 										<img class="card-img-top mx-auto d-block" src="<%=request.getContextPath() %>/ismgroup26/imgs/bpoleAv.jpg" alt="Card image" style="width:248.5px; height:200px;">
 										<div class="middle">
-											<h2 c	lass="text"><%=booking.getBarbershop().getUsername()%><br><b style="font-size:19px;"><%=difference%> <%=timeLeft%></b></h2>
+											<h2 class="text"><%=booking.getBarbershop().getUsername()%><br><b style="font-size:19px;"><%=difference%> <%=timeLeft%></b></h2>
 										</div>
 									</div>
 									<div class="card-body" style="line-height:13px; font-weight:450; font-size:13px;">

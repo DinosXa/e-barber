@@ -72,7 +72,8 @@
 					</div>
 				</div>
 			</div>		
-	<%	}else{
+	<%	}
+		if (session.getAttribute("user").getClass() == BarbershopUser.class){
 			BarbershopUser user = (BarbershopUser)session.getAttribute("user");%>
 		<%@	include file="bnavbar.jsp"%>
 		<div class="flex-container">					

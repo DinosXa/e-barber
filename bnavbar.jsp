@@ -6,7 +6,7 @@
 %>	
 	<!-- Barbershop Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#"><em>e-barber</em></a>
+		<a class="navbar-brand" style="color:white;"><em>e-barber</em></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bnavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -56,7 +56,7 @@
 				<div class="nav-item dropdown">
 					<div class="border" style="border-radius:0px;">
 						<a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						  Accounts
+						  Account
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="<%=request.getContextPath() %>/ismgroup26/Logout.jsp">

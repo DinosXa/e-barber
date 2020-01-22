@@ -44,7 +44,8 @@
 			request.setAttribute("success", "You have succesfully changed your password! Now login with the new one!");
 			session.invalidate();
 		%>	<jsp:forward page="index.jsp"/>	<%
-		}else {
+		}
+		if(session.getAttribute("user").getClass() == CustomerUser.class){
 			dao.changePasswordBU(username, old_password, new_password);
 			request.setAttribute("success", "You have succesfully changed your password! Now login with the new one!");	
 			session.invalidate();

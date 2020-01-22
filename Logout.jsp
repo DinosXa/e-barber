@@ -20,7 +20,7 @@ if(session.getAttribute("user") == null) {
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	
-		<title>Log out</title>
+		<title>e-barber</title>
 	
 		<!-- automatically will redirect to index_ex1_b_8170101.jsp after 1.5 seconds -->
 		<meta http-equiv="refresh" content="1.0;url=<%=request.getContextPath() %>/ismgroup26/index.jsp" />

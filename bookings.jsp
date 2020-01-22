@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error_page.jsp"%>
 <%@ page import= "login_classes.*"%>
-<%@ page import= "java.util.*"%>
+<%@ page import= "java.util.*, java.text.*, java.time.format.*, java.time.*"%>
 
 <%@ include file="logincheck.jsp"%>
 <%@ include file="bcc.jsp"%>
@@ -51,26 +51,66 @@
 				String size = "bookings";
 				if(bookings.size() == 1) size = "booking";	%>
 				<p class="display-4 text-center">You have <code style="color:#88B04B;"><%=bookings.size()%></code> <%=size%> on total.</p>
-		<%		int counter = 0;	%>
 				<ul class="book-container">		
-		<%		for(Booking booking: bookings) { %>
-					<li class="book-item">
-						<div class="card" style="width:290px;">
-							<img class="card-img-top" src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Card image" style="width:287px; height:230px;">
-							<div class="card-body" style="line-height:13px; font-weight:500; font-size:14px;">
-								<h4 class="card-title text-capitalize"><%=booking.getCustomer().getName()%> <%=booking.getCustomer().getSurname()%></text></h4>
-								<p class="card-text">Telephone: <text style="color:#0000CD;"><%=booking.getCustomer().getPhone()%></text></p>
-								<p class="card-text">E-mail: <text style="color:#0000CD;"><%=booking.getCustomer().getEmail()%></text></p>
-								<p class="card-text">Day: <text style="color:#0000CD;"><%=booking.getDay()%></text></p>
-								<p class="card-text">Time: <text style="color:#0000CD;"><%=booking.getTime()%></text></p>
-								<p class="card-text">Service: <text style="color:#0000CD;"><%=booking.getService()%></text></p>
-								<p class="card-text">Price: <text style="color:#0000CD;"><%=booking.getPrice()%></text></p>
-								<a href="#" class="btn btn-primary">Accept</a>
-								<button type="button" class="btn btn-danger">Decline</button>
-							</div>
-						</div>
-					</li>
-				<%	}	%>
+			<%		int counter = 0;
+			
+					SimpleDateFormat dtf = new SimpleDateFormat("dd-MM-yyyy HH:mm"); //dtf = DateTime Formatter		
+				
+					//get current local datetime as Date
+					DateTimeFormatter cdtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");  
+					LocalDateTime now = LocalDateTime.now();
+					String currentDatetime = cdtf.format(now);
+					Date cdt = dtf.parse(currentDatetime); //covert string-type currentDaytime to date-type currentDaytime \ cdt = Current DateTime
+					
+					for(Booking booking: bookings) { 
+						//get book datetime as Date
+						String bookDatetime = booking.getDay() + " " + booking.getTime().substring(6,11); //Combining day & time
+						Date bdt = dtf.parse(bookDatetime); //covert string-type bookDaytime to date-type bookDaytime \ bdt = Book DateTime	
+						
+						if(cdt.compareTo(bdt) < 0)	{
+							long diff = bdt.getTime() - cdt.getTime();
+							int diffHours = (int) (diff / (60 * 60 * 1000)); //difference in hours
+							int diffMin = (int) (diff / (60 * 1000)); //difference in minutes	
+							
+							int difference = diffHours;
+							String timeLeft = "hours";
+							if (diffHours < 1)	{
+								difference = diffMin;
+								timeLeft = "minutes";
+							}	%>
+							<li class="book-item">
+								<div class="card" style="width:290px;">
+									<img class="card-img-top" src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Card image" style="width:287.4px; height:230px;">
+									<div class="card-body" style="line-height:13px; font-weight:500; font-size:14px;">
+										<h4 class="card-title text-capitalize"><%=booking.getCustomer().getName()%> <%=booking.getCustomer().getSurname()%></text></h4>
+										<p class="card-text">Telephone: <text style="color:#0000CD;"><%=booking.getCustomer().getPhone()%></text></p>
+										<p class="card-text">E-mail: <text style="color:#0000CD;"><%=booking.getCustomer().getEmail()%></text></p>
+										<p class="card-text">Day: <text style="color:#0000CD;"><%=booking.getDay()%></text></p>
+										<p class="card-text">Time: <text style="color:#0000CD;"><%=booking.getTime()%></text></p>
+										<p class="card-text">Service: <text style="color:#0000CD;"><%=booking.getService()%></text></p>
+										<p class="card-text">Price: <text style="color:#0000CD;"><%=booking.getPrice()%></text></p>
+										<span class="badge badge-success">ACTIVE</span> Happens in <%=difference%> <%=timeLeft%>.
+									</div>
+								</div>
+							</li>
+					<%	}else{	%>
+							<li class="book-item">
+								<div class="card" style="width:290px; border-color:red; border-style:solid; border-width:4px;">
+									<img class="card-img-top" src="<%=request.getContextPath() %>/ismgroup26/imgs/johnny.jpg" alt="Card image" style="width:282px; height:230px;">
+									<div class="card-body" style="line-height:13px; font-weight:500; font-size:14px;">
+										<h4 class="card-title text-capitalize"><strike><%=booking.getCustomer().getName()%> <%=booking.getCustomer().getSurname()%></strike></h4>
+										<p class="card-text">Telephone: <text style="color:#0000CD;"><%=booking.getCustomer().getPhone()%></text></p>
+										<p class="card-text">E-mail: <text style="color:#0000CD;"><%=booking.getCustomer().getEmail()%></text></p>
+										<p class="card-text">Day: <text style="color:#0000CD;"><%=booking.getDay()%></text></p>
+										<p class="card-text">Time: <text style="color:#0000CD;"><%=booking.getTime()%></text></p>
+										<p class="card-text">Service: <text style="color:#0000CD;"><%=booking.getService()%></text></p>
+										<p class="card-text">Price: <text style="color:#0000CD;"><%=booking.getPrice()%></text></p></strike>
+										<span class="badge badge-danger float-right;">FINISHED</span>
+									</div>
+								</div>
+							</li>			
+					<%	}	
+					}	%>
 				</ul>
 		<%	}	%>
 		</div>
